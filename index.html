@@ -10,6 +10,11 @@
 
 
     
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUXiQ PRO+ | Next-Gen Rewards Platform</title>
+    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -1183,11 +1188,268 @@
             transition: all 0.2s ease;
         }
 
-       
+        .tree-view-item-toggle:hover {
+            color: var(--color-primary-500);
+        }
+
+        /* Context Menu */
+        .context-menu {
+            animation: dropdownEnter 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        /* Tooltip Custom */
+        .custom-tooltip {
+            animation: fadeIn 0.2s ease-out;
+            background: rgba(26, 29, 36, 0.95);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Popover */
+        .popover-content {
+            animation: dropdownEnter 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        /* Command Palette */
+        .command-palette {
+            animation: modalEnter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(26, 29, 36, 0.98);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Tour */
+        .tour-highlight {
+            box-shadow: 0 0 0 9999px rgba(5, 7, 13, 0.9), 0 0 15px rgba(99, 102, 241, 0.5);
+        }
+
+        /* Heatmap */
+        .heatmap-cell {
+            transition: all 0.2s ease;
+        }
+
+        .heatmap-cell:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Org Chart */
+        .org-chart-node {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Network Graph */
+        .network-graph-node {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Sankey Diagram */
+        .sankey-link {
+            opacity: 0.6;
+            transition: opacity 0.2s ease;
+        }
+
+        .sankey-link:hover {
+            opacity: 1;
+        }
+
+        /* Gantt Chart */
+        .gantt-bar {
+            background: rgba(99, 102, 241, 0.6);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .gantt-bar:hover {
+            background: var(--color-primary-500);
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Calendar */
+        .calendar-day:hover:not(.disabled) {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .calendar-day.selected {
+            background: var(--color-primary-500);
+            color: white;
+        }
+
+        /* Kanban Board */
+        .kanban-column {
+            background: rgba(26, 29, 36, 0.6);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .kanban-card {
+            background: rgba(33, 37, 46, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .kanban-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        /* Mind Map */
+        .mindmap-node {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Flowchart */
+        .flowchart-node {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Family Tree */
+        .familytree-node {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Decision Tree */
+        .decisiontree-node {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ER Diagram */
+        .erd-entity {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* UML Diagram */
+        .uml-class {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* BPMN Diagram */
+        .bpmn-activity {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Sequence Diagram */
+        .sequence-actor {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* State Diagram */
+        .state-state {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Class Diagram */
+        .class-class {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Use Case Diagram */
+        .usecase-actor {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Activity Diagram */
+        .activity-action {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Component Diagram */
+        .component-component {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Deployment Diagram */
+        .deployment-node {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Object Diagram */
+        .object-object {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Package Diagram */
+        .package-package {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Profile Diagram */
+        .profile-profile {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Timing Diagram */
+        .timing-lifeline {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Interaction Overview Diagram */
+        .interaction-frame {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Communication Diagram */
+        .communication-object {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Composite Structure Diagram */
+        .composite-part {
+            background: rgba(26, 29, 36, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
-
-<body class="flex min-h-screen bg-site-gradient">
+<body class="bg-dark-950 text-light-200">
     <!-- Mobile sidebar overlay -->
     <div id="sidebarOverlay" class="sidebar-overlay hidden md:hidden"></div>
 
