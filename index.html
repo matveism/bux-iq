@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en" x-data="{ sidebarOpen: false, activeSection: 'home', loggedIn: false, userData: {} }" 
       :class="{'overflow-hidden': sidebarOpen}" class="dark">
@@ -1580,9 +1581,11 @@
                             <span class="material-symbols-rounded text-red-400">info</span>
                         </div>
                         <div class="ml-3">
-                            
+                            <p class="text-sm font-medium">
+                                INFO: (ALL USERS NOW REQUIRE TODO ACTIVITES (OFFERS/SURVEYS) IT DEPENDS ON THE LEVEL REQUIREMNT! + EXPIRATION) IF REQUIREMNT NOT MET YOU WONT BE ABLE TO REDEEM BONUS CODE! AND IF ITS EVEN EXPIRED
+                            </p>
                             <p class="text-sm font-medium mt-1">
-                                <span class="font-bold">WELCOME TO SITE!</span>
+                                <span class="font-bold">WE HOLD PTS OVER 1000 PTS [FOR 7 DAYS]</span>
                             </p>
                         </div>
                     </div>
@@ -1876,16 +1879,6 @@
                                     <img src="https://i.imgur.com/m3TMe67.png" alt="Porix Logo" class="h-12">
                                 </div>
                                 <button id="openOfferWallporix" class="btn-accent w-full mt-4 py-2 px-4 rounded-lg">
-                                    Open OfferWall
-                                </button>
-                            </div>
-                             
-                            <!-- Revtoo -->
-                            <div class="card p-6 hover:border-purple-500/30 transition-all">
-                                <div class="flex justify-center py-4">
-                                    <img src="https://revtoo.com/assets/offerwall/images/revtoo-dark.svg" alt="revtoo Logo" class="h-12">
-                                </div>
-                                <button id="openOfferWallrevtoo" class="btn-accent w-full mt-4 py-2 px-4 rounded-lg">
                                     Open OfferWall
                                 </button>
                             </div>
@@ -2353,7 +2346,6 @@
             'openOfferWallkiwi': (user) => `https://www.kiwiwall.com/wall/ICKEzWAlZv8O6QOXSxFdfJ7jLfU6RUtl/${user}`,
             'openOfferWalltaskwall': (user) => `https://wall.taskwall.io/?app_id=532d75c281c9725adc821ff7de18c199&userid=${user}`,
             'openOfferWallporix': (user) => `https://porix.org/app/iframe/10221/${user}`
-            'openOfferWallrevtoo': (user) => `https://revtoo.com/api/offers/?api_key=m7l0au6f6w8tzh0ghly11tur1oucce/${user}`
         };
 
         Object.keys(offerwallButtons).forEach(buttonId => {
