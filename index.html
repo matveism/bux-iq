@@ -1572,160 +1572,164 @@
         </header>
 
         <!-- Main Content Area -->
-        <main class="main-content-area flex-1 overflow-y-auto p-4 md:p-6 custom-scrollbar">
-             <!-- Notification Banner -->
-            <div class="notification-banner relative mb-6">
-                <div class="card p-4 bg-gradient-to-r from-red-900/50 to-orange-900/50 border border-red-900/30">
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0">
-                            <span class="material-symbols-rounded text-red-400">info</span>
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm font-medium">
-                                INFO: (ALL USERS NOW REQUIRE TODO ACTIVITES (OFFERS/SURVEYS) IT DEPENDS ON THE LEVEL REQUIREMNT! + EXPIRATION) IF REQUIREMNT NOT MET YOU WONT BE ABLE TO REDEEM BONUS CODE! AND IF ITS EVEN EXPIRED
-                            </p>
-                            <p class="text-sm font-medium mt-1">
-                                <span class="font-bold">WE HOLD PTS OVER 1000 PTS [FOR 7 DAYS]</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+<main class="main-content-area flex-1 overflow-y-auto p-6 md:p-10 bg-gray-900 text-gray-200 font-sans custom-scrollbar">
+
+  <!-- Notification Banner -->
+  <div class="notification-banner relative mb-8 max-w-4xl mx-auto">
+    <div class="rounded-lg bg-gradient-to-r from-red-800/70 to-orange-800/70 border border-red-700/50 shadow-lg p-5 flex items-start gap-4">
+      <span class="material-symbols-rounded text-red-400 text-3xl flex-shrink-0" aria-hidden="true">info</span>
+      <div>
+        <p class="text-sm font-semibold leading-relaxed">
+          INFO: <span class="uppercase tracking-widest">All users now require ToDo activities (offers/surveys)</span> depending on level requirements + expiration. If the requirement is not met, you will not be able to redeem bonus codes! Expired codes also cannot be redeemed.
+        </p>
+        <p class="text-sm font-semibold mt-2">
+          <span class="font-extrabold text-yellow-400">We hold points over 1000 pts for 7 days</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activity Logs -->
+  <section id="logs" class="card mb-8 max-w-4xl mx-auto rounded-lg bg-gray-800 shadow-md h-48 overflow-hidden">
+    <div class="p-5 h-full overflow-y-auto custom-scrollbar flex items-center justify-center text-gray-400 font-medium select-none">
+      <p>Your activity log will appear here</p>
+    </div>
+  </section>
+
+  <!-- Home Section -->
+  <section id="home" class="section active max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <article class="relative bg-gray-800 rounded-xl shadow-xl overflow-hidden p-8 md:p-12">
+
+      <!-- Background decorative elements -->
+      <div class="absolute top-0 right-0 w-36 h-36 bg-red-900/30 rounded-full -mr-16 -mt-16 pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 w-48 h-48 bg-orange-900/30 rounded-full -ml-24 -mb-24 pointer-events-none"></div>
+
+      <!-- Hero Content -->
+      <header class="relative text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-red-400 via-orange-400 to-yellow-300 bg-clip-text text-transparent select-text">
+          Next-Level Rewards Platform
+        </h1>
+        <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed">
+          Earn crypto, gift cards, and cash by completing simple tasks.
+          <span class="font-semibold text-yellow-400">Join our community of 500,000+ earners.</span>
+        </p>
+      </header>
+
+      <!-- Earning Methods Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+
+        <!-- Survey Card -->
+        <div class="card rounded-lg bg-gray-900 p-6 shadow-lg hover:shadow-2xl transition-shadow border border-transparent hover:border-red-500 cursor-pointer flex flex-col items-center text-center">
+          <div class="w-16 h-16 mb-5 flex items-center justify-center bg-red-900/25 rounded-xl text-red-400 text-4xl">
+            <span class="material-symbols-rounded select-none">quiz</span>
+          </div>
+          <h3 class="text-2xl font-semibold mb-3">Surveys & Quizzes</h3>
+          <p class="opacity-70 text-sm leading-relaxed">
+            Share your opinions and get rewarded instantly. High-paying market research studies available.
+          </p>
+          <div class="mt-auto pt-5 border-t border-gray-700 w-full flex justify-center">
+            <span class="badge badge-primary bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Avg. $2-5 per survey</span>
+          </div>
+        </div>
+
+        <!-- Apps Card -->
+        <div class="card rounded-lg bg-gray-900 p-6 shadow-lg hover:shadow-2xl transition-shadow border border-transparent hover:border-purple-600 cursor-pointer flex flex-col items-center text-center">
+          <div class="w-16 h-16 mb-5 flex items-center justify-center bg-purple-900/25 rounded-xl text-purple-400 text-4xl">
+            <span class="material-symbols-rounded select-none">apps</span>
+          </div>
+          <h3 class="text-2xl font-semibold mb-3">App Testing</h3>
+          <p class="opacity-70 text-sm leading-relaxed">
+            Try new apps and services. Keep them installed for bonus rewards. iOS & Android supported.
+          </p>
+          <div class="mt-auto pt-5 border-t border-gray-700 w-full flex justify-center">
+            <span class="badge badge-accent bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">$0.50-$3 per app</span>
+          </div>
+        </div>
+
+        <!-- Games Card -->
+        <div class="card rounded-lg bg-gray-900 p-6 shadow-lg hover:shadow-2xl transition-shadow border border-transparent hover:border-orange-500 cursor-pointer flex flex-col items-center text-center">
+          <div class="w-16 h-16 mb-5 flex items-center justify-center bg-orange-900/25 rounded-xl text-orange-400 text-4xl">
+            <span class="material-symbols-rounded select-none">sports_esports</span>
+          </div>
+          <h3 class="text-2xl font-semibold mb-3">Game Challenges</h3>
+          <p class="opacity-70 text-sm leading-relaxed">
+            Play mobile games and reach milestones to earn. Casual and hardcore options available.
+          </p>
+          <div class="mt-auto pt-5 border-t border-gray-700 w-full flex justify-center">
+            <span class="badge badge-primary bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-semibold">$1-$10+ per game</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Divider -->
+      <div class="relative flex items-center justify-center mb-12">
+        <div class="flex-grow border-t border-gray-700"></div>
+        <span class="mx-6 uppercase tracking-widest text-sm text-gray-400 font-semibold">Withdrawal Options</span>
+        <div class="flex-grow border-t border-gray-700"></div>
+      </div>
+
+      <!-- Cashout Options Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- Crypto Card -->
+        <div class="card rounded-lg bg-gray-900 p-6 shadow-lg hover:shadow-2xl transition-shadow border border-transparent hover:border-red-600 cursor-pointer">
+          <div class="flex items-center justify-between mb-5">
+            <h3 class="text-2xl font-semibold">Crypto</h3>
+            <div class="w-12 h-12 flex items-center justify-center bg-red-900/25 rounded-lg text-red-400 text-3xl">
+              <span class="material-symbols-rounded select-none">currency_bitcoin</span>
             </div>
+          </div>
+          <p class="opacity-70 text-sm mb-6">Instant withdrawals to your wallet with low 1% fees</p>
+          <div class="flex flex-wrap gap-3">
+            <span class="badge badge-primary bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Bitcoin</span>
+            <span class="badge badge-primary bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Ethereum</span>
+            <span class="badge badge-primary bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Solana</span>
+            <span class="badge badge-primary bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold">USDT</span>
+          </div>
+        </div>
 
-            <!-- Activity Logs -->
-            <div id="logs" class="card mb-6 h-48 overflow-hidden">
-                <div class="p-4 h-full overflow-y-auto custom-scrollbar">
-                    <div class="text-center h-full flex items-center justify-center opacity-70 font-medium">
-                        <p>Your activity log will appear here</p>
-                    </div>
-                </div>
+        <!-- Gift Cards Card -->
+        <div class="card rounded-lg bg-gray-900 p-6 shadow-lg hover:shadow-2xl transition-shadow border border-transparent hover:border-purple-600 cursor-pointer">
+          <div class="flex items-center justify-between mb-5">
+            <h3 class="text-2xl font-semibold">Gift Cards</h3>
+            <div class="w-12 h-12 flex items-center justify-center bg-purple-900/25 rounded-lg text-purple-400 text-3xl">
+              <span class="material-symbols-rounded select-none">redeem</span>
             </div>
+          </div>
+          <p class="opacity-70 text-sm mb-6">100+ brands available with instant digital delivery</p>
+          <div class="flex flex-wrap gap-3">
+            <span class="badge badge-accent bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Amazon</span>
+            <span class="badge badge-accent bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Steam</span>
+            <span class="badge badge-accent bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Netflix</span>
+            <span class="badge badge-accent bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Spotify</span>
+          </div>
+        </div>
 
-            <!-- Home Section -->
-            <div id="home" class="section active">
-                <section class="card p-6 md:p-8 overflow-hidden relative">
-                    <!-- Background elements -->
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-red-900/20 rounded-full -mr-10 -mt-10"></div>
-                    <div class="absolute bottom-0 left-0 w-40 h-40 bg-orange-900/20 rounded-full -ml-20 -mb-20"></div>
-
-                    <!-- Hero Content -->
-                    <div class="relative text-center mb-8">
-                        <h1 class="text-3xl md:text-4xl font-bold font-space mb-6">
-                            <span class="gradient-text">Next-Level</span> Rewards Platform
-                        </h1>
-                        <p class="text-lg opacity-80 max-w-2xl mx-auto leading-relaxed">
-                            Earn crypto, gift cards, and cash by completing simple tasks.
-                            <span class="font-medium text-red-300">Join our community of 500,000+ earners.</span>
-                        </p>
-                    </div>
-
-                    <!-- Earning Methods -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <!-- Survey Card -->
-                        <div class="card p-5 hover:border-red-500/30 transition-all">
-                            <div class="w-14 h-14 mb-4 mx-auto flex items-center justify-center bg-red-900/20 rounded-xl text-red-400">
-                                <span class="material-symbols-rounded text-3xl">quiz</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-center mb-3">Surveys & Quizzes</h3>
-                            <p class="opacity-70 text-sm text-center leading-relaxed">
-                                Share your opinions and get rewarded instantly. High-paying market research studies available.
-                            </p>
-                            <div class="mt-4 pt-4 border-t border-white/10 flex justify-center">
-                                <span class="badge badge-primary">Avg. $2-5 per survey</span>
-                            </div>
-                        </div>
-
-                        <!-- Apps Card -->
-                        <div class="card p-5 hover:border-purple-500/30 transition-all">
-                            <div class="w-14 h-14 mb-4 mx-auto flex items-center justify-center bg-purple-900/20 rounded-xl text-purple-400">
-                                <span class="material-symbols-rounded text-3xl">apps</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-center mb-3">App Testing</h3>
-                            <p class="opacity-70 text-sm text-center leading-relaxed">
-                                Try new apps and services. Keep them installed for bonus rewards. iOS & Android supported.
-                            </p>
-                            <div class="mt-4 pt-4 border-t border-white/10 flex justify-center">
-                                <span class="badge badge-accent">$0.50-$3 per app</span>
-                            </div>
-                        </div>
-
-                        <!-- Games Card -->
-                        <div class="card p-5 hover:border-orange-500/30 transition-all">
-                            <div class="w-14 h-14 mb-4 mx-auto flex items-center justify-center bg-orange-900/20 rounded-xl text-orange-400">
-                                <span class="material-symbols-rounded text-3xl">sports_esports</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-center mb-3">Game Challenges</h3>
-                            <p class="opacity-70 text-sm text-center leading-relaxed">
-                                Play mobile games and reach milestones to earn. Casual and hardcore options available.
-                            </p>
-                            <div class="mt-4 pt-4 border-t border-white/10 flex justify-center">
-                                <span class="badge badge-primary">$1-$10+ per game</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Divider -->
-                    <div class="relative flex py-5 items-center mb-8">
-                        <div class="flex-grow border-t border-white/10"></div>
-                        <span class="flex-shrink mx-4 opacity-70 font-medium text-sm uppercase tracking-widest">Withdrawal Options</span>
-                        <div class="flex-grow border-t border-white/10"></div>
-                    </div>
-
-                    <!-- Cashout Options -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- Crypto Card -->
-                        <div class="card p-5 hover:border-red-500/30 transition-all">
-                            <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-xl font-bold">Crypto</h3>
-                                <div class="w-10 h-10 flex items-center justify-center bg-red-900/20 rounded-lg text-red-400">
-                                    <span class="material-symbols-rounded">currency_bitcoin</span>
-                                </div>
-                            </div>
-                            <p class="opacity-70 text-sm mb-4">Instant withdrawals to your wallet with low 1% fees</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="badge badge-primary">Bitcoin</span>
-                                <span class="badge badge-primary">Ethereum</span>
-                                <span class="badge badge-primary">Solana</span>
-                                <span class="badge badge-primary">USDT</span>
-                            </div>
-                        </div>
-
-                        <!-- Gift Cards Card -->
-                        <div class="card p-5 hover:border-purple-500/30 transition-all">
-                            <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-xl font-bold">Gift Cards</h3>
-                                <div class="w-10 h-10 flex items-center justify-center bg-purple-900/20 rounded-lg text-purple-400">
-                                    <span class="material-symbols-rounded">redeem</span>
-                                </div>
-                            </div>
-                            <p class="opacity-70 text-sm mb-4">100+ brands available with instant digital delivery</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="badge badge-accent">Amazon</span>
-                                <span class="badge badge-accent">Steam</span>
-                                <span class="badge badge-accent">Netflix</span>
-                                <span class="badge badge-accent">Spotify</span>
-                            </div>
-                        </div>
-
-                        <!-- PayPal Card -->
-                        <div class="card p-5 hover:border-green-500/30 transition-all">
-                            <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-xl font-bold">Cash Payments</h3>
-                                <div class="w-10 h-10 flex items-center justify-center bg-green-900/20 rounded-lg text-green-400">
-                                    <span class="material-symbols-rounded">payments</span>
-                                </div>
-                            </div>
-                            <p class="opacity-70 text-sm mb-4">Get real money in your account with multiple options</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="badge badge-success">PayPal</span>
-                                <span class="badge badge-success">Wise</span>
-                                <span class="badge badge-success">Revolut</span>
-                                <span class="badge badge-success">Bank</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+        <!-- Cash Payments Card -->
+        <div class="card rounded-lg bg-gray-900 p-6 shadow-lg hover:shadow-2xl transition-shadow border border-transparent hover:border-green-600 cursor-pointer">
+          <div class="flex items-center justify-between mb-5">
+            <h3 class="text-2xl font-semibold">Cash Payments</h3>
+            <div class="w-12 h-12 flex items-center justify-center bg-green-900/25 rounded-lg text-green-400 text-3xl">
+              <span class="material-symbols-rounded select-none">payments</span>
             </div>
+          </div>
+          <p class="opacity-70 text-sm mb-6">Get real money in your account with multiple options</p>
+          <div class="flex flex-wrap gap-3">
+            <span class="badge badge-success bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold">PayPal</span>
+            <span class="badge badge-success bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Wise</span>
+            <span class="badge badge-success bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Revolut</span>
+            <span class="badge badge-success bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Bank</span>
+          </div>
+        </div>
+
+      </div>
+
+    </article>
+  </section>
+
+</main>
+
 
             <!-- Leaderboard Section (Placeholder - not in old code) -->
             <div id="leader" class="section hidden">
