@@ -1,6 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="https://i.imgur.com/2cMurbI.png"/>
+<title>Bux iQ</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#3b82f6',
+        secondary: '#10b981',
+        dark: '#0f172a',
+        darker: '#020617',
+        card: '#1e293b',
+        accent: '#f59e0b',
+      }
+    }
+  }
+}
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 3px;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #1e293b;
+}
+</style>
+</head>
+<body class="bg-dark text-white font-sans min-h-screen pb-16 md:pb-0">
+<div class="max-w-7xl mx-auto p-4">
+<!-- HEADER -->
+<header class="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
+  <div class="flex items-center justify-center h-5">
+    <img src="https://i.imgur.com/UdEuixj.png" alt="Logo" class="h-20 object-contain" />
+  </div>
+
+  <!-- User Profile with Level Indicator -->
+  <div class="relative group hidden md:block">
+    <div class="flex items-center space-x-3 bg-card rounded-xl px-4 py-2 cursor-pointer hover:bg-opacity-80 transition-all">
+      <div class="relative">
+        <img id="useravatar" src="https://ui-avatars.com/api/?background=c31432&color=fff&name=User" alt="User Avatar" class="w-12 h-12 rounded-full avatar" />
+      </div>
+      <div>
+        <p id="account" class="font-semibold">N/A</p>
+        <p class="text-xs text-gray-400"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Balance Indicators -->
+  <div class="flex flex-wrap gap-3 hidden md:flex">
+    <div class="bg-gradient-to-r from-primary to-blue-600 px-4 py-2 rounded-xl flex items-center">
+      <i class="fas fa-coins mr-2 text-yellow-300"></i>
+      <div>
+        <p class="text-xs text-gray-300">Balance</p>
+        <p id="balance" class="font-bold">0.00</p>
+      </div>
+    </div>
+    <div class="bg-gradient-to-r from-secondary to-green-600 px-4 py-2 rounded-xl flex items-center">
+      <i class="fas fa-bolt mr-2 text-yellow-300"></i>
+      <div>
+        <p class="text-xs text-gray-300">Level</p>
+        <p id="level" class="font-bold">0.00</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Desktop NavBar -->
+<nav class="hidden md:flex justify-between md:justify-start md:space-x-6 bg-card p-2 rounded-xl mb-6 text-center text-sm">
+  <a href="#" data-section="earn" class="nav-link px-6 py-3 rounded-lg bg-primary font-medium flex items-center">
+    <i class="fas fa-home mr-2"></i> Home
+  </a>
+  <a href="#" data-section="shop" class="nav-link px-6 py-3 rounded-lg hover:bg-gray-700 flex items-center transition">
+    <i class="fas fa-shopping-bag mr-2"></i> Shop
+  </a>
+  <a href="#" data-section="leaders" class="nav-link px-6 py-3 rounded-lg hover:bg-gray-700 flex items-center transition">
+    <i class="fas fa-trophy mr-2"></i> Leaders
+  </a>
+  <a href="#" data-section="profile" class="nav-link px-6 py-3 rounded-lg hover:bg-gray-700 flex items-center transition">
+    <i class="fas fa-money-bill-wave mr-2"></i> Earn
+  </a>
+  <a href="#" data-section="help" class="nav-link px-6 py-3 rounded-lg hover:bg-gray-700 flex items-center transition">
+    <i class="fas fa-question-circle mr-2"></i> Help
+  </a>
+  <a href="#" data-section="chat" class="nav-link px-6 py-3 rounded-lg hover:bg-gray-700 flex items-center transition">
+    <i class="fas fa-comments mr-2"></i> Chat
+  </a>
+</nav>
+
+<!-- Mobile User Info Bar -->
+<div class="md:hidden flex items-center justify-between bg-card p-3 rounded-xl mb-4">
+  <div class="flex items-center space-x-3">
+    <div class="relative">
+      <img id="mobileUseravatar" src="https://ui-avatars.com/api/?background=c31432&color=fff&name=User" alt="User Avatar" class="w-12 h-12 rounded-full avatar" />
+    </div>
+    <div>
+      <p id="usernameDisplay" class="font-semibold">N/A</p>
+      <p class="text-xs text-gray-400"></p>
+    </div>
+  </div>
+  <div class="flex space-x-2">
+    <div class="bg-gradient-to-r from-primary to-blue-600 px-3 py-1 rounded-lg flex items-center">
+      <i class="fas fa-coins text-yellow-300 text-sm"></i>
+      <span id="mobileBalance" class="ml-1 text-sm font-medium">0.00</span>
+    </div>
+    <div class="bg-gradient-to-r from-secondary to-green-600 px-3 py-1 rounded-lg flex items-center">
+      <i class="fas fa-bolt text-yellow-300 text-sm"></i>
+      <span id="mobileLevel" class="ml-1 text-sm font-medium">0.00</span>
+    </div>
+  </div>
+</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Earning Portal</title>
