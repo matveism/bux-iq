@@ -1,480 +1,551 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Modern Cashout Form</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      background-color: #121212;
-      color: #f1f1f1;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      padding: 20px;
-    }
-
-    .form-container {
-      width: 100%;
-      max-width: 420px;
-      background-color: #1e1e1e;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.3);
-    }
-
-    .step-header {
-      margin-bottom: 20px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #90caf9;
-    }
-
-    label {
-      font-size: 14px;
-      margin-bottom: 8px;
-      display: block;
-      color: #ccc;
-    }
-
-    input, select, button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 8px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      border: none;
-      background-color: #2c2c2c;
-      color: white;
-      font-size: 15px;
-    }
-
-    input:focus, select:focus {
-      outline: 2px solid #90caf9;
-      background-color: #333;
-    }
-
-    button {
-      background-color: #1976d2;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background-color: #1565c0;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .success { color: #66ff99; margin-top: 15px; }
-    .error { color: #ff6666; margin-top: 15px; }
-    .balance { font-size: 14px; margin-top: 10px; color: #bbb; }
-  </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Quantum Cashout Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-<script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                fontFamily: {
-                    space: ['Space Grotesk', 'sans-serif'],
-                    orbitron: ['Orbitron', 'sans-serif'],
-                },
-                colors: {
-                    quantum: {
-                        primary: 'purple',
-                        secondary: 'white',
-                        accent: 'gray',
-                        dark: '#0a0a0a',
-                        light: '#e2e8f0'
-                    }
-                },
-                animation: {
-                    'gradient-x': 'gradient-x 8s ease infinite',
-                    'gradient-y': 'gradient-y 8s ease infinite',
-                    'gradient-xy': 'gradient-xy 8s ease infinite',
-                },
-                keyframes: {
-                    'gradient-x': {
-                        '0%, 100%': {
-                            'background-position': '0% 50%'
-                        },
-                        '50%': {
-                            'background-position': '100% 50%'
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        space: ['Space Grotesk', 'sans-serif'],
+                        orbitron: ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        quantum: {
+                            primary: '#8B5CF6', /* Purple */
+                            secondary: '#FFFFFF',
+                            accent: '#6B7280', /* Gray */
+                            dark: '#0A0A0A',
+                            light: '#E2E8F0'
                         }
                     },
-                    'gradient-y': {
-                        '0%, 100%': {
-                            'background-position': '50% 0%'
+                    animation: {
+                        'gradient-x': 'gradient-x 8s ease infinite',
+                        'gradient-y': 'gradient-y 8s ease infinite',
+                        'gradient-xy': 'gradient-xy 8s ease infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': { 'background-position': '0% 50%' },
+                            '50%': { 'background-position': '100% 50%' }
                         },
-                        '50%': {
-                            'background-position': '50% 100%'
+                        'gradient-y': {
+                            '0%, 100%': { 'background-position': '50% 0%' },
+                            '50%': { 'background-position': '50% 100%' }
+                        },
+                        'gradient-xy': {
+                            '0%, 100%': { 'background-position': '0% 0%' },
+                            '50%': { 'background-position': '100% 100%' }
                         }
                     },
-                    'gradient-xy': {
-                        '0%, 100%': {
-                            'background-position': '0% 0%'
-                        },
-                        '50%': {
-                            'background-position': '100% 100%'
-                        }
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
+                        'grid-pattern': 'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
+                        'gradient-default': 'linear-gradient(90deg, #4f46e5, #9333ea, #ec4899)'
+                    },
+                    backgroundSize: {
+                        'grid-size': '40px 40px'
                     }
-                },
-                backgroundImage: {
-                    'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                    'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
-                    'grid-pattern': 'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
-                    'gradient-default': 'linear-gradient(90deg, #4f46e5, #9333ea, #ec4899)'
-                },
-                backgroundSize: {
-                    'grid-size': '40px 40px' // Added for grid pattern to work properly
                 }
             }
         }
-    }
-</script>
+    </script>
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-    
-    body {
-        font-family: 'Inter', sans-serif;
-        background-color: #0a0a0a;
-        color: #f8fafc;
-        min-height: 100vh;
-        background-image: 
-            radial-gradient(circle at 25% 25%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 75% 75%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
-            url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff0000' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        margin: 0;
-        overflow-x: hidden;
-    }
-    
-    /* Background Gradients */
-    .quantum-gradient {
-        background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
-        background-size: 200% 200%;
-        animation: gradient-x 12s ease infinite;
-    }
-    
-    /* Card Styles */
-    .quantum-card {
-        background: rgba(30, 27, 27, 0.6);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 0, 0, 0.3);
-        border-radius: 16px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    }
-    
-    .quantum-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
-        border-color: rgba(255, 0, 0, 0.5);
-    }
-    
-    /* Glass Morphism */
-    .glass-effect {
-        background: rgba(10, 10, 10, 0.7);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 0, 0, 0.2);
-    }
-    
-    /* Animations */
-    @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
-    }
-    
-    @keyframes gradient-x {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .pulse-animation {
-        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-    
-    /* Text Effects */
-    .neon-text {
-        text-shadow: 0 0 5px rgba(255, 0, 0, 0.7),
-                     0 0 10px rgba(255, 0, 0, 0.5),
-                     0 0 15px rgba(255, 0, 0, 0.3);
-    }
-    
-    .nav-glow:hover {
-        text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
-    }
-    
-    /* UI Components */
-    .crypto-chip {
-        background: rgba(255, 0, 0, 0.2);
-        border: 1px solid rgba(255, 0, 0, 0.4);
-        transition: all 0.2s ease;
-    }
-    
-    .crypto-chip:hover {
-        background: rgba(255, 0, 0, 0.4);
-        transform: scale(1.05);
-    }
-    
-    /* Scrollbar */
-    .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-    }
-    
-    .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-    
-    /* 3D Card Effect */
-    .offerwall-card {
-        perspective: 1000px;
-    }
-    
-    .offerwall-card-inner {
-        transition: transform 0.6s ease;
-        transform-style: preserve-3d;
-    }
-    
-    .offerwall-card:hover .offerwall-card-inner {
-        transform: rotateY(10deg);
-    }
-    
-    /* Navigation */
-    .nav-item {
-        transition: all 0.3s ease;
-    }
-    
-    .nav-item:hover {
-        color: #ff0000;
-        transform: translateY(-3px);
-    }
-    
-    /* General Card */
-    .card {
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 15px rgba(255, 0, 0, 0.3);
-    }
-    
-    /* Log Entries */
-    .log-entry {
-        animation: fadeIn 0.5s ease-out forwards;
-    }
-    
-    /* Buttons */
-    .update-button {
-        transition: all 0.2s ease;
-    }
-    
-    .update-button:hover {
-        transform: rotate(180deg);
-    }
-    
-    /* Particles Container */
-    #particles-js {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: -10;
-        opacity: 0.2;
-        pointer-events: none;
-    }
-</style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #f8fafc;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B5CF6' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            margin: 0;
+            overflow-x: hidden;
+        }
+        
+        /* Background Gradients */
+        .quantum-gradient {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            background-size: 200% 200%;
+            animation: gradient-x 12s ease infinite;
+        }
+        
+        /* Card Styles */
+        .quantum-card {
+            background: rgba(30, 27, 27, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .quantum-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+        
+        /* Glass Morphism */
+        .glass-effect {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        /* Text Effects */
+        .neon-text {
+            text-shadow: 0 0 5px rgba(139, 92, 246, 0.7),
+                         0 0 10px rgba(139, 92, 246, 0.5),
+                         0 0 15px rgba(139, 92, 246, 0.3);
+        }
+        
+        .nav-glow:hover {
+            text-shadow: 0 0 8px rgba(139, 92, 246, 0.8);
+        }
+        
+        /* UI Components */
+        .crypto-chip {
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            transition: all 0.2s ease;
+        }
+        
+        .crypto-chip:hover {
+            background: rgba(139, 92, 246, 0.4);
+            transform: scale(1.05);
+        }
+        
+        /* Scrollbar */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* 3D Card Effect */
+        .offerwall-card {
+            perspective: 1000px;
+        }
+        
+        .offerwall-card-inner {
+            transition: transform 0.6s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .offerwall-card:hover .offerwall-card-inner {
+            transform: rotateY(10deg);
+        }
+        
+        /* Navigation */
+        .nav-item {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item:hover {
+            color: #8B5CF6;
+            transform: translateY(-3px);
+        }
+        
+        /* General Card */
+        .card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(139, 92, 246, 0.3);
+        }
+        
+        /* Log Entries */
+        .log-entry {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Buttons */
+        .update-button {
+            transition: all 0.2s ease;
+        }
+        
+        .update-button:hover {
+            transform: rotate(180deg);
+        }
+    </style>
 </head>
-<body class="quantum-gradient font-space">
-    <!-- Floating Particles Background -->
+<body class="quantum-gradient font-space flex flex-col items-center justify-center min-h-screen p-4">
     <div id="particles-js"></div>
-</head>
-<body>
- <!-- Notification Banner -->
-    <div class="bg-gray-500/20 text-red-300 text-center py-2 rounded-lg mb-6 border border-yellow-500/30">
-        <p class="font-semibold text-sm">Please let Owner know! what type cashout you requested</p>
-    </div>
-  <div class="form-container">
-    <div class="step-header" id="step-label">Step 1 of 4</div>
 
-    <div id="step-1">
-      <label>1. Enter your Account#:</label>
-      <input type="text" id="account" placeholder="e.g. user123">
+    <div class="bg-gradient-to-r from-purple-800/30 to-rose-500/30 text-white text-center py-3 px-6 rounded-xl mb-8 border border-purple-600/50 shadow-lg animate-pulse">
+        <p class="font-semibold text-sm md:text-base flex items-center justify-center">
+            <i class="fas fa-info-circle mr-3"></i> Please let the Owner know what type of cashout you've requested!
+        </p>
     </div>
 
-    <div id="step-2" class="hidden">
-      <label>2. Select Cashout Option:</label>
-      <select id="cashout-type">
-        <option value="ltc">LTC</option>
-        <option value="aldi">ALDI</option>
-        <option value="tesco">TESCO</option>
-      </select>
+    <div class="quantum-card w-full max-w-md p-8 shadow-2xl animate-fadeIn">
+        <h2 class="text-2xl font-orbitron font-bold text-quantum-primary mb-6 text-center neon-text">
+            <i class="fas fa-dollar-sign mr-2"></i> Instant Cashout
+        </h2>
+
+        <div class="mb-6 flex justify-between items-center">
+            <span id="step-label" class="text-md font-medium text-quantum-accent">Step 1 of 4</span>
+            <div class="flex space-x-2">
+                <div id="step-indicator-1" class="w-3 h-3 rounded-full bg-quantum-primary"></div>
+                <div id="step-indicator-2" class="w-3 h-3 rounded-full bg-gray-700"></div>
+                <div id="step-indicator-3" class="w-3 h-3 rounded-full bg-gray-700"></div>
+                <div id="step-indicator-4" class="w-3 h-3 rounded-full bg-gray-700"></div>
+            </div>
+        </div>
+
+        <div id="step-1" class="form-step transition-all duration-300 ease-in-out">
+            <label for="account" class="block text-quantum-light text-sm font-medium mb-2">1. Enter your Account ID:</label>
+            <input type="text" id="account" placeholder="e.g. quantumUser789" class="w-full p-3 rounded-lg bg-quantum-dark border border-gray-700 focus:border-quantum-primary focus:ring-1 focus:ring-quantum-primary text-quantum-light transition-colors">
+        </div>
+
+        <div id="step-2" class="form-step hidden transition-all duration-300 ease-in-out">
+            <label for="cashout-type" class="block text-quantum-light text-sm font-medium mb-2">2. Select Cashout Option:</label>
+            <select id="cashout-type" class="w-full p-3 rounded-lg bg-quantum-dark border border-gray-700 focus:border-quantum-primary focus:ring-1 focus:ring-quantum-primary text-quantum-light appearance-none pr-8 transition-colors">
+                <option value="ltc">LTC (Litecoin)</option>
+                <option value="aldi">ALDI Gift Card</option>
+                <option value="tesco">TESCO Gift Card</option>
+            </select>
+        </div>
+
+        <div id="step-3" class="form-step hidden transition-all duration-300 ease-in-out">
+            <label for="amount" class="block text-quantum-light text-sm font-medium mb-2">3. Choose Amount:</label>
+            <select id="amount" class="w-full p-3 rounded-lg bg-quantum-dark border border-gray-700 focus:border-quantum-primary focus:ring-1 focus:ring-quantum-primary text-quantum-light appearance-none pr-8 transition-colors">
+                <option value="1.00" data-points="1000">1000 points / $1.00</option>
+                <option value="2.50" data-points="2500">2500 points / $2.50</option>
+                <option value="5.00" data-points="5000">5000 points / $5.00</option>
+                <option value="10.00" data-points="10000">10000 points / $10.00</option>
+            </select>
+        </div>
+
+        <div id="step-4" class="form-step hidden transition-all duration-300 ease-in-out">
+            <label for="note" class="block text-quantum-light text-sm font-medium mb-2">4. Add a Note (Optional):</label>
+            <input type="text" id="note" placeholder="e.g. Faster payout preferred..." class="w-full p-3 rounded-lg bg-quantum-dark border border-gray-700 focus:border-quantum-primary focus:ring-1 focus:ring-quantum-primary text-quantum-light transition-colors">
+        </div>
+
+        <button id="next-btn" class="w-full mt-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-700 text-white font-bold text-lg hover:from-purple-700 hover:to-indigo-800 transition-all duration-300 ease-in-out shadow-lg transform hover:scale-105">
+            Next <i class="fas fa-arrow-right ml-2"></i>
+        </button>
+        <button id="prev-btn" class="w-full mt-3 py-2 rounded-lg bg-gray-700 text-gray-300 font-semibold text-sm hover:bg-gray-600 transition-colors hidden">
+            <i class="fas fa-arrow-left mr-2"></i> Previous
+        </button>
+
+        <div id="balance" class="balance text-sm text-gray-400 mt-4 text-center hidden"></div>
+        <div id="message" class="text-center mt-4 font-medium text-sm"></div>
     </div>
 
-    <div id="step-3" class="hidden">
-      <label>3. Choose Amount:</label>
-      <select id="amount">
-        <option value="1.00" data-points="1000">1000 points / $1.00</option>
-        <option value="2.50" data-points="2500">2500 points / $2.50</option>
-      </select>
-    </div>
-
-    <div id="step-4" class="hidden">
-      <label>4. Add a Note (Optional):</label>
-      <input type="text" id="note" placeholder="Any extra info...">
-    </div>
-
-    <button id="next-btn">Next</button>
-
-    <div id="balance" class="balance hidden"></div>
-    <div id="message"></div>
-  </div>
-<script>
-  const csvURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQHuo-I6k4RbAnXvz_FvCzshqg7Cm5dqAXwNkvDLpgpZH84OGUSbX6TiOUfMrCHv3CiNnLnx0IhzNZC/pub?gid=0&single=true&output=csv';
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbyvw4LiShTvgnTTLRLISnTYJRhqeStmZgL9YD_ZuQEJubcDPH8bSbGpHPCVHDfx0dbW/exec';
-
-  let currentStep = 1;
-  const totalSteps = 4;
-
-  const nextBtn = document.getElementById("next-btn");
-  const messageBox = document.getElementById("message");
-  const stepLabel = document.getElementById("step-label");
-
-  nextBtn.addEventListener("click", handleStep);
-
-  async function fetchCSVData() {
-    const res = await fetch(csvURL);
-    const text = await res.text();
-    const rows = text.trim().split('\n').map(row => row.split(','));
-    const headers = rows.shift().map(h => h.trim().toLowerCase());
-
-    return rows.map(row => {
-      const obj = {};
-      headers.forEach((header, i) => {
-        obj[header] = row[i].trim();
-      });
-      return obj;
-    });
-  }
-
-  async function handleStep() {
-    messageBox.textContent = "";
-    messageBox.className = "";
-
-    if (currentStep === 1) {
-      const account = document.getElementById("account").value.trim();
-      if (!account) {
-        showError("Please enter your Account#.");
-        return;
-      }
-    }
-
-    if (currentStep < totalSteps) {
-      document.getElementById(`step-${currentStep}`).classList.add("hidden");
-      currentStep++;
-      document.getElementById(`step-${currentStep}`).classList.remove("hidden");
-      stepLabel.textContent = `Step ${currentStep} of ${totalSteps}`;
-      if (currentStep === totalSteps) nextBtn.textContent = "Submit";
-    } else {
-      // Final submit logic
-      const account = document.getElementById("account").value.trim().toLowerCase();
-      const type = document.getElementById("cashout-type").value; // Get selected cashout type
-      const amountSelect = document.getElementById("amount");
-      const amountUSD = parseFloat(amountSelect.value);
-      const amountPoints = parseInt(amountSelect.options[amountSelect.selectedIndex].getAttribute('data-points'));
-      const note = document.getElementById("note").value.trim();
-      const balanceBox = document.getElementById("balance");
-
-      try {
-        const users = await fetchCSVData();
-        const user = users.find(u => u['account#'] && u['account#'].toLowerCase() === account);
-
-        if (!user) {
-          showError("❌ Account# not found.");
-          return;
-        }
-
-        const userBalance = parseInt(user.balance || "0");
-        const userUSD = userBalance / 1;
-        balanceBox.classList.remove("hidden");
-        balanceBox.innerHTML = `Balance: <strong>${userBalance} pts / $${userUSD.toFixed(2)}</strong>`;
-
-        if (userBalance < amountPoints) {
-          showError("❌ Insufficient balance.");
-          return;
-        }
-
-        const transID = "cashout_" + Date.now();
-
-        // Build the secure hash string based on relevant data
-        const secureHashString = `${account}${transID}${amountUSD}${amountPoints}${type}${note}`;
-        const secureHash = generateHash(secureHashString); // Assuming you have a hash function
-
-        const params = new URLSearchParams({
-          user_id: account,
-          cashout_type: type, // Direct cashout type in postback
-          amount_usd: (-amountUSD).toFixed(2),
-          amount_local: -amountPoints,
-          trans_id: transID,
-          status: "cashout",
-          note: note,
-          offer_id: btoa(`type=${type}&note=${note}`),
-          secure_hash: secureHash // Include the secure hash in the postback
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles.js
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#8B5CF6"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#4B5563",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 3,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out"
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
         });
 
-        const res = await fetch(`${scriptURL}?${params.toString()}`);
-        if (res.ok) {
-          showSuccess("✅ Cashout request sent successfully!");
-          nextBtn.disabled = true;
-        } else {
-          showError("❌ Failed to send request.");
+        const csvURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQHuo-I6k4RbAnXvz_FvCzshqg7Cm5dqAXwNkvDLpgpZH84OGUSbX6TiOUfMrCHv3CiNnLnx0IhzNZC/pub?gid=0&single=true&output=csv';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyvw4LiShTvgnTTLRLISnTYJRhqeStmZgL9YD_ZuQEJubcDPH8bSbGpHPCVHDfx0dbW/exec';
+
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        const nextBtn = document.getElementById("next-btn");
+        const prevBtn = document.getElementById("prev-btn");
+        const messageBox = document.getElementById("message");
+        const stepLabel = document.getElementById("step-label");
+        const stepIndicators = [
+            document.getElementById("step-indicator-1"),
+            document.getElementById("step-indicator-2"),
+            document.getElementById("step-indicator-3"),
+            document.getElementById("step-indicator-4")
+        ];
+
+        nextBtn.addEventListener("click", handleStep);
+        prevBtn.addEventListener("click", prevStep);
+
+        function updateStepUI() {
+            document.querySelectorAll('.form-step').forEach((step, index) => {
+                if (index + 1 === currentStep) {
+                    step.classList.remove("hidden");
+                    step.classList.add("animate-fadeIn");
+                } else {
+                    step.classList.add("hidden");
+                    step.classList.remove("animate-fadeIn");
+                }
+            });
+
+            stepLabel.textContent = `Step ${currentStep} of ${totalSteps}`;
+
+            stepIndicators.forEach((indicator, index) => {
+                if (index < currentStep) {
+                    indicator.classList.remove("bg-gray-700");
+                    indicator.classList.add("bg-quantum-primary");
+                } else {
+                    indicator.classList.remove("bg-quantum-primary");
+                    indicator.classList.add("bg-gray-700");
+                }
+            });
+
+            if (currentStep === totalSteps) {
+                nextBtn.innerHTML = 'Submit <i class="fas fa-check-circle ml-2"></i>';
+                prevBtn.classList.remove("hidden");
+            } else if (currentStep === 1) {
+                nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right ml-2"></i>';
+                prevBtn.classList.add("hidden");
+            } else {
+                nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right ml-2"></i>';
+                prevBtn.classList.remove("hidden");
+            }
         }
-      } catch (err) {
-        showError("❌ Error: " + err.message);
-      }
-    }
-  }
 
-  // Simple hash function (you can use a more secure approach if necessary)
-  function generateHash(inputString) {
-    let hash = 0;
-    for (let i = 0; i < inputString.length; i++) {
-      const char = inputString.charCodeAt(i);
-      hash = (hash << 5) - hash + char;
-    }
-    return hash.toString(16); // Convert to hex string
-  }
+        async function fetchCSVData() {
+            try {
+                const res = await fetch(csvURL);
+                if (!res.ok) throw new Error('Failed to fetch user data');
+                const text = await res.text();
+                const rows = text.trim().split('\n').map(row => row.split(','));
+                const headers = rows.shift().map(h => h.trim().toLowerCase());
 
-  function showError(msg) {
-    messageBox.textContent = msg;
-    messageBox.className = "error";
-  }
+                return rows.map(row => {
+                    const obj = {};
+                    headers.forEach((header, i) => {
+                        obj[header] = row[i] ? row[i].trim() : '';
+                    });
+                    return obj;
+                });
+            } catch (error) {
+                console.error('Error fetching CSV data:', error);
+                showError("Failed to load user data. Please try again later.");
+                return [];
+            }
+        }
 
-  function showSuccess(msg) {
-    messageBox.textContent = msg;
-    messageBox.className = "success";
-  }
-</script>
+        async function handleStep() {
+            messageBox.textContent = "";
+            messageBox.className = "text-center mt-4 font-medium text-sm";
 
+            // Validate current step before proceeding
+            if (currentStep === 1) {
+                const account = document.getElementById("account").value.trim();
+                if (!account) {
+                    showError("Please enter your Account ID.");
+                    return;
+                }
+            }
+
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateStepUI();
+            } else {
+                // Final submit logic
+                const account = document.getElementById("account").value.trim().toLowerCase();
+                const type = document.getElementById("cashout-type").value;
+                const amountSelect = document.getElementById("amount");
+                const amountUSD = parseFloat(amountSelect.value);
+                const amountPoints = parseInt(amountSelect.options[amountSelect.selectedIndex].getAttribute('data-points'));
+                const note = document.getElementById("note").value.trim();
+                const balanceBox = document.getElementById("balance");
+
+                try {
+                    nextBtn.disabled = true;
+                    nextBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
+
+                    const users = await fetchCSVData();
+                    if (users.length === 0) {
+                        showError("No user data available. Please try again later.");
+                        nextBtn.disabled = false;
+                        nextBtn.innerHTML = 'Submit <i class="fas fa-check-circle ml-2"></i>';
+                        return;
+                    }
+
+                    const user = users.find(u => u['account#'] && u['account#'].toLowerCase() === account);
+
+                    if (!user) {
+                        showError("Account ID not found.");
+                        nextBtn.disabled = false;
+                        nextBtn.innerHTML = 'Submit <i class="fas fa-check-circle ml-2"></i>';
+                        return;
+                    }
+
+                    const userBalance = parseInt(user.balance || "0");
+                    balanceBox.classList.remove("hidden");
+                    balanceBox.innerHTML = `Current Balance: <strong class="text-quantum-primary">${userBalance} pts / $${(userBalance / 1000).toFixed(2)}</strong>`;
+
+                    if (userBalance < amountPoints) {
+                        showError("Insufficient balance for this cashout amount.");
+                        nextBtn.disabled = false;
+                        nextBtn.innerHTML = 'Submit <i class="fas fa-check-circle ml-2"></i>';
+                        return;
+                    }
+
+                    const transID = "cashout_" + Date.now();
+                    const secureHash = generateHash(`${account}${transID}${amountUSD}${amountPoints}${type}${note}`);
+
+                    const params = new URLSearchParams({
+                        user_id: account,
+                        cashout_type: type,
+                        amount_usd: (-amountUSD).toFixed(2),
+                        amount_local: -amountPoints,
+                        trans_id: transID,
+                        status: "cashout",
+                        note: note,
+                        offer_id: btoa(`type=${type}&note=${note}`),
+                        secure_hash: secureHash
+                    });
+
+                    const res = await fetch(`${scriptURL}?${params.toString()}`);
+                    if (res.ok) {
+                        showSuccess("Cashout request submitted successfully!");
+                        // Reset form after successful submission
+                        setTimeout(() => {
+                            document.getElementById("account").value = "";
+                            document.getElementById("note").value = "";
+                            currentStep = 1;
+                            updateStepUI();
+                            balanceBox.classList.add("hidden");
+                            nextBtn.disabled = false;
+                            nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right ml-2"></i>';
+                        }, 2000);
+                    } else {
+                        throw new Error('Server responded with error');
+                    }
+                } catch (err) {
+                    console.error('Submission error:', err);
+                    showError("Failed to process request. Please try again.");
+                    nextBtn.disabled = false;
+                    nextBtn.innerHTML = 'Submit <i class="fas fa-check-circle ml-2"></i>';
+                }
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepUI();
+                messageBox.textContent = "";
+                messageBox.className = "text-center mt-4 font-medium text-sm";
+            }
+        }
+
+        function generateHash(inputString) {
+            let hash = 0;
+            for (let i = 0; i < inputString.length; i++) {
+                const char = inputString.charCodeAt(i);
+                hash = (hash << 5) - hash + char;
+            }
+            return hash.toString(16);
+        }
+
+        function showError(msg) {
+            messageBox.textContent = msg;
+            messageBox.className = "text-center mt-4 font-medium text-sm text-red-400 animate-fadeIn";
+        }
+
+        function showSuccess(msg) {
+            messageBox.textContent = msg;
+            messageBox.className = "text-center mt-4 font-medium text-sm text-green-400 animate-fadeIn";
+        }
+
+        // Initialize UI on load
+        document.addEventListener("DOMContentLoaded", updateStepUI);
+    </script>
 </body>
 </html>
