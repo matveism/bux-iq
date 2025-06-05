@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Cashout Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #121212;
+      color: #f1f1f1;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 420px;
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.3);
+    }
+
+    .step-header {
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #90caf9;
+    }
+
+    label {
+      font-size: 14px;
+      margin-bottom: 8px;
+      display: block;
+      color: #ccc;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: none;
+      background-color: #2c2c2c;
+      color: white;
+      font-size: 15px;
+    }
+
+    input:focus, select:focus {
+      outline: 2px solid #90caf9;
+      background-color: #333;
+    }
+
+    button {
+      background-color: #1976d2;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #1565c0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .success { color: #66ff99; margin-top: 15px; }
+    .error { color: #ff6666; margin-top: 15px; }
+    .balance { font-size: 14px; margin-top: 10px; color: #bbb; }
+  </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    space: ['Space Grotesk', 'sans-serif'],
+                    orbitron: ['Orbitron', 'sans-serif'],
+                },
+                colors: {
+                    quantum: {
+                        primary: 'purple',
+                        secondary: 'white',
+                        accent: 'gray',
+                        dark: '#0a0a0a',
+                        light: '#e2e8f0'
+                    }
+                },
+                animation: {
+                    'gradient-x': 'gradient-x 8s ease infinite',
+                    'gradient-y': 'gradient-y 8s ease infinite',
+                    'gradient-xy': 'gradient-xy 8s ease infinite',
+                },
+                keyframes: {
+                    'gradient-x': {
+                        '0%, 100%': {
+                            'background-position': '0% 50%'
+                        },
+                        '50%': {
+                            'background-position': '100% 50%'
+                        }
+                    },
+                    'gradient-y': {
+                        '0%, 100%': {
+                            'background-position': '50% 0%'
+                        },
+                        '50%': {
+                            'background-position': '50% 100%'
+                        }
+                    },
+                    'gradient-xy': {
+                        '0%, 100%': {
+                            'background-position': '0% 0%'
+                        },
+                        '50%': {
+                            'background-position': '100% 100%'
+                        }
+                    }
+                },
+                backgroundImage: {
+                    'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
+                    'grid-pattern': 'linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)',
+                    'gradient-default': 'linear-gradient(90deg, #4f46e5, #9333ea, #ec4899)'
+                },
+                backgroundSize: {
+                    'grid-size': '40px 40px' // Added for grid pattern to work properly
+                }
+            }
+        }
+    }
+</script>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #0a0a0a;
+        color: #f8fafc;
+        min-height: 100vh;
+        background-image: 
+            radial-gradient(circle at 25% 25%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+            url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff0000' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        margin: 0;
+        overflow-x: hidden;
+    }
+    
+    /* Background Gradients */
+    .quantum-gradient {
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+        background-size: 200% 200%;
+        animation: gradient-x 12s ease infinite;
+    }
+    
+    /* Card Styles */
+    .quantum-card {
+        background: rgba(30, 27, 27, 0.6);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 0, 0, 0.3);
+        border-radius: 16px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    
+    .quantum-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
+        border-color: rgba(255, 0, 0, 0.5);
+    }
+    
+    /* Glass Morphism */
+    .glass-effect {
+        background: rgba(10, 10, 10, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 0, 0, 0.2);
+    }
+    
+    /* Animations */
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+    
+    @keyframes gradient-x {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .pulse-animation {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    
+    /* Text Effects */
+    .neon-text {
+        text-shadow: 0 0 5px rgba(255, 0, 0, 0.7),
+                     0 0 10px rgba(255, 0, 0, 0.5),
+                     0 0 15px rgba(255, 0, 0, 0.3);
+    }
+    
+    .nav-glow:hover {
+        text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+    }
+    
+    /* UI Components */
+    .crypto-chip {
+        background: rgba(255, 0, 0, 0.2);
+        border: 1px solid rgba(255, 0, 0, 0.4);
+        transition: all 0.2s ease;
+    }
+    
+    .crypto-chip:hover {
+        background: rgba(255, 0, 0, 0.4);
+        transform: scale(1.05);
+    }
+    
+    /* Scrollbar */
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    
+    /* 3D Card Effect */
+    .offerwall-card {
+        perspective: 1000px;
+    }
+    
+    .offerwall-card-inner {
+        transition: transform 0.6s ease;
+        transform-style: preserve-3d;
+    }
+    
+    .offerwall-card:hover .offerwall-card-inner {
+        transform: rotateY(10deg);
+    }
+    
+    /* Navigation */
+    .nav-item {
+        transition: all 0.3s ease;
+    }
+    
+    .nav-item:hover {
+        color: #ff0000;
+        transform: translateY(-3px);
+    }
+    
+    /* General Card */
+    .card {
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(255, 0, 0, 0.3);
+    }
+    
+    /* Log Entries */
+    .log-entry {
+        animation: fadeIn 0.5s ease-out forwards;
+    }
+    
+    /* Buttons */
+    .update-button {
+        transition: all 0.2s ease;
+    }
+    
+    .update-button:hover {
+        transform: rotate(180deg);
+    }
+    
+    /* Particles Container */
+    #particles-js {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -10;
+        opacity: 0.2;
+        pointer-events: none;
+    }
+</style>
+</head>
+<body class="quantum-gradient font-space">
+    <!-- Floating Particles Background -->
+    <div id="particles-js"></div>
+</head>
+<body>
+ <!-- Notification Banner -->
+    <div class="bg-gray-500/20 text-red-300 text-center py-2 rounded-lg mb-6 border border-yellow-500/30">
+        <p class="font-semibold text-sm">Please let Owner know! what type cashout you requested</p>
+    </div>
+  <div class="form-container">
+    <div class="step-header" id="step-label">Step 1 of 4</div>
+
+    <div id="step-1">
+      <label>1. Enter your Account#:</label>
+      <input type="text" id="account" placeholder="e.g. user123">
+    </div>
+
+    <div id="step-2" class="hidden">
+      <label>2. Select Cashout Option:</label>
+      <select id="cashout-type">
+        <option value="ltc">LTC</option>
+        <option value="aldi">ALDI</option>
+        <option value="tesco">TESCO</option>
+      </select>
+    </div>
+
+    <div id="step-3" class="hidden">
+      <label>3. Choose Amount:</label>
+      <select id="amount">
+        <option value="1.00" data-points="1000">1000 points / $1.00</option>
+        <option value="2.50" data-points="2500">2500 points / $2.50</option>
+      </select>
+    </div>
+
+    <div id="step-4" class="hidden">
+      <label>4. Add a Note (Optional):</label>
+      <input type="text" id="note" placeholder="Any extra info...">
+    </div>
+
+    <button id="next-btn">Next</button>
+
+    <div id="balance" class="balance hidden"></div>
+    <div id="message"></div>
+  </div>
+<script>
+  const csvURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQHuo-I6k4RbAnXvz_FvCzshqg7Cm5dqAXwNkvDLpgpZH84OGUSbX6TiOUfMrCHv3CiNnLnx0IhzNZC/pub?gid=0&single=true&output=csv';
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyvw4LiShTvgnTTLRLISnTYJRhqeStmZgL9YD_ZuQEJubcDPH8bSbGpHPCVHDfx0dbW/exec';
+
+  let currentStep = 1;
+  const totalSteps = 4;
+
+  const nextBtn = document.getElementById("next-btn");
+  const messageBox = document.getElementById("message");
+  const stepLabel = document.getElementById("step-label");
+
+  nextBtn.addEventListener("click", handleStep);
+
+  async function fetchCSVData() {
+    const res = await fetch(csvURL);
+    const text = await res.text();
+    const rows = text.trim().split('\n').map(row => row.split(','));
+    const headers = rows.shift().map(h => h.trim().toLowerCase());
+
+    return rows.map(row => {
+      const obj = {};
+      headers.forEach((header, i) => {
+        obj[header] = row[i].trim();
+      });
+      return obj;
+    });
+  }
+
+  async function handleStep() {
+    messageBox.textContent = "";
+    messageBox.className = "";
+
+    if (currentStep === 1) {
+      const account = document.getElementById("account").value.trim();
+      if (!account) {
+        showError("Please enter your Account#.");
+        return;
+      }
+    }
+
+    if (currentStep < totalSteps) {
+      document.getElementById(`step-${currentStep}`).classList.add("hidden");
+      currentStep++;
+      document.getElementById(`step-${currentStep}`).classList.remove("hidden");
+      stepLabel.textContent = `Step ${currentStep} of ${totalSteps}`;
+      if (currentStep === totalSteps) nextBtn.textContent = "Submit";
+    } else {
+      // Final submit logic
+      const account = document.getElementById("account").value.trim().toLowerCase();
+      const type = document.getElementById("cashout-type").value; // Get selected cashout type
+      const amountSelect = document.getElementById("amount");
+      const amountUSD = parseFloat(amountSelect.value);
+      const amountPoints = parseInt(amountSelect.options[amountSelect.selectedIndex].getAttribute('data-points'));
+      const note = document.getElementById("note").value.trim();
+      const balanceBox = document.getElementById("balance");
+
+      try {
+        const users = await fetchCSVData();
+        const user = users.find(u => u['account#'] && u['account#'].toLowerCase() === account);
+
+        if (!user) {
+          showError("❌ Account# not found.");
+          return;
+        }
+
+        const userBalance = parseInt(user.balance || "0");
+        const userUSD = userBalance / 1000;
+        balanceBox.classList.remove("hidden");
+        balanceBox.innerHTML = `Balance: <strong>${userBalance} pts / $${userUSD.toFixed(2)}</strong>`;
+
+        if (userBalance < amountPoints) {
+          showError("❌ Insufficient balance.");
+          return;
+        }
+
+        const transID = "cashout_" + Date.now();
+
+        // Build the secure hash string based on relevant data
+        const secureHashString = `${account}${transID}${amountUSD}${amountPoints}${type}${note}`;
+        const secureHash = generateHash(secureHashString); // Assuming you have a hash function
+
+        const params = new URLSearchParams({
+          user_id: account,
+          cashout_type: type, // Direct cashout type in postback
+          amount_usd: (-amountUSD).toFixed(2),
+          amount_local: -amountPoints,
+          trans_id: transID,
+          status: "cashout",
+          note: note,
+          offer_id: btoa(`type=${type}&note=${note}`),
+          secure_hash: secureHash // Include the secure hash in the postback
+        });
+
+        const res = await fetch(`${scriptURL}?${params.toString()}`);
+        if (res.ok) {
+          showSuccess("✅ Cashout request sent successfully!");
+          nextBtn.disabled = true;
+        } else {
+          showError("❌ Failed to send request.");
+        }
+      } catch (err) {
+        showError("❌ Error: " + err.message);
+      }
+    }
+  }
+
+  // Simple hash function (you can use a more secure approach if necessary)
+  function generateHash(inputString) {
+    let hash = 0;
+    for (let i = 0; i < inputString.length; i++) {
+      const char = inputString.charCodeAt(i);
+      hash = (hash << 5) - hash + char;
+    }
+    return hash.toString(16); // Convert to hex string
+  }
+
+  function showError(msg) {
+    messageBox.textContent = msg;
+    messageBox.className = "error";
+  }
+
+  function showSuccess(msg) {
+    messageBox.textContent = msg;
+    messageBox.className = "success";
+  }
+</script>
+
+</body>
+</html>
