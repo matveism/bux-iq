@@ -548,6 +548,22 @@ tailwind.config = {
                   </div>
                 </div>
 
+                <div class="bg-gray-800/50 hover:bg-gray-700/50 transition-all duration-300 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-gray-700 hover:border-purple-400/30 group relative overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div class="relative z-10">
+                    <div class="flex justify-center py-2 sm:py-3 relative">
+                      <img src="https://i.imgur.com/ynkX1XI.png" alt="SushiAds Logo" class="h-8 sm:h-10 object-contain filter brightness-0 invert opacity-90 group-hover:opacity-100 transition-opacity" />
+                      <span class="absolute top-0 right-0 bg-amber-500 text-gray-900 text-xs font-semibold px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full transform translate-x-1 -translate-y-1"> VIDEOS ONLY </span>
+                    </div>
+                    <button
+                      id="openOfferWallcheddar"
+                      class="mt-3 sm:mt-4 w-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 text-white font-medium py-2 px-3 sm:py-2.5 sm:px-4 rounded-lg transition-all duration-200 transform hover:scale-[1.02] shadow hover:shadow-lg hover:shadow-purple-500/20 text-sm sm:text-base"
+                    >
+                      Open Cheddar.tv
+                    </button>
+                  </div>
+                </div>
+
                 <div class="bg-gray-800/50 hover:bg-gray-700/50 transition-all duration-300 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-gray-700 hover:border-green-400/30 group relative overflow-hidden">
                   <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div class="relative z-10">
@@ -760,6 +776,7 @@ const offerwallButtons = {
     'openOfferWallkiwi': (user) => `https://www.kiwiwall.com/wall/ICKEzWAlZv8O6QOXSxFdfJ7jLfU6RUtl/${user}`,
     'openOfferWalltaskwall': (user) => `https://wall.taskwall.io/?app_id=532d75c281c9725adc821ff7de18c199&userid=${user}`,
     'openOfferWallporix': (user) => `https://porix.org/app/iframe/10221/${user}`,
+    'openOfferWallcheddar': (user) => `https://revtoo.com/redirect?api_key=m7l0au6f6w8tzh0ghly11tur1oucce&offer_id=479&user_id=${user}`,
     'openOfferWallrevtoo': (user) => `https://revtoo.com/offerwall/m7l0au6f6w8tzh0ghly11tur1oucce/${user}`
 };
 
