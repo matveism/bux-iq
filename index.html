@@ -761,28 +761,39 @@ tailwind.config = {
 
 <script>
 // Global variables
-let captchaCode = '';
-let currentUser = null;
+        let captchaCode = '';
+        let currentUser = null;
 
-const offerwallButtons = {
-    'openOfferWallCPX': (user) => `https://offers.cpx-research.com/index.php?app_id=26219&ext_user_id=${user}&username=${user}&subid_1=&subid_2`,
-    'openOfferWallsads': (user) => `https://offerwall.sushiads.com/surveywall?apiKey=67e76c74ca62f460071524&userId=${user}`,
-    'openOfferWallchat': () => `https://bux-iq.netlify.app/chat.html`,
-    'openOfferWallwannads': (user) => `https://earn.wannads.com/wall?apiKey=67d3d43d63631681386947&userId=${user}`,
-    'openOfferWallsads1': (user) => `https://offerwall.sushiads.com/wall?apiKey=67e76c74ca62f460071524&userId=${user}`,
-    'openOfferWallExcentiv': (user) => `https://excentiv.com/offerwall/?&userid=${user}&key=q1v8KGQfCjmNeXnhsHyo`,
-    'openOfferWallbuxiq': () => `https://bux-iq.netlify.app/cashout.html`,
-    'openOfferWallbuxiqbonus': () => `https://bux-iq.netlify.app/bonus.html`,
-    'openOfferWallkiwi': (user) => `https://www.kiwiwall.com/wall/ICKEzWAlZv8O6QOXSxFdfJ7jLfU6RUtl/${user}`,
-    'openOfferWalltaskwall': (user) => `https://wall.taskwall.io/?app_id=532d75c281c9725adc821ff7de18c199&userid=${user}`,
-    'openOfferWallporix': (user) => `https://porix.org/app/iframe/10221/${user}`,
-    'openOfferWallcheddar': (user) => {
-  const url = `https://revtoo.com/redirect?api_key=m7l0au6f6w8tzh0ghly11tur1oucce&offer_id=479&user_id=${user}`;
-  window.open(url, '_blank'); // '_blank' opens in a new tab
-}
+        // Object with offerwall URLs and open functions
+        const offerwallButtons = {
+            'openOfferWallCPX': (user) => `https://offers.cpx-research.com/index.php?app_id=26219&ext_user_id=${user}&username=${user}&subid_1=&subid_2`,
+            'openOfferWallsads': (user) => `https://offerwall.sushiads.com/surveywall?apiKey=67e76c74ca62f460071524&userId=${user}`,
+            'openOfferWallchat': () => `https://bux-iq.netlify.app/chat.html`,
+            'openOfferWallwannads': (user) => `https://earn.wannads.com/wall?apiKey=67d3d43d63631681386947&userId=${user}`,
+            'openOfferWallsads1': (user) => `https://offerwall.sushiads.com/wall?apiKey=67e76c74ca62f460071524&userId=${user}`,
+            'openOfferWallExcentiv': (user) => `https://excentiv.com/offerwall/?&userid=${user}&key=q1v8KGQfCjmNeXnhsHyo`,
+            'openOfferWallbuxiq': () => `https://bux-iq.netlify.app/cashout.html`,
+            'openOfferWallbuxiqbonus': () => `https://bux-iq.netlify.app/bonus.html`,
+            'openOfferWallkiwi': (user) => `https://www.kiwiwall.com/wall/ICKEzWAlZv8O6QOXSxFdfJ7jLfU6RUtl/${user}`,
+            'openOfferWalltaskwall': (user) => `https://wall.taskwall.io/?app_id=532d75c281c9725adc821ff7de18c199&userid=${user}`,
+            'openOfferWallporix': (user) => `https://porix.org/app/iframe/10221/${user}`,
+            
+            // This is where we fix the window.open issue.
+            'openOfferWallcheddar': (user) => {
+                const url = `https://revtoo.com/redirect?api_key=m7l0au6f6w8tzh0ghly11tur1oucce&offer_id=479&user_id=${user}`;
+                console.log('Opening URL:', url); // Debugging step to check if URL is correct.
+                setTimeout(() => window.open(url, '_blank'), 100); // Open in a new tab after a short delay.
+            },
 
-    'openOfferWallrevtoo': (user) => `https://revtoo.com/offerwall/m7l0au6f6w8tzh0ghly11tur1oucce/${user}`
-};
+            'openOfferWallrevtoo': (user) => `https://revtoo.com/offerwall/m7l0au6f6w8tzh0ghly11tur1oucce/${user}`
+        };
+
+        // Test function to trigger the openOfferWallcheddar action
+        function openOfferWall(user) {
+            // Call the function for a specific offerwall with the user's ID
+            offerwallButtons['openOfferWallcheddar'](user);
+        }
+
 
 
 // DOM Content Loaded - Initialize everything
