@@ -776,7 +776,11 @@ const offerwallButtons = {
     'openOfferWallkiwi': (user) => `https://www.kiwiwall.com/wall/ICKEzWAlZv8O6QOXSxFdfJ7jLfU6RUtl/${user}`,
     'openOfferWalltaskwall': (user) => `https://wall.taskwall.io/?app_id=532d75c281c9725adc821ff7de18c199&userid=${user}`,
     'openOfferWallporix': (user) => `https://porix.org/app/iframe/10221/${user}`,
-    'openOfferWallcheddar': (user) => `https://revtoo.com/redirect?api_key=m7l0au6f6w8tzh0ghly11tur1oucce&offer_id=479&user_id=${user}`,
+    'openOfferWallcheddar': (user) => {
+  const url = `https://revtoo.com/redirect?api_key=m7l0au6f6w8tzh0ghly11tur1oucce&offer_id=479&user_id=${user}`;
+  window.open(url, '_blank'); // '_blank' opens in a new tab
+}
+
     'openOfferWallrevtoo': (user) => `https://revtoo.com/offerwall/m7l0au6f6w8tzh0ghly11tur1oucce/${user}`
 };
 
