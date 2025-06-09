@@ -1,487 +1,694 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Earn crypto, PayPal funds, and gift cards by completing offers and surveys" />
-<meta name="theme-color" content="#0f172a" />
-<meta name="clckd" content="45663763f89113271aedcb23f063dab2" />
-<title>Bux iQ - Earn Rewards</title>
-
-<!-- Favicon and Apple Touch Icons -->
-<link rel="icon" type="image/png" href="https://i.imgur.com/wppiqAy.png" />
-<link rel="apple-touch-icon" href="https://i.imgur.com/wppiqAy.png" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<meta name="apple-mobile-web-app-title" content="Bux iQ" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-  darkMode: 'class',
-  theme: {
-    extend: {
-      colors: {
-        primary: '#F77841',
-        secondary: '#F4475A',
-        dark: '#0f172a',
-        darker: '#020617',
-        card: '#1e293b',
-        accent: '#f59e0b',
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(circle, rgba(255,255,255,0.1) 10%, rgba(0,0,0,0.1) 100%)',
-        'pattern': 'url(https://www.transparenttextures.com/patterns/black-linen.png)',
-      },
-      boxShadow: {
-        'card': '0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)',
-        'button': '0 4px 10px rgba(0, 0, 0, 0.2)',
-        'glow': '0 0 10px rgba(247, 120, 65, 0.5)',
-      },
-      animation: {
-        'fade-in': 'fadeIn 0.3s ease-out forwards',
-        'pulse-slow': 'pulse 3s infinite',
-      },
-      keyframes: {
-        fadeIn: {
-          'from': { opacity: 0, transform: 'translateY(5px)' },
-          'to': { opacity: 1, transform: 'translateY(0)' }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Earn crypto, PayPal funds, and gift cards by completing offers and surveys">
+    <meta name="theme-color" content="#0f172a">
+    <title>Bux iQ - Modern Rewards Platform</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://i.imgur.com/wppiqAy.png">
+    <link rel="apple-touch-icon" href="https://i.imgur.com/wppiqAy.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
+                    display: ['"Plus Jakarta Sans"', 'sans-serif'],
+                },
+                colors: {
+                    primary: {
+                        50: '#f5f3ff',
+                        100: '#ede9fe',
+                        200: '#ddd6fe',
+                        300: '#c4b5fd',
+                        400: '#a78bfa',
+                        500: '#8b5cf6',
+                        600: '#7c3aed',
+                        700: '#6d28d9',
+                        800: '#5b21b6',
+                        900: '#4c1d95',
+                    },
+                    dark: {
+                        900: '#0b0719',
+                        800: '#120d24',
+                        700: '#1a1430',
+                        600: '#221b3d',
+                        500: '#2b224b',
+                    },
+                    sky: {
+                        400: '#38bdf8',
+                        500: '#0ea5e9',
+                        600: '#0284c7',
+                    }
+                },
+                boxShadow: {
+                    'neumorph': '8px 8px 16px #0b0719, -8px -8px 16px #1a1430',
+                    'neumorph-sm': '4px 4px 8px #0b0719, -4px -4px 8px #1a1430',
+                    'neumorph-inset': 'inset 4px 4px 8px #0b0719, inset -4px -4px 8px #1a1430',
+                    'glow': '0 0 15px rgba(139, 92, 246, 0.5)',
+                },
+                animation: {
+                    'float': 'float 6s ease-in-out infinite',
+                    'float-reverse': 'float-reverse 6s ease-in-out infinite',
+                    'fade-in': 'fadeIn 0.5s ease-out forwards',
+                },
+                keyframes: {
+                    float: {
+                        '0%, 100%': { transform: 'translateY(0) rotate(1deg)' },
+                        '50%': { transform: 'translateY(-10px) rotate(-1deg)' },
+                    },
+                    'float-reverse': {
+                        '0%, 100%': { transform: 'translateY(0) rotate(-1deg)' },
+                        '50%': { transform: 'translateY(-10px) rotate(1deg)' },
+                    },
+                    fadeIn: {
+                        '0%': { opacity: 0, transform: 'translateY(10px)' },
+                        '100%': { opacity: 1, transform: 'translateY(0)' }
+                    }
+                }
+            }
         }
-      }
     }
-  }
-}
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: rgba(75, 29, 149, 0.1);
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #8b5cf6, #6d28d9);
+        border-radius: 10px;
+    }
+    
+    /* Gradient text */
+    .gradient-text {
+        background: linear-gradient(135deg, #8b5cf6 0%, #38bdf8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    /* 3D card effect */
+    .card-3d {
+        transform-style: preserve-3d;
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .card-3d:hover {
+        transform: translateY(-5px) rotateX(5deg) rotateY(5deg);
+        box-shadow: 15px 15px 30px rgba(11, 7, 25, 0.5), 
+                   -15px -15px 30px rgba(26, 20, 48, 0.5);
+    }
+    
+    /* Glass morphism effect */
+    .glass {
+        background: rgba(26, 20, 48, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    
+    /* Animated gradient border */
+    .gradient-border {
+        position: relative;
+        border-radius: 1rem;
+    }
+    .gradient-border::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border-radius: 1rem;
+        background: linear-gradient(45deg, 
+            #8b5cf6 0%, 
+            #7c3aed 25%, 
+            #38bdf8 50%, 
+            #0ea5e9 75%, 
+            #0284c7 100%);
+        background-size: 400% 400%;
+        z-index: -1;
+        animation: gradient 8s ease infinite;
+        opacity: 0.7;
+    }
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    /* Loading spinner */
+    .spinner {
+        width: 24px;
+        height: 24px;
+        border: 3px solid rgba(139, 92, 246, 0.2);
+        border-radius: 50%;
+        border-top-color: #8b5cf6;
+        animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+    
+    /* Custom checkbox */
+    .custom-checkbox {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #4c1d95;
+        border-radius: 4px;
+        background: #1a1430;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.2s;
+    }
+    .custom-checkbox:checked {
+        background: #8b5cf6;
+        border-color: #8b5cf6;
+    }
+    .custom-checkbox:checked::after {
+        content: '✓';
+        position: absolute;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    </style>
+</head>
+<body class="bg-dark-900 text-gray-100 font-sans min-h-screen antialiased">
+
+<!-- Main container with subtle gradient background -->
+<div class="min-h-screen w-full bg-gradient-to-br from-dark-900 via-dark-800 to-dark-700">
+
+    <!-- Header with glass effect -->
+    <header class="glass sticky top-0 z-50 border-b border-purple-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="https://i.imgur.com/rYiJAQn.png" alt="Bux iQ Logo" class="h-10" loading="lazy">
+                    <span class="ml-3 text-xl font-display font-extrabold gradient-text"></span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#" data-section="earn" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-white bg-purple-600/20 border border-purple-500/30 hover:bg-purple-600/30 transition-all">
+                        <i class="fas fa-home mr-2"></i> Home
+                    </a>
+                    <a href="#" data-section="shop" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-purple-200 hover:text-white hover:bg-purple-600/10 transition-all">
+                        <i class="fas fa-shopping-bag mr-2"></i> Shop
+                    </a>
+                    <a href="#" data-section="leaders" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-purple-200 hover:text-white hover:bg-purple-600/10 transition-all">
+                        <i class="fas fa-trophy mr-2"></i> Leaders
+                    </a>
+                    <a href="#" data-section="profile" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-purple-200 hover:text-white hover:bg-purple-600/10 transition-all">
+                        <i class="fas fa-money-bill-wave mr-2"></i> Earn
+                    </a>
+                    <a href="#" data-section="help" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-purple-200 hover:text-white hover:bg-purple-600/10 transition-all">
+                        <i class="fas fa-question-circle mr-2"></i> Help
+                    </a>
+                </nav>
+                
+                <!-- User profile and balance - Desktop -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="flex items-center space-x-3 bg-dark-700/50 rounded-lg px-4 py-2 border border-purple-900/30 hover:border-purple-500/50 transition-all">
+                        <div class="relative">
+                            <img id="useravatar" src="https://ui-avatars.com/api/?background=7c3aed&color=fff&name=Guest" alt="User Avatar" class="w-10 h-10 rounded-full border-2 border-purple-500">
+                        </div>
+                        <div>
+                            <p id="username" class="font-medium text-sm"></p>
+                            <p class="text-xs text-purple-300">Member</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center space-x-2">
+                        <div class="bg-dark-700/50 px-3 py-2 rounded-lg flex items-center border border-purple-900/30 hover:border-purple-500/50 transition-all">
+                            <i class="fas fa-coins text-yellow-400 mr-2"></i>
+                            <div>
+                                <p class="text-xs text-purple-300">Balance</p>
+                                <p id="balance" class="font-bold text-sm">0 pts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-purple-400 hover:text-white hover:bg-purple-600/20 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" data-section="earn" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-white bg-purple-600/20">
+                    <i class="fas fa-home mr-2"></i> Home
+                </a>
+                <a href="#" data-section="shop" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-purple-200 hover:text-white hover:bg-purple-600/10">
+                    <i class="fas fa-shopping-bag mr-2"></i> Shop
+                </a>
+                <a href="#" data-section="leaders" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-purple-200 hover:text-white hover:bg-purple-600/10">
+                    <i class="fas fa-trophy mr-2"></i> Leaders
+                </a>
+                <a href="#" data-section="profile" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-purple-200 hover:text-white hover:bg-purple-600/10">
+                    <i class="fas fa-money-bill-wave mr-2"></i> Earn
+                </a>
+                <a href="#" data-section="help" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-purple-200 hover:text-white hover:bg-purple-600/10">
+                    <i class="fas fa-question-circle mr-2"></i> Help
+                </a>
+            </div>
+            
+            <!-- Mobile user info -->
+            <div class="pt-4 pb-3 border-t border-purple-900/30">
+                <div class="flex items-center px-5">
+                    <div class="flex-shrink-0">
+                        <img id="mobileUseravatar" src="https://ui-avatars.com/api/?background=7c3aed&color=fff&name=User" alt="User Avatar" class="w-10 h-10 rounded-full border-2 border-purple-500">
+                    </div>
+                    <div class="ml-3">
+                        <p id="mobileUsername" class="text-sm font-medium text-white"></p>
+                        <p class="text-xs text-purple-300">Member</p>
+                    </div>
+                </div>
+                <div class="mt-3 px-2 space-y-1">
+                    <div class="flex justify-between px-3 py-2 rounded-md text-sm font-medium text-purple-200 bg-dark-700/30">
+                        <span><i class="fas fa-coins text-yellow-400 mr-2"></i> Balance</span>
+                        <span id="mobileBalance" class="font-bold">0 pts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Announcement banner -->
+        <div class="gradient-border mb-8">
+            <div class="bg-dark-700/80 rounded-lg p-4 text-center">
+                <p class="text-sm font-medium">
+                    <span class="text-purple-300 font-bold">NOTICE:</span> $1 = 200 PTS <span class="text-sky-400 font-bold">REQUIRED</span> TO CASHOUT (50% FEE APPLIED)
+                </p>
+            </div>
+        </div>
+
+        <!-- Activity logs -->
+        <div class="glass rounded-xl shadow-lg mb-8 overflow-hidden border border-purple-900/30">
+            <div class="px-6 py-4 border-b border-purple-900/30">
+                <h3 class="text-lg font-display font-bold flex items-center">
+                    <i class="fas fa-history text-purple-400 mr-2"></i>
+                    Recent Activity
+                </h3>
+            </div>
+            <!-- Activity Logs -->
+
+  <div id="logs" class="card mb-6 h-48 overflow-hidden bg-card rounded-xl shadow-lg">
+
+    <div class="p-4 h-full overflow-y-auto custom-scrollbar">
+
+      <div class="text-center h-full flex items-center justify-center opacity-70 font-medium">
+
+        <p>Your activity log will appear here</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+        <!-- Dynamic sections -->
+        <div class="space-y-8">
+            <!-- Earn Section -->
+            <section id="section-earn" class="animate-fade-in">
+                <div class="glass rounded-2xl overflow-hidden shadow-xl">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-sky-900/20"></div>
+                        <div class="relative px-6 py-8 sm:p-10">
+                            <div class="text-center mb-10">
+                                <h2 class="text-4xl sm:text-5xl font-display font-extrabold mb-4 gradient-text">
+                                    Elevate Your Earnings
+                                </h2>
+                                <p class="text-lg text-purple-200 max-w-2xl mx-auto">
+                                    Engage with premium offers and insightful surveys to unlock substantial crypto and cash rewards.
+                                </p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <!-- Survey Card -->
+                                <div class="card-3d bg-dark-700/50 rounded-xl p-6 border border-purple-900/30 hover:border-purple-500/50 transition-all">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-12 h-12 rounded-lg bg-purple-600/20 flex items-center justify-center text-purple-400 mr-4">
+                                            <i class="fas fa-poll text-xl"></i>
+                                        </div>
+                                        <h3 class="text-xl font-display font-bold">Surveys</h3>
+                                    </div>
+                                    <ul class="space-y-3 text-purple-100">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-emerald-400 mt-1 mr-2"></i>
+                                            <span>Share valuable perspectives</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-emerald-400 mt-1 mr-2"></i>
+                                            <span>Receive instant compensation</span>
+                                        </li>
+                                        <li class="flex items-start text-purple-300 italic">
+                                            <i class="fas fa-arrow-right text-purple-400 mt-1 mr-2"></i>
+                                            <span>Redeem via Crypto or PayPal</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Games Card -->
+                                <div class="card-3d bg-dark-700/50 rounded-xl p-6 border border-purple-900/30 hover:border-purple-500/50 transition-all">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-12 h-12 rounded-lg bg-sky-600/20 flex items-center justify-center text-sky-400 mr-4">
+                                            <i class="fas fa-gamepad text-xl"></i>
+                                        </div>
+                                        <h3 class="text-xl font-display font-bold">Games</h3>
+                                    </div>
+                                    <ul class="space-y-3 text-purple-100">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-emerald-400 mt-1 mr-2"></i>
+                                            <span>Monetize your playtime</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-emerald-400 mt-1 mr-2"></i>
+                                            <span>Discover new experiences</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- Rewards Card -->
+                                <div class="card-3d bg-dark-700/50 rounded-xl p-6 border border-purple-900/30 hover:border-purple-500/50 transition-all">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-12 h-12 rounded-lg bg-emerald-600/20 flex items-center justify-center text-emerald-400 mr-4">
+                                            <i class="fas fa-gift text-xl"></i>
+                                        </div>
+                                        <h3 class="text-xl font-display font-bold">Rewards</h3>
+                                    </div>
+                                    <ul class="space-y-3 text-purple-100">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-emerald-400 mt-1 mr-2"></i>
+                                            <span>Major Crypto Currencies</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-emerald-400 mt-1 mr-2"></i>
+                                            <span>Direct PayPal Transfers</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-emerald-400 mt-1 mr-2"></i>
+                                            <span>Premium Gift Cards</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Section -->
+                    <div class="bg-dark-600/30 px-6 py-8 sm:p-10 border-t border-purple-900/30">
+                        <h3 class="text-2xl font-display font-bold text-center mb-8 gradient-text">
+                            Global Community Insights
+                        </h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="glass rounded-lg p-4 text-center border border-purple-900/30">
+                                <div class="text-3xl font-display font-extrabold text-purple-400 mb-1">758K+</div>
+                                <div class="text-xs text-purple-300 uppercase tracking-wider">Offers Completed</div>
+                            </div>
+                            <div class="glass rounded-lg p-4 text-center border border-purple-900/30">
+                                <div class="text-3xl font-display font-extrabold text-sky-400 mb-1">$362K+</div>
+                                <div class="text-xs text-purple-300 uppercase tracking-wider">Total Distributed</div>
+                            </div>
+                            <div class="glass rounded-lg p-4 text-center border border-purple-900/30">
+                                <div class="text-3xl font-display font-extrabold text-emerald-400 mb-1">58K+</div>
+                                <div class="text-xs text-purple-300 uppercase tracking-wider">Active Members</div>
+                            </div>
+                            <div class="glass rounded-lg p-4 text-center border border-purple-900/30">
+                                <div class="text-3xl font-display font-extrabold text-amber-400 mb-1">567</div>
+                                <div class="text-xs text-purple-300 uppercase tracking-wider">Currently Online</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Shop Section -->
+<section id="section-shop" class="hidden animate-fade-in">
+    <div class="glass rounded-2xl overflow-hidden shadow-xl border border-purple-900/30">
+        <div class="px-6 py-8 sm:p-10">
+            <h2 class="text-3xl font-display font-bold mb-6 gradient-text text-center">
+                Crypto Cashouts
+            </h2>
+            <p class="text-purple-300 text-center mb-8 max-w-2xl mx-auto">
+                Convert your points directly to cryptocurrency with low fees
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Bitcoin Card -->
+                <div class="card-3d bg-gradient-to-br from-yellow-500 to-yellow-700 rounded-xl p-6 flex flex-col items-center border border-yellow-400/30 hover:shadow-glow transition-all">
+                    <div class="w-16 h-16 bg-dark-800 rounded-full flex items-center justify-center mb-4">
+                        <i class="fab fa-bitcoin text-3xl text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-white mb-1">Bitcoin (BTC)</h3>
+                    <p class="text-yellow-100 text-sm mb-4">From $5</p>
+                    
+                    <form class="w-full mt-4 crypto-form">
+                        <input type="hidden" name="crypto-type" value="bitcoin">
+                        <div class="mb-4">
+                            <label class="block text-yellow-100 text-xs mb-1">BTC Address</label>
+                            <input type="text" name="wallet-address" placeholder="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa" 
+                                   class="w-full p-2 rounded bg-dark-800/50 border border-yellow-500/30 text-white text-sm">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-yellow-100 text-xs mb-1">Amount ($)</label>
+                            <select name="amount" class="w-full p-2 rounded bg-dark-800/50 border border-yellow-500/30 text-white text-sm">
+                                <option value="5">$5.00</option>
+                                <option value="10">$10.00</option>
+                                <option value="25">$25.00</option>
+                                <option value="50">$50.00</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full mt-auto bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-medium transition-all transform hover:scale-105">
+                            Redeem BTC
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Ethereum Card -->
+                <div class="card-3d bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-xl p-6 flex flex-col items-center border border-indigo-400/30 hover:shadow-glow transition-all">
+                    <div class="w-16 h-16 bg-dark-800 rounded-full flex items-center justify-center mb-4">
+                        <i class="fab fa-ethereum text-3xl text-indigo-400"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-white mb-1">Ethereum (ETH)</h3>
+                    <p class="text-indigo-100 text-sm mb-4">From $5</p>
+                    
+                    <form class="w-full mt-4 crypto-form">
+                        <input type="hidden" name="crypto-type" value="ethereum">
+                        <div class="mb-4">
+                            <label class="block text-indigo-100 text-xs mb-1">ETH Address</label>
+                            <input type="text" name="wallet-address" placeholder="0x71C7656EC7ab88b098defB751B7401B5f6d8976F" 
+                                   class="w-full p-2 rounded bg-dark-800/50 border border-indigo-500/30 text-white text-sm">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-indigo-100 text-xs mb-1">Amount ($)</label>
+                            <select name="amount" class="w-full p-2 rounded bg-dark-800/50 border border-indigo-500/30 text-white text-sm">
+                                <option value="5">$5.00</option>
+                                <option value="10">$10.00</option>
+                                <option value="25">$25.00</option>
+                                <option value="50">$50.00</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full mt-auto bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium transition-all transform hover:scale-105">
+                            Redeem ETH
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Litecoin Card -->
+                <div class="card-3d bg-gradient-to-br from-gray-500 to-gray-700 rounded-xl p-6 flex flex-col items-center border border-gray-400/30 hover:shadow-glow transition-all">
+                    <div class="w-16 h-16 bg-dark-800 rounded-full flex items-center justify-center mb-4">
+                        <i class="fab fa-litecoin text-3xl text-gray-300"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-white mb-1">Litecoin (LTC)</h3>
+                    <p class="text-gray-100 text-sm mb-4">From $5</p>
+                    
+                    <form class="w-full mt-4 crypto-form">
+                        <input type="hidden" name="crypto-type" value="litecoin">
+                        <div class="mb-4">
+                            <label class="block text-gray-100 text-xs mb-1">LTC Address</label>
+                            <input type="text" name="wallet-address" placeholder="LSN5DdXhLz9cTzQ4dt7VHqKvqQUAtM8Z5Y" 
+                                   class="w-full p-2 rounded bg-dark-800/50 border border-gray-500/30 text-white text-sm">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-100 text-xs mb-1">Amount ($)</label>
+                            <select name="amount" class="w-full p-2 rounded bg-dark-800/50 border border-gray-500/30 text-white text-sm">
+                                <option value="5">$5.00</option>
+                                <option value="10">$10.00</option>
+                                <option value="25">$25.00</option>
+                                <option value="50">$50.00</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full mt-auto bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg font-medium transition-all transform hover:scale-105">
+                            Redeem LTC
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- More crypto cards can be added here following the same pattern -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Handle form submissions for all crypto forms
+    document.querySelectorAll('.crypto-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const cryptoType = formData.get('crypto-type');
+            const walletAddress = formData.get('wallet-address');
+            const amount = formData.get('amount');
+            
+            if (!walletAddress) {
+                alert(`Please enter your ${cryptoType.toUpperCase()} wallet address`);
+                return;
+            }
+            
+            // Here you would typically send this data to your server
+            console.log(`Redeeming $${amount} worth of ${cryptoType} to address: ${walletAddress}`);
+            
+            // Show a confirmation (in a real app, you would do this after server confirmation)
+            alert(`Redeem request submitted for $${amount} ${cryptoType.toUpperCase()} to:\n${walletAddress}\n\nThis may take 1-3 business days to process.`);
+            
+            // Reset form
+            this.reset();
+        });
+    });
 </script>
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-<style>
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #1e293b;
-}
-::-webkit-scrollbar-thumb {
-  background: #F77841;
-  border-radius: 3px;
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-/* Gradient text */
-.gradient-text {
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  background-image: linear-gradient(to right, #F77841, #F4475A);
-}
-/* Smooth transitions */
-.transition-slow {
-  transition: all 0.5s ease;
-}
-/* Card hover effect */
-.card-hover:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-/* Animation classes */
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-/* Custom scrollbar for logs */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: #F77841 #1e293b;
-}
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: #1e293b;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #F77841;
-  border-radius: 3px;
-}
-/* Loading spinner */
-.spinner {
-  width: 24px;
-  height: 24px;
-  border: 3px solid rgba(255,255,255,0.3);
-  border-radius: 50%;
-  border-top-color: #F77841;
-  animation: spin 1s ease-in-out infinite;
-}
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-</style>
-</head>
-<body class="bg-dark text-white font-sans min-h-screen pb-16 md:pb-0 transition-colors duration-300">
-
-<!-- Main container -->
-<div class="max-w-7xl mx-auto p-4">
-
-<!-- HEADER -->
-<header class="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
-  <!-- Logo -->
-  <div class="flex items-center justify-center">
-    <img src="https://i.imgur.com/rYiJAQn.png" alt="Bux iQ Logo" class="h-14 object-contain" loading="lazy" />
-  </div>
-
-  <!-- User Profile (Desktop) -->
-  <div class="relative group hidden md:block cursor-pointer" id="user-profile">
-    <div class="flex items-center space-x-3 bg-card rounded-xl px-4 py-2 hover:bg-opacity-80 transition-all">
-      <div class="relative">
-        <img id="useravatar" src="https://ui-avatars.com/api/?background=c31432&color=fff&name=Guest" alt="User Avatar" class="w-12 h-12 rounded-full border-2 border-primary" loading="lazy" />
-      </div>
-      <div>
-        <p id="username" class="font-semibold"></p>
-        <p class="text-xs text-gray-400">Member</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Balance Indicators (Desktop) -->
-  <div class="flex flex-wrap gap-3 hidden md:flex" id="balance-indicators">
-    <div class="bg-gradient-to-r from-primary to-blue-600 px-4 py-2 rounded-xl flex items-center shadow-md">
-      <i class="fas fa-coins mr-2 text-yellow-300"></i>
-      <div>
-        <p class="text-xs text-gray-300">Balance</p>
-        <p id="balance" class="font-bold">$0.00</p>
-      </div>
-    </div>
-    <div class="bg-gradient-to-r from-secondary to-green-600 px-4 py-2 rounded-xl flex items-center shadow-md">
-      <i class="fas fa-bolt mr-2 text-yellow-300"></i>
-      <div>
-        <p class="text-xs text-gray-300">Level</p>
-        <p id="level" class="font-bold">n/a</p>
-      </div>
-    </div>
-  </div>
-</header>
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    html {
-      box-sizing: border-box;
-      font-family: Poppins;
-      font-style: normal;
-    }
-
-    body {
-      box-sizing: border-box;
-      font-family: Poppins;
-      font-style: normal;
-      margin: 0px;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      width: 100vw;
-    }
-
-    .free-container {
-      box-sizing: border-box;
-      font-family: Poppins;
-      font-style: normal;
-      gap: 15px;
-      display: flex;
-      height: fit-content;
-      margin-bottom: 40px;
-      color: rgb(255, 255, 255);
-    }
-
-    .discord {
-      box-sizing: border-box;
-      font-family: Poppins;
-      font-style: normal;
-      background: rgb(33, 41, 77);
-      border-radius: 12px;
-      height: 100px;
-      max-height: 50px;
-      width: 100%;
-      min-width: 265px;
-      -webkit-box-pack: center;
-      justify-content: center;
-      display: flex;
-      -webkit-box-align: center;
-      align-items: center;
-      color: rgb(76, 174, 255);
-      font-weight: 600;
-      font-size: 16px;
-      text-align: center;
-    }
-
-    .highlight {
-      box-sizing: border-box;
-      font-family: Poppins;
-      font-style: normal;
-      color: rgb(114, 136, 220);
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <div class="free-container">
-    <div class="discord">
-      <p>
-        $1 = 200 PTS <span class="highlight">REQUIRED</span> IN ORDER TO CASHOUT WE TAKE (50%).
-      </p>
-      <br />
-    </div>
-  </div>
-</body>
-</html>
-<!-- Desktop Navigation -->
-<nav class="hidden md:flex justify-start space-x-2 bg-card p-2 rounded-xl mb-6 shadow-lg">
-  <a href="#" data-section="earn" class="nav-link px-6 py-3 rounded-lg bg-primary font-medium flex items-center transition-all">
-    <i class="fas fa-home mr-2"></i> Home
-  </a>
-  <a href="#" data-section="shop" class="nav-link px-6 py-3 rounded-lg hover:bg-gray-700 flex items-center transition-all">
-    <i class="fas fa-shopping-bag mr-2"></i> Shop
-  </a>
-  <a href="#" data-section="leaders" class="nav-link px-6 py-3 rounded-lg hover:bg-gray-700 flex items-center transition-all">
-    <i class="fas fa-trophy mr-2"></i> Leaders
-  </a>
-  <a href="#" data-section="profile" class="nav-link px-6 py-3 rounded-lg hover:bg-gray-700 flex items-center transition-all">
-    <i class="fas fa-money-bill-wave mr-2"></i> Earn
-  </a>
-  <a href="#" data-section="help" class="nav-link px-6 py-3 rounded-lg hover:bg-gray-700 flex items-center transition-all">
-    <i class="fas fa-question-circle mr-2"></i> Help
-  </a>
-  <a href="#" data-section="chat" class="nav-link px-6 py-3 rounded-lg hover:bg-gray-700 flex items-center transition-all">
-    <i class="fas fa-comments mr-2"></i> Chat
-  </a>
-</nav>
-
-<!-- Mobile User Info Bar -->
-<div class="md:hidden flex items-center justify-between bg-card p-3 rounded-xl mb-4">
-  <div class="flex items-center space-x-3">
-    <div class="relative">
-      <img id="mobileUseravatar" src="https://ui-avatars.com/api/?background=c31432&color=fff&name=User" alt="User Avatar" class="w-12 h-12 rounded-full avatar" />
-    </div>
-    <div>
-      
-      <p class="text-xs text-gray-400"></p>
-    </div>
-  </div>
-  <div class="flex space-x-2">
-    <div class="bg-gradient-to-r from-primary to-blue-600 px-3 py-1 rounded-lg flex items-center">
-      <i class="fas fa-coins text-yellow-300 text-sm"></i>
-      <span id="mobileBalance" class="ml-1 text-sm font-medium">0.00</span>
-    </div>
-    <div class="bg-gradient-to-r from-secondary to-green-600 px-3 py-1 rounded-lg flex items-center">
-      <i class="fas fa-bolt text-yellow-300 text-sm"></i>
-      <span id="Level" class="ml-1 text-sm font-medium">ON DESKTOP LVL DISPLAY ONLY!</span>
-    </div>
-  </div>
-</div>
-
-<main class="container mx-auto px-4 py-8 md:py-12">
-
-  <!-- Activity Logs -->
-
-  <div id="logs" class="card mb-6 h-48 overflow-hidden bg-card rounded-xl shadow-lg">
-
-    <div class="p-4 h-full overflow-y-auto custom-scrollbar">
-
-      <div class="text-center h-full flex items-center justify-center opacity-70 font-medium">
-
-        <p>Your activity log will appear here</p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- Section: Earn Crypto & Rewards -->
-
-  <section id="section-earn" class="animate-fade-in">
-    <div class="bg-gradient-to-br from-gray-900 to-black rounded-3xl p-8 shadow-2xl mb-8 border border-gray-700">
-      <div class="text-center mb-10">
-        <h1 class="text-5xl font-extrabold mb-4" style="background-image: linear-gradient(to right, #8A2BE2, #00BFFF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Elevate Your Earnings & Rewards</h1>
-        <p class="text-gray-400 text-xl max-w-2xl mx-auto">Engage with premium offers and insightful surveys to unlock substantial crypto and cash rewards.</p>
-      </div>
-
-      <div class="grid lg:grid-cols-3 gap-8 mb-10">
-        <div class="bg-gray-800/60 p-6 rounded-xl border border-gray-700 hover:border-purple-600 transition-all duration-300 transform hover:scale-105 shadow-lg">
-          <h2 class="text-2xl font-bold mb-4 text-purple-400 flex items-center">
-            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M10 12h.01"></path></svg>
-            Insightful Surveys
-          </h2>
-          <ul class="space-y-3 text-gray-300 text-lg">
-            <li class="flex items-center"><span class="text-green-500 mr-3">✔</span>Share valuable perspectives</li>
-            <li class="flex items-center"><span class="text-green-500 mr-3">✔</span>Receive instant compensation</li>
-            <li class="italic text-gray-500">Seamlessly redeem via Crypto or PayPal.</li>
-          </ul>
-        </div>
-
-        <div class="bg-gray-800/60 p-6 rounded-xl border border-gray-700 hover:border-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg">
-          <h2 class="text-2xl font-bold mb-4 text-blue-400 flex items-center">
-            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
-            Engaging Games
-          </h2>
-          <ul class="space-y-3 text-gray-300 text-lg">
-            <li class="flex items-center"><span class="text-green-500 mr-3">✔</span>Monetize your playtime</li>
-            <li class="flex items-center"><span class="text-green-500 mr-3">✔</span>Discover new rewarding experiences</li>
-          </ul>
-        </div>
-
-        <div class="bg-gray-800/60 p-6 rounded-xl border border-gray-700 hover:border-teal-600 transition-all duration-300 transform hover:scale-105 shadow-lg">
-          <h2 class="text-2xl font-bold mb-4 text-teal-400 flex items-center">
-            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.592 1L21 12l-4.408 3.592A2 2 0 0118 16a2 2 0 01-2 2H8a2 2 0 01-2-2 2 2 0 01-.592-4.408L3 12l4.408-3.592A2 2 0 016 8a2 2 0 012-2h8a2 2 0 012 2z"></path></svg>
-            Flexible Rewards
-          </h2>
-          <ul class="space-y-3 text-gray-300 text-lg">
-            <li class="flex items-center"><span class="text-green-500 mr-3">✔</span>Major Crypto Currencies</li>
-            <li class="flex items-center"><span class="text-green-500 mr-3">✔</span>Direct PayPal Transfers</li>
-            <li class="flex items-center"><span class="text-green-500 mr-3">✔</span>Premium Gift Cards</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="bg-gray-800/60 p-8 rounded-xl border border-gray-700 shadow-xl">
-        <h2 class="text-3xl font-bold mb-6 text-center text-gray-200">Global Community Insights</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div class="bg-gray-900/50 p-4 rounded-lg border border-gray-700">
-            <div class="text-4xl font-extrabold text-purple-500 mb-1">758,502+</div>
-            <div class="text-gray-400 text-sm">Offers Completed</div>
-          </div>
-          <div class="bg-gray-900/50 p-4 rounded-lg border border-gray-700">
-            <div class="text-4xl font-extrabold text-blue-500 mb-1">$362,630+</div>
-            <div class="text-gray-400 text-sm">Total Value Distributed</div>
-          </div>
-          <div class="bg-gray-900/50 p-4 rounded-lg border border-gray-700">
-            <div class="text-4xl font-extrabold text-teal-500 mb-1">58,236+</div>
-            <div class="text-gray-400 text-sm">Active Members</div>
-          </div>
-          <div class="bg-gray-900/50 p-4 rounded-lg border border-gray-700">
-            <div class="text-4xl font-extrabold text-green-500 mb-1">567</div>
-            <div class="text-gray-400 text-sm">Currently Engaged</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-  <!-- Section: Shop Rewards -->
-  <section id="section-shop" class="hidden animate-fade-in">
-    <h2 class="text-2xl font-bold mb-6 gradient-text">Shop Rewards</h2>
-    <div class="bg-card rounded-xl p-6 text-center border border-gray-700 shadow-lg">
-      <p class="text-gray-400 mb-4">Redeem your points for amazing rewards</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Amazon Gift Card -->
-        <div class="bg-gradient-to-br from-yellow-500 to-yellow-700 rounded-lg p-6 flex flex-col items-center border border-yellow-500/30 hover:shadow-glow transition-all card-hover">
-          <i class="fas fa-gift text-4xl mb-3 text-white"></i>
-          <span class="font-bold text-lg">Amazon Gift Card</span>
-          <span class="text-sm text-gray-200 mt-1">From $5</span>
-          <button class="mt-4 bg-white hover:bg-gray-100 text-yellow-700 px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105">
-            Redeem
-          </button>
-        </div>
-        <!-- Steam Wallet -->
-        <div class="bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg p-6 flex flex-col items-center border border-blue-500/30 hover:shadow-glow transition-all card-hover">
-          <i class="fas fa-gamepad text-4xl mb-3 text-white"></i>
-          <span class="font-bold text-lg">Steam Wallet</span>
-          <span class="text-sm text-gray-200 mt-1">From $5</span>
-          <button class="mt-4 bg-white hover:bg-gray-100 text-blue-700 px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105">
-            Redeem
-          </button>
-        </div>
-        <!-- PayPal Cash -->
-        <div class="bg-gradient-to-br from-green-500 to-green-700 rounded-lg p-6 flex flex-col items-center border border-green-500/30 hover:shadow-glow transition-all card-hover">
-          <i class="fas fa-credit-card text-4xl mb-3 text-white"></i>
-          <span class="font-bold text-lg">PayPal Cash</span>
-          <span class="text-sm text-gray-200 mt-1">From $5</span>
-          <button class="mt-4 bg-white hover:bg-gray-100 text-green-700 px-6 py-2 rounded-lg font-medium transition-all transform hover:scale-105">
-            Redeem
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section: Leaderboard -->
-  <section id="section-leaders" class="hidden animate-fade-in">
-    <h2 class="text-2xl font-bold mb-6 gradient-text">Leaderboard</h2>
-    <div class="bg-card rounded-xl p-6 border border-gray-700 shadow-lg">
-      <div class="overflow-x-auto">
-        <table class="w-full text-left">
-          COMING SOON
-        </table>
-      </div>
-    </div>
-  </section>
-
-   <section id="section-profile" class="hidden">
-  <h2 class="text-2xl font-bold mb-6">Your Profile</h2>
-  <div class="bg-card rounded-xl p-6 flex flex-col md:flex-row items-center gap-6">
-    <div class="flex flex-col gap-4 w-full">
-      <div id="userdash" class="section">
-        <div id="login-container" class="card p-8 max-w-md mx-auto">
-          <h2 class="text-2xl font-bold text-center mb-6 gradient-text">LOGIN</h2>
-          <form id="loginForm" class="space-y-6 p-8 bg-gradient-to-br from-gray-900/70 to-gray-800/70 rounded-2xl shadow-lg backdrop-blur-md">
-            <div>
-              <label for="login-account" class="block text-sm font-semibold text-gray-300 mb-2">Account #</label>
-              <input
-                id="login-account"
-                type="text"
-                required
-                placeholder="Enter your account number"
-                class="w-full px-4 py-3 rounded-lg bg-gray-700 bg-opacity-40 border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-gray-100 placeholder-gray-400 transition"
-                aria-label="Account number"
-              />
-            </div>
-            <div>
-              <label for="login-clientid" class="block text-sm font-semibold text-gray-300 mb-2">Client ID</label>
-              <input
-                id="login-clientid"
-                type="text"
-                required
-                placeholder="Enter your client ID"
-                class="w-full px-4 py-3 rounded-lg bg-gray-700 bg-opacity-40 border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-gray-100 placeholder-gray-400 transition"
-                aria-label="Client ID"
-              />
-            </div>
-            <div>
-              <label for="captchaInput" class="block text-sm font-semibold text-gray-300 mb-2">CAPTCHA</label>
-              <div
-                id="captcha"
-                class="select-none text-center text-yellow-400 font-mono text-xl tracking-widest mb-2 rounded-lg bg-gray-700 bg-opacity-50 py-2 shadow-inner"
-                aria-live="polite"
-                aria-atomic="true"
-              >
+            <!-- Leaders Section -->
+            <section id="section-leaders" class="hidden animate-fade-in">
+                <div class="glass rounded-2xl overflow-hidden shadow-xl border border-purple-900/30">
+                    <div class="px-6 py-8 sm:p-10">
+                        <h2 class="text-3xl font-display font-bold mb-6 gradient-text text-center">
+                            Leaderboard
+                        </h2>
+                        <p class="text-purple-300 text-center mb-8">
+                            Top earners this month
+                        </p>
+                        
+                        <div class="bg-dark-700/50 rounded-xl p-6 border border-purple-900/30">
+                            <div class="text-center py-10 text-purple-300">
+                                <i class="fas fa-trophy text-4xl text-amber-400 mb-4"></i>
+                                <p>Leaderboard coming soon!</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              <input
-                id="captchaInput"
-                type="text"
-                required
-                placeholder="Enter CAPTCHA"
-                class="w-full px-4 py-3 rounded-lg bg-gray-700 bg-opacity-40 border border-transparent focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 text-gray-100 placeholder-yellow-300 transition"
-                aria-label="Enter CAPTCHA"
-              />
-            </div>
-            <button
-              type="submit"
-              class="w-full py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-purple-600 hover:to-indigo-500 text-white font-semibold flex items-center justify-center gap-2 shadow-lg transition-transform active:scale-95"
-            >
-              <span class="">Login</span>
-            </button>
-          </form>
-          <div id="error-msg" class="text-center text-red-400 mt-4 hidden" aria-live="assertive"></div>
-        </div>
+            </section>
 
-        <div id="dashboard" class="hidden">
+            <!-- Profile/Earn Section -->
+            <section id="section-profile" class="hidden">
+                <div class="glass rounded-2xl overflow-hidden shadow-xl border border-purple-900/30">
+                    <div id="userdash">
+                        <!-- Login Container -->
+                        <div id="login-container" class="p-6 sm:p-10">
+                            <div class="max-w-md mx-auto">
+                                <div class="text-center mb-8">
+                                    <h2 class="text-3xl font-display font-bold gradient-text mb-2">
+                                        Welcome Back
+                                    </h2>
+                                    <p class="text-purple-300">Sign in to access your earning dashboard</p>
+                                </div>
+                                
+                                <form id="loginForm" class="space-y-6 bg-dark-700/50 rounded-2xl p-6 border border-purple-900/30">
+                                    <div>
+                                        <label for="login-account" class="block text-sm font-medium text-purple-300 mb-2">
+                                            Account #
+                                        </label>
+                                        <input
+                                            id="login-account"
+                                            type="text"
+                                            required
+                                            placeholder="Enter your account number"
+                                            class="w-full px-4 py-3 rounded-lg bg-dark-600 border border-purple-900/30 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-white placeholder-purple-400/70 transition"
+                                        />
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="login-clientid" class="block text-sm font-medium text-purple-300 mb-2">
+                                            Client ID
+                                        </label>
+                                        <input
+                                            id="login-clientid"
+                                            type="text"
+                                            required
+                                            placeholder="Enter your client ID"
+                                            class="w-full px-4 py-3 rounded-lg bg-dark-600 border border-purple-900/30 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-white placeholder-purple-400/70 transition"
+                                        />
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="captchaInput" class="block text-sm font-medium text-purple-300 mb-2">
+                                            CAPTCHA
+                                        </label>
+                                        <div
+                                            id="captcha"
+                                            class="select-none text-center text-purple-300 font-mono text-xl tracking-widest mb-2 rounded-lg bg-dark-600 py-2 border border-purple-900/30"
+                                        >
+                                        </div>
+                                        <input
+                                            id="captchaInput"
+                                            type="text"
+                                            required
+                                            placeholder="Enter CAPTCHA"
+                                            class="w-full px-4 py-3 rounded-lg bg-dark-600 border border-purple-900/30 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-white placeholder-purple-400/70 transition"
+                                        />
+                                    </div>
+                                    
+                                    <button
+                                        type="submit"
+                                        class="w-full py-3 rounded-lg bg-gradient-to-r from-purple-600 to-sky-600 hover:from-purple-500 hover:to-sky-500 text-white font-medium flex items-center justify-center gap-2 shadow-lg transition-all hover:shadow-purple-500/20"
+                                    >
+                                        <span>Login</span>
+                                    </button>
+                                </form>
+                                
+                                <div id="error-msg" class="text-center text-red-400 mt-4 hidden"></div>
+                            </div>
+                        </div>
+                        
+                        <div id="dashboard" class="hidden">
           <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl shadow-xl overflow-hidden border border-gray-700">
             <div class="p-6 md:p-8">
               <div class="text-center mb-8">
@@ -728,34 +935,7 @@ tailwind.config = {
 </section>
 
 
-<div class="fixed bottom-0 left-0 right-0 bg-card border-t border-gray-700 shadow-lg md:hidden z-50">
-    <div class="flex justify-around">
-      <a href="#" data-section="earn" class="nav-link-mobile flex flex-col items-center justify-center p-3 text-blue-500" data-section="earn">
-        <i class="fas fa-home text-xl"></i>
-        <span class="text-xs mt-1">Home</span>
-      </a>
-      <a href="#" data-section="shop" class="nav-link-mobile flex flex-col items-center justify-center p-3" data-section="shop">
-        <i class="fas fa-shopping-bag text-xl"></i>
-        <span class="text-xs mt-1">Shop</span>
-      </a>
-      <a href="#" data-section="leaders" class="nav-link-mobile flex flex-col items-center justify-center p-3" data-section="leaders">
-        <i class="fas fa-trophy text-xl"></i>
-        <span class="text-xs mt-1">Leaders</span>
-      </a>
-      <a href="#" data-section="profile" class="nav-link-mobile flex flex-col items-center justify-center p-3" data-section="profile">
-        <i class="fas fa-user text-xl"></i>
-        <span class="text-xs mt-1">Profile</span>
-      </a>
-      <a href="#" data-section="help" class="nav-link-mobile flex flex-col items-center justify-center p-3" data-section="help">
-        <i class="fas fa-question-circle text-xl"></i>
-        <span class="text-xs mt-1">Help</span>
-      </a>
-      <a href="#" data-section="chat" class="nav-link-mobile flex flex-col items-center justify-center p-3" data-section="chat">
-        <i class="fas fa-comments text-xl"></i>
-        <span class="text-xs mt-1">Chat</span>
-      </a>
-    </div>
-  </div>
+
 <div id="iframeContainer" class="fixed inset-0 bg-black bg-opacity-70 hidden z-50">
   <div class="relative w-full h-full p-4">
     <button onclick="closeIframe()" class="absolute top-4 right-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded z-50 transition-colors">Close</button>
@@ -1271,5 +1451,31 @@ function sendPostback(amountLocal, amountUsd, username, bonusCode) {
     }
 });
 }
+   document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu'); // You'll need to add this element
     
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+            // Toggle aria-expanded attribute
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            
+            // Toggle mobile menu visibility
+            mobileMenu.classList.toggle('hidden');
+            
+            // Optional: Change icon between bars and times
+            const icon = this.querySelector('i');
+            if (icon) {
+                if (isExpanded) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            }
+        });
+    }
+}); 
 </script>
