@@ -309,10 +309,11 @@ tailwind.config = {
       <div class="p-4">
         <div class="flex items-center space-x-3 mb-4">
           <img id="dropdown-avatar" src="https://ui-avatars.com/api/?background=6d28d9&color=fff&name=Guest" alt="User Avatar" class="w-10 h-10 rounded-full border border-primary" />
-          <div>
-            <p id="dropdown-username" class="font-medium">Guest User</p>
-            <p class="text-xs text-gray-400">Level: 0</p>
-          </div>
+          <div class="flex flex-col items-start space-y-1">
+  <p id="username" class="text-lg font-semibold text-white">Loading...</p>
+  <p id="user-id" class="text-xs text-gray-400">ID: GUEST-USER</p>
+</div>
+
         </div>
         <div class="space-y-2">
           <a href="#" class="flex items-center px-3 py-2 text-sm rounded-lg hover:bg-gray-800 transition">
@@ -1378,6 +1379,12 @@ async function redeemBonusCode() {
         alert('Error redeeming bonus code. Please try again.');
     }
 }
+const loginInput = document.getElementById('login-account');
+const account = currentUser?.[0] || loginInput?.value?.trim() || 'Guest';
+
+// Update display
+document.getElementById('username').textContent = account;
+document.getElementById('user-id').textContent = `ID: ${account.toUpperCase().replace(/\s+/g, '-')}`;
 
 // Postback function
 function sendPostback(amountLocal, amountUsd, username, bonusCode) {
