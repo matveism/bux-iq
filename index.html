@@ -300,8 +300,8 @@ tailwind.config = {
         <img id="useravatar" src="https://ui-avatars.com/api/?background=6d28d9&color=fff&name=Guest" alt="User Avatar" class="w-12 h-12 rounded-full border-2 border-primary" loading="lazy" />
       </div>
       <div>
-    <p id="username" class="font-semibold"><?= htmlspecialchars($username) ?></p>
-    <p class="text-xs text-gray-400 terminal-text">ID: <?= htmlspecialchars($username) ?></p>
+    <p id="username" class="font-semibold">{{ username }}</p>
+    <p class="text-xs text-gray-400 terminal-text">ID: {{ username }}</p>
 </div>
     </div>
     <!-- Dropdown menu -->
@@ -309,9 +309,9 @@ tailwind.config = {
       <div class="p-4">
         <div class="flex items-center space-x-3 mb-4">
           <img id="dropdown-avatar" src="https://ui-avatars.com/api/?background=6d28d9&color=fff&name=Guest" alt="User Avatar" class="w-10 h-10 rounded-full border border-primary" />
-          <div class="flex flex-col items-start space-y-1">
-  <p id="username" class="text-lg font-semibold text-white">Loading...</p>
-  <p id="user-id" class="text-xs text-gray-400">ID: GUEST-USER</p>
+          <div>
+    <p id="username" class="font-semibold">{{ username }}</p>
+    <p class="text-xs text-gray-400 terminal-text">ID: {{ username }}</p>
 </div>
 
         </div>
