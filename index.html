@@ -808,39 +808,22 @@ tailwind.config = {
     </div>
   </section>
 
-  <!-- Section: Chat -->
-<section id="section-chat" class="hidden">
-  <div class="windows-xp-panel mb-6">
-    <div class="windows-xp-inner-panel p-4">
-      <h2 class="text-2xl font-bold mb-4 gradient-text">Community Chat</h2>
-      <div id="chatDisplay" class="windows-xp-inner-panel p-3 h-64 overflow-y-auto mb-3 space-y-2 text-sm">
-        <!-- Messages will load here -->
-      </div>
-      <div class="flex">
-        
-        <input id="messageInput" type="text" placeholder="Type your message..." class="flex-1 windows-xp-inner-panel px-3 py-1 focus:outline-none">
-        <button id="sendBtn" class="windows-xp-button-active px-4 py-1 ml-2 hover:bg-blue-600">
-          <i class="fas fa-paper-plane"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
+  <script>
   const sendBtn = document.getElementById('sendBtn');
   const messageInput = document.getElementById('messageInput');
   const chatDisplay = document.getElementById('chatDisplay');
 
-  // Simulated Account# after login (this should come from actual login logic)
-  const currentUser = localStorage.getItem('accountNumber'); // e.g., "R1Moodz"
-  if (!currentUser) {
-    alert("You must be logged in to use chat.");
-    sendBtn.disabled = true;
-  }
+  const scriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+  const csvURL = 'https://docs.google.com/spreadsheets/d/e/YOUR_CSV_URL/pub?gid=0&single=true&output=csv';
 
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbznWqZKZM0XiS3eNWDOwxHhnY7Lrnn6r6NTT3QZ518rr7LxvsV5l-A8yecfBwfqUEg/exec';
-  const csvURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTMw2OEzCGbQOpzjj47sjvSlKqeLBC14FkZ6gGKnI3r4roaYapdByCLpYsLDFmbxbk87aCb5ChNjwZP/pub?gid=0&single=true&output=csv';
+  // Auto-detect username after login
+  const currentUser = localStorage.getItem('accountNumber');
+
+  if (!currentUser) {
+    sendBtn.disabled = true;
+    messageInput.disabled = true;
+    chatDisplay.innerHTML = `<p class="text-red-600">Login required to send or view messages.</p>`;
+  }
 
   function displayMessage(name, msg) {
     const wrapper = document.createElement('div');
@@ -863,29 +846,42 @@ tailwind.config = {
         chatDisplay.innerHTML = '';
         const lines = csv.trim().split('\n').slice(1);
         lines.forEach(line => {
-          const [name, msg] = line.split(',').map(x => x.replace(/^"|"$/g, ''));
-          displayMessage(name, msg);
+          const parts = line.split(',');
+          if (parts.length >= 2) {
+            const name = parts[0].replace(/^"|"$/g, '');
+            const msg = parts[1].replace(/^"|"$/g, '');
+            displayMessage(name, msg);
+          }
         });
       });
   }
 
   sendBtn.addEventListener('click', () => {
     const message = messageInput.value.trim();
-    if (!currentUser || !message) return alert("You must be logged in and type a message.");
+    if (!currentUser || !message) {
+      alert("You must be logged in and type a message.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('username', currentUser);
+    formData.append('message', message);
 
     fetch(scriptURL, {
       method: 'POST',
-      body: JSON.stringify({ username: currentUser, message }),
-      headers: { 'Content-Type': 'application/json' }
-    }).then(() => {
+      body: formData,
+    })
+    .then(() => {
       messageInput.value = '';
       fetchMessages();
-    });
+    })
+    .catch(err => alert("Failed to send message: " + err.message));
   });
 
-  // Auto-refresh messages
-  setInterval(fetchMessages, 10000);
-  window.addEventListener('load', fetchMessages);
+  if (currentUser) {
+    fetchMessages();
+    setInterval(fetchMessages, 10000); // Refresh every 10s
+  }
 </script>
 
 
