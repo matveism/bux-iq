@@ -931,7 +931,25 @@ tailwind.config = {
   </div>
 </div>
 
+<script>
+        function updateServerTime() {
+            const now = new Date();
+            
+            // Convert to PST (UTC-8) or PDT (UTC-7) depending on daylight saving
+            const pstOffset = now.getTimezoneOffset() >= 480 ? -8 * 60 : -7 * 60; // PST is UTC-8, PDT is UTC-7
+            const pstTime = new Date(now.getTime() + (now.getTimezoneOffset() - pstOffset) * 60000);
+            
+            // Format as HH:MM:SS
+            const hours = String(pstTime.getHours()).padStart(2, '0');
+            const minutes = String(pstTime.getMinutes()).padStart(2, '0');
+            const seconds = String(pstTime.getSeconds()).padStart(2, '0');
+            
+            document.getElementById('serverTime').textContent = `${hours}:${minutes}:${seconds} PST`;
+        }
 
+        updateServerTime();
+        setInterval(updateServerTime, 1000);
+    </script>
 <script>
 // Global variables
         let captchaCode = '';
