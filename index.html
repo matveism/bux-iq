@@ -6,7 +6,7 @@
 <meta name="description" content="Earn crypto, PayPal funds, and gift cards by completing offers and surveys" />
 <meta name="theme-color" content="#0f0f1a" />
 <meta name="clckd" content="45663763f89113271aedcb23f063dab2" />
-<title>Bux iQ - Next-Gen Rewards Platform</title>
+<title>Bux IQ</title>
 
 <!-- Favicon and Apple Touch Icons -->
 <link rel="icon" type="image/png" href="https://i.imgur.com/wppiqAy.png" />
@@ -284,136 +284,136 @@ tailwind.config = {
 <!-- Main container -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-<!-- HEADER -->
-<header class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8 pt-8">
-  <!-- Logo with 3D effect -->
-  <div class="flex items-center justify-center relative group">
-    <div class="absolute -inset-2 bg-gradient-to-r from-primary to-secondary rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
-    <img src="https://i.imgur.com/rYiJAQn.png" alt="Bux iQ Logo" class="h-16 object-contain transform group-hover:scale-105 transition duration-300" loading="lazy" />
-    
-  </div>
-
-  <!-- User Profile (Desktop) -->
-  <div class="relative group hidden md:block cursor-pointer" id="user-profile">
-    <div class="flex items-center space-x-3 bg-card rounded-xl px-4 py-2 hover:bg-opacity-80 transition-all glow-border">
-      <div class="relative">
-        <img id="useravatar" src="https://ui-avatars.com/api/?background=6d28d9&color=fff&name=Guest" alt="User Avatar" class="w-12 h-12 rounded-full border-2 border-primary" loading="lazy" />
-      </div>
-      <div>
-    <p id="username" class="font-semibold">{{ username }}</p>
-    <p class="text-xs text-gray-400 terminal-text">ID: {{ username }}</p>
-</div>
+<!-- Windows XP Style Header -->
+<div class="bg-[#ece9d8] border-2 border-[#5d92b1] p-1 mb-4">
+  <!-- Main Header Bar -->
+  <div class="flex flex-col md:flex-row items-center justify-between gap-2 bg-gradient-to-b from-[#316ac5] to-[#1e4d9b] p-2 border-2 border-[#5d92b1]">
+    <!-- Logo -->
+    <div class="flex items-center">
+      <img src="https://i.imgur.com/rYiJAQn.png" alt="Bux iQ Logo" class="h-12 object-contain" loading="lazy" />
     </div>
-    <!-- Dropdown menu -->
-    <div class="absolute right-0 mt-2 w-56 bg-card rounded-xl shadow-lg hidden group-hover:block transform transition-all duration-300 origin-top-right z-50 glow-border">
-      <div class="p-4">
-        <div class="flex items-center space-x-3 mb-4">
-          <img id="dropdown-avatar" src="https://ui-avatars.com/api/?background=6d28d9&color=fff&name=Guest" alt="User Avatar" class="w-10 h-10 rounded-full border border-primary" />
+
+    <!-- User Profile (Desktop) -->
+    <div class="relative group hidden md:block cursor-pointer" id="user-profile">
+      <div class="flex items-center space-x-3 bg-[#ece9d8] px-3 py-1 border-2 border-[#5d92b1] shadow-[inset_1px_1px_0px_0px_rgba(255,255,255,0.5)]">
+        <div class="relative">
+          <img id="useravatar" src="https://ui-avatars.com/api/?background=316ac5&color=fff&name=Guest" alt="User Avatar" class="w-10 h-10 rounded-sm border border-gray-400" loading="lazy" />
+        </div>
+        <div>
+          <p id="username" class="font-semibold text-black">{{ username }}</p>
+          <p class="text-xs text-gray-600">ID: {{ username }}</p>
+        </div>
+      </div>
+      <!-- Dropdown menu -->
+      <div class="absolute right-0 mt-1 w-56 bg-[#ece9d8] border-2 border-[#5d92b1] shadow-lg hidden group-hover:block z-50">
+        <div class="p-2">
+          <div class="flex items-center space-x-3 mb-2 pb-2 border-b border-gray-400">
+            <img id="dropdown-avatar" src="https://ui-avatars.com/api/?background=316ac5&color=fff&name=Guest" alt="User Avatar" class="w-8 h-8 rounded-sm border border-gray-400" />
+            <div>
+              <p id="username" class="font-semibold text-black">{{ username }}</p>
+              <p class="text-xs text-gray-600">ID: {{ username }}</p>
+            </div>
+          </div>
+          <div class="space-y-1">
+            <a href="#" class="flex items-center px-2 py-1 text-sm text-black hover:bg-[#316ac5] hover:text-white">
+              <i class="fas fa-user-circle mr-2 text-[#316ac5]"></i> Profile
+            </a>
+            <a href="#" class="flex items-center px-2 py-1 text-sm text-black hover:bg-[#316ac5] hover:text-white">
+              <i class="fas fa-cog mr-2 text-[#316ac5]"></i> Settings
+            </a>
+            <a href="#" class="flex items-center px-2 py-1 text-sm text-black hover:bg-[#316ac5] hover:text-white">
+              <i class="fas fa-sign-out-alt mr-2 text-[#316ac5]"></i> Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Balance Indicators (Desktop) -->
+    <div class="flex flex-wrap gap-2 hidden md:flex" id="balance-indicators">
+      <div class="bg-[#ece9d8] px-3 py-1 rounded-sm border-2 border-[#5d92b1] shadow-[inset_1px_1px_0px_0px_rgba(255,255,255,0.5)]">
+        <div class="flex items-center">
+          <i class="fas fa-coins text-yellow-600 mr-2"></i>
           <div>
-    <p id="username" class="font-semibold">{{ username }}</p>
-    <p class="text-xs text-gray-400 terminal-text">ID: {{ username }}</p>
-</div>
-
+            <p class="text-xs text-gray-600">BALANCE</p>
+            <p id="balance" class="font-bold text-black">$0.00</p>
+          </div>
         </div>
-        <div class="space-y-2">
-          <a href="#" class="flex items-center px-3 py-2 text-sm rounded-lg hover:bg-gray-800 transition">
-            <i class="fas fa-user-circle mr-2 text-primary"></i> Profile
-          </a>
-          <a href="#" class="flex items-center px-3 py-2 text-sm rounded-lg hover:bg-gray-800 transition">
-            <i class="fas fa-cog mr-2 text-primary"></i> Settings
-          </a>
-          <a href="#" class="flex items-center px-3 py-2 text-sm rounded-lg hover:bg-gray-800 transition">
-            <i class="fas fa-sign-out-alt mr-2 text-primary"></i> Logout
-          </a>
+      </div>
+      <div class="bg-[#ece9d8] px-3 py-1 rounded-sm border-2 border-[#5d92b1] shadow-[inset_1px_1px_0px_0px_rgba(255,255,255,0.5)]">
+        <div class="flex items-center">
+          <i class="fas fa-bolt text-orange-500 mr-2"></i>
+          <div>
+            <p class="text-xs text-gray-600">LEVEL</p>
+            <p id="level" class="font-bold text-black">0</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Balance Indicators (Desktop) -->
-  <div class="flex flex-wrap gap-3 hidden md:flex" id="balance-indicators">
-    <div class="bg-gradient-to-r from-primary/20 to-blue-600/20 px-4 py-2 rounded-xl flex items-center shadow-md glow-border backdrop-blur-sm">
-      <div class="mr-3 relative">
-        <i class="fas fa-coins text-yellow-300 text-xl"></i>
-        <div class="absolute -inset-1 bg-yellow-300 rounded-full blur opacity-20"></div>
+  <!-- Announcement Banner -->
+  <div class="bg-gradient-to-r from-[#ffa500] to-[#ff6347] p-2 mb-2 border-2 border-[#5d92b1]">
+    <div class="flex items-center justify-center">
+      <div class="mr-2 text-white">
+        <i class="fas fa-exclamation-triangle"></i>
+      </div>
+      <p class="text-center font-medium text-white">
+        <span class="font-bold">$1 = 200 PTS</span> REQUIRED TO CASHOUT (50% FEE APPLIED)
+      </p>
+    </div>
+  </div>
+
+  <!-- Desktop Navigation -->
+  <div class="hidden md:flex bg-[#ece9d8] p-1 mb-2 border-2 border-[#5d92b1] shadow-[inset_1px_1px_0px_0px_rgba(255,255,255,0.5)]">
+    <a href="#" data-section="earn" class="nav-link px-4 py-2 mx-1 bg-gradient-to-b from-[#316ac5] to-[#1e4d9b] text-white border-2 border-[#5d92b1] shadow-[inset_1px_1px_0px_0px_rgba(255,255,255,0.3)]">
+      <i class="fas fa-home mr-1"></i> Home
+    </a>
+    <a href="#" data-section="shop" class="nav-link px-4 py-2 mx-1 bg-[#ece9d8] hover:bg-[#d6d3c4] text-black border-2 border-[#5d92b1] shadow-[inset_1px_1px_0px_0px_rgba(255,255,255,0.5)]">
+      <i class="fas fa-shopping-bag mr-1"></i> Shop
+    </a>
+    <a href="#" data-section="leaders" class="nav-link px-4 py-2 mx-1 bg-[#ece9d8] hover:bg-[#d6d3c4] text-black border-2 border-[#5d92b1] shadow-[inset_1px_1px_0px_0px_rgba(255,255,255,0.5)]">
+      <i class="fas fa-trophy mr-1"></i> Leaders
+    </a>
+    <a href="#" data-section="profile" class="nav-link px-4 py-2 mx-1 bg-[#ece9d8] hover:bg-[#d6d3c4] text-black border-2 border-[#5d92b1] shadow-[inset_1px_1px_0px_0px_rgba(255,255,255,0.5)]">
+      <i class="fas fa-money-bill-wave mr-1"></i> Earn
+    </a>
+    <a href="#" data-section="help" class="nav-link px-4 py-2 mx-1 bg-[#ece9d8] hover:bg-[#d6d3c4] text-black border-2 border-[#5d92b1] shadow-[inset_1px_1px_0px_0px_rgba(255,255,255,0.5)]">
+      <i class="fas fa-question-circle mr-1"></i> Help
+    </a>
+    <a href="#" data-section="chat" class="nav-link px-4 py-2 mx-1 bg-[#ece9d8] hover:bg-[#d6d3c4] text-black border-2 border-[#5d92b1] shadow-[inset_1px_1px_0px_0px_rgba(255,255,255,0.5)] relative">
+      <i class="fas fa-comments mr-1"></i> Chat
+      <div class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">3</div>
+    </a>
+  </div>
+
+  <!-- Mobile User Info Bar -->
+  <div class="md:hidden flex items-center justify-between bg-[#ece9d8] p-2 mb-2 border-2 border-[#5d92b1] shadow-[inset_1px_1px_0px_0px_rgba(255,255,255,0.5)]">
+    <div class="flex items-center space-x-2">
+      <div class="relative">
+        <img id="mobileUseravatar" src="https://ui-avatars.com/api/?background=316ac5&color=fff&name=User" alt="User Avatar" class="w-10 h-10 rounded-sm border border-gray-400" />
       </div>
       <div>
-        <p class="text-xs text-gray-300">BALANCE</p>
-        <p id="balance" class="font-bold text-lg tracking-tighter">$0.00</p>
+        <p id="mobileUsername" class="font-medium text-black">Guest</p>
+        <p class="text-xs text-gray-600">ID: MOBILE-USER</p>
       </div>
     </div>
-    <div class="bg-gradient-to-r from-secondary/20 to-green-600/20 px-4 py-2 rounded-xl flex items-center shadow-md glow-border backdrop-blur-sm">
-      <div class="mr-3 relative">
-        <i class="fas fa-bolt text-yellow-300 text-xl"></i>
-        <div class="absolute -inset-1 bg-yellow-300 rounded-full blur opacity-20"></div>
+    <div class="flex space-x-1">
+      <div class="bg-[#ece9d8] px-2 py-1 rounded-sm border-2 border-[#5d92b1] shadow-[inset_1px_1px_0px_0px_rgba(255,255,255,0.5)]">
+        <div class="flex items-center">
+          <i class="fas fa-coins text-yellow-600 text-xs mr-1"></i>
+          <span id="mobileBalance" class="text-xs text-black">0.00</span>
+        </div>
       </div>
-      <div>
-        <p class="text-xs text-gray-300">LEVEL</p>
-        <p id="level" class="font-bold text-lg tracking-tighter">0</p>
+      <div class="bg-[#ece9d8] px-2 py-1 rounded-sm border-2 border-[#5d92b1] shadow-[inset_1px_1px_0px_0px_rgba(255,255,255,0.5)]">
+        <div class="flex items-center">
+          <i class="fas fa-bolt text-orange-500 text-xs mr-1"></i>
+          <span id="Level" class="text-xs text-black">0</span>
+        </div>
       </div>
-    </div>
-  </div>
-</header>
-
-<!-- Announcement Banner -->
-<div class="bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-2xl p-4 mb-6 border border-purple-500/30 glow-border backdrop-blur-sm">
-  <div class="flex items-center justify-center">
-    <div class="mr-3 text-yellow-300 animate-pulse">
-      <i class="fas fa-exclamation-triangle"></i>
-    </div>
-    <p class="text-center font-medium">
-      <span class="text-neon">$1 = 200 PTS</span> <span class="text-white">REQUIRED TO CASHOUT</span> <span class="text-red-400">(50% FEE APPLIED)</span>
-    </p>
-  </div>
-</div>
-
-<!-- Desktop Navigation -->
-<nav class="hidden md:flex justify-start space-x-2 bg-card/50 p-2 rounded-xl mb-6 shadow-lg backdrop-blur-sm border border-gray-700/50">
-  <a href="#" data-section="earn" class="nav-link px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-secondary font-medium flex items-center transition-all btn-futuristic">
-    <i class="fas fa-home mr-2"></i> Home
-  </a>
-  <a href="#" data-section="shop" class="nav-link px-6 py-3 rounded-lg hover:bg-gray-700/50 flex items-center transition-all glow-border">
-    <i class="fas fa-shopping-bag mr-2"></i> Shop
-  </a>
-  <a href="#" data-section="leaders" class="nav-link px-6 py-3 rounded-lg hover:bg-gray-700/50 flex items-center transition-all glow-border">
-    <i class="fas fa-trophy mr-2"></i> Leaders
-  </a>
-  <a href="#" data-section="profile" class="nav-link px-6 py-3 rounded-lg hover:bg-gray-700/50 flex items-center transition-all glow-border">
-    <i class="fas fa-money-bill-wave mr-2"></i> Earn
-  </a>
-  <a href="#" data-section="help" class="nav-link px-6 py-3 rounded-lg hover:bg-gray-700/50 flex items-center transition-all glow-border">
-    <i class="fas fa-question-circle mr-2"></i> Help
-  </a>
-  <a href="#" data-section="chat" class="nav-link px-6 py-3 rounded-lg hover:bg-gray-700/50 flex items-center transition-all glow-border">
-    <i class="fas fa-comments mr-2"></i> Chat
-    <div class="notification-badge">3</div>
-  </a>
-</nav>
-
-<!-- Mobile User Info Bar -->
-<div class="md:hidden flex items-center justify-between bg-card/50 p-3 rounded-xl mb-4 backdrop-blur-sm border border-gray-700/50 glow-border">
-  <div class="flex items-center space-x-3">
-    <div class="relative">
-      <img id="mobileUseravatar" src="https://ui-avatars.com/api/?background=6d28d9&color=fff&name=User" alt="User Avatar" class="w-12 h-12 rounded-full avatar border-2 border-primary" />
-      <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-card"></div>
-    </div>
-    <div>
-      <p id="mobileUsername" class="font-medium">Guest</p>
-      <p class="text-xs text-gray-400 terminal-text">ID: MOBILE-USER</p>
-    </div>
-  </div>
-  <div class="flex space-x-2">
-    <div class="bg-gradient-to-r from-primary/20 to-blue-600/20 px-3 py-1 rounded-lg flex items-center glow-border">
-      <i class="fas fa-coins text-yellow-300 text-sm"></i>
-      <span id="mobileBalance" class="ml-1 text-sm font-medium">0.00</span>
-    </div>
-    <div class="bg-gradient-to-r from-secondary/20 to-green-600/20 px-3 py-1 rounded-lg flex items-center glow-border">
-      <i class="fas fa-bolt text-yellow-300 text-sm"></i>
-      <span id="Level" class="ml-1 text-sm font-medium">0</span>
     </div>
   </div>
 </div>
-
 <main class="container mx-auto px-4 py-8 md:py-12 relative z-10">
 
   <main class="container mx-auto px-4 py-8 md:py-12">
