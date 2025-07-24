@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content="Bux iQ" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- Removed duplicate viewport meta tag -->
 
 <!-- 3D WebGL Libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -372,6 +372,58 @@ tailwind.config = {
   transform: translateY(0);
   pointer-events: all;
 }
+
+/* Added missing classes for dark theme */
+.windows-xp-panel-dark {
+  background-color: #25253a;
+  border: 1px solid #3a3a5a;
+  border-radius: 6px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.windows-xp-inner-panel-dark {
+  background-color: #2d2d42;
+  border: 1px solid #3a3a5a;
+  border-radius: 4px;
+  box-shadow: inset 1px 1px 0px rgba(255,255,255,0.1);
+}
+
+.windows-xp-header-dark {
+  background: linear-gradient(to right, #1a1a2e, #25253a, #1a1a2e);
+  border-bottom: 1px solid #3a3a5a;
+}
+
+.windows-xp-button-dark {
+  background-color: #25253a;
+  border: 1px solid #3a3a5a;
+  color: #e0e0e0;
+  border-radius: 4px;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.windows-xp-button-dark:hover {
+  background-color: #2d2d42;
+  border-color: #4a6baf;
+}
+
+.windows-xp-button-dark-active {
+  background-color: #4a6baf;
+  border: 1px solid #4a6baf;
+  color: white;
+}
+
+/* Card styling */
+.card {
+  background-color: #1e1e30;
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.dark-text {
+  color: #e0e0e0;
+}
 </style>
 </head>
 
@@ -381,53 +433,50 @@ tailwind.config = {
 
 <!-- Floating Particles -->
 <div id="particles-container"></div>
- <!-- Main Header Bar -->
-  <div class="flex flex-col md:flex-row items-center justify-between gap-2 windows-xp-header-dark p-2">
-    <!-- Logo -->
-    <div class="flex items-center">
-      <img src="https://i.postimg.cc/FH7W9fDT/Screenshot-2025-07-10-at-8-23-44-PM-removebg-preview.png" alt="Bux iQ Logo" class="h-12 object-contain" loading="lazy" />
-    </div>
 
+<!-- Main Header Bar -->
+<div class="flex flex-col md:flex-row items-center justify-between gap-2 windows-xp-header-dark p-2">
+  <!-- Logo -->
+  <div class="flex items-center">
+    <img src="https://i.postimg.cc/FH7W9fDT/Screenshot-2025-07-10-at-8-23-44-PM-removebg-preview.png" alt="Bux iQ Logo" class="h-12 object-contain" loading="lazy" />
+  </div>
 
-
-<!-- Balance Indicators (Desktop) -->
-    <div class="flex flex-wrap gap-2 hidden md:flex" id="balance-indicators">
-      <div class="windows-xp-inner-panel-dark px-3 py-1 rounded-sm">
-        <div class="flex items-center">
-          <i class="fas fa-coins text-yellow-500 mr-2"></i>
-          <div>
-            <p class="text-xs text-gray-400">BALANCE</p>
-            <p id="balance" class="font-bold dark-text">$0.00</p>
-          </div>
+  <!-- Balance Indicators (Desktop) -->
+  <div class="flex flex-wrap gap-2 hidden md:flex" id="balance-indicators">
+    <div class="windows-xp-inner-panel-dark px-3 py-1 rounded-sm">
+      <div class="flex items-center">
+        <i class="fas fa-coins text-yellow-500 mr-2"></i>
+        <div>
+          <p class="text-xs text-gray-400">BALANCE</p>
+          <p id="balance" class="font-bold dark-text">$0.00</p>
         </div>
       </div>
-      <div class="windows-xp-inner-panel-dark px-3 py-1 rounded-sm">
-        <div class="flex items-center">
-          <i class="fas fa-bolt text-orange-400 mr-2"></i>
-          <div>
-            <p class="text-xs text-gray-400">LEVEL</p>
-            <p id="level" class="font-bold dark-text">0</p>
-          </div>
+    </div>
+    <div class="windows-xp-inner-panel-dark px-3 py-1 rounded-sm">
+      <div class="flex items-center">
+        <i class="fas fa-bolt text-orange-400 mr-2"></i>
+        <div>
+          <p class="text-xs text-gray-400">LEVEL</p>
+          <p id="level" class="font-bold dark-text">0</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-  <!-- Announcement Banner -->
-  <div class="bg-gradient-to-r from-[black] to-[black] p-2 mb-2 border-2 border-[#5d92b1]">
-    <div class="flex items-center justify-center">
-      <div class="mr-2 text-white">
-        <i class="fas fa-exclamation-triangle"></i>
-      </div>
-      <p class="text-center font-medium text-white">
-    <span class="font-bold">$1 = 325 PTS</span> REQUIRED TO CASHOUT (NO FEE, CLEAN PAYOUT)
-</p>
-
+<!-- Announcement Banner -->
+<div class="bg-gradient-to-r from-[black] to-[black] p-2 mb-2 border-2 border-[#5d92b1]">
+  <div class="flex items-center justify-center">
+    <div class="mr-2 text-white">
+      <i class="fas fa-exclamation-triangle"></i>
     </div>
+    <p class="text-center font-medium text-white">
+      <span class="font-bold">$1 = 325 PTS</span> REQUIRED TO CASHOUT (NO FEE, CLEAN PAYOUT)
+    </p>
   </div>
+</div>
 
-  <!-- Desktop Navigation - Dark Mode -->
+<!-- Desktop Navigation - Dark Mode -->
 <div class="hidden md:flex windows-xp-panel-dark p-1 mb-2 bg-gray-800 border-gray-700">
   <a href="#" data-section="earn" class="nav-link px-4 py-2 mx-1 windows-xp-button-dark-active text-white">
     <i class="fas fa-home mr-1"></i> Home
@@ -450,7 +499,7 @@ tailwind.config = {
   </a>
 </div>
 
-  <!-- Modern Mobile User Info Bar -->
+<!-- Modern Mobile User Info Bar -->
 <div class="md:hidden flex items-center justify-between bg-gray-900/80 backdrop-blur-sm p-3 mb-3 rounded-lg shadow-lg transition-all duration-300 hover:bg-gray-800/90">
   <div class="flex items-center space-x-3">
     <div class="relative">
@@ -482,7 +531,7 @@ tailwind.config = {
 </div>
 
 <!-- Activity Logs -->
-<div id="logs" class="card mb-6 h-48 overflow-hidden bg-card rounded-xl shadow-lg">
+<div id="logs" class="card mb-6 h-48 overflow-hidden rounded-xl shadow-lg">
   <div class="p-4 h-full overflow-y-auto custom-scrollbar">
     <div class="flex items-center justify-center h-full opacity-70 font-medium text-sm text-gray-700 text-center">
       <p>Your activity log will appear here.<br>Current server time: <span id="serverTime"></span></p>
@@ -580,6 +629,145 @@ tailwind.config = {
   </div>
 </section>
 
+<script>
+// Initialize Three.js scene
+function initThreeJS() {
+  const container = document.getElementById('threejs-container');
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0x0a0a12, 1);
+  container.appendChild(renderer.domElement);
+  
+  // Add lights
+  const ambientLight = new THREE.AmbientLight(0x404040);
+  scene.add(ambientLight);
+  
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+  directionalLight.position.set(1, 1, 1);
+  scene.add(directionalLight);
+  
+  // Add a simple geometry
+  const geometry = new THREE.IcosahedronGeometry(1, 0);
+  const material = new THREE.MeshPhongMaterial({ 
+    color: 0x8b5cf6,
+    emissive: 0x8b5cf6,
+    emissiveIntensity: 0.2,
+    shininess: 100,
+    wireframe: true
+  });
+  
+  const mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+  
+  camera.position.z = 3;
+  
+  // Animation loop
+  function animate() {
+    requestAnimationFrame(animate);
+    mesh.rotation.x += 0.005;
+    mesh.rotation.y += 0.01;
+    renderer.render(scene, camera);
+  }
+  
+  animate();
+  
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+}
+
+// Create floating particles
+function createParticles() {
+  const container = document.getElementById('particles-container');
+  const particleCount = 30;
+  
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    
+    // Random size between 2px and 6px
+    const size = Math.random() * 4 + 2;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    
+    // Random position
+    particle.style.left = `${Math.random() * 100}%`;
+    particle.style.top = `${Math.random() * 100}%`;
+    
+    // Random animation duration and delay
+    const duration = Math.random() * 20 + 10;
+    const delay = Math.random() * 5;
+    particle.style.animationDuration = `${duration}s`;
+    particle.style.animationDelay = `-${delay}s`;
+    
+    // Random opacity
+    particle.style.opacity = Math.random() * 0.5 + 0.3;
+    
+    container.appendChild(particle);
+  }
+}
+
+// Update server time
+function updateServerTime() {
+  const now = new Date();
+  const options = { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZoneName: 'short'
+  };
+  document.getElementById('serverTime').textContent = now.toLocaleDateString('en-US', options);
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Three.js if container exists
+  if (document.getElementById('threejs-container')) {
+    initThreeJS();
+  }
+  
+  // Create particles if container exists
+  if (document.getElementById('particles-container')) {
+    createParticles();
+  }
+  
+  // Update server time every second
+  updateServerTime();
+  setInterval(updateServerTime, 1000);
+  
+  // Navigation functionality
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const section = link.getAttribute('data-section');
+      
+      // Remove active class from all links
+      navLinks.forEach(navLink => {
+        navLink.classList.remove('windows-xp-button-dark-active');
+        navLink.classList.add('windows-xp-button-dark');
+      });
+      
+      // Add active class to clicked link
+      link.classList.remove('windows-xp-button-dark');
+      link.classList.add('windows-xp-button-dark-active');
+      
+      // Here you would typically show/hide sections based on the clicked link
+      console.log(`Navigating to ${section} section`);
+    });
+  });
+});
+</script>
     
 
   <!-- Dark Windows XP Theme -->
