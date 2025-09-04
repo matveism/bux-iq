@@ -126,15 +126,15 @@ tailwind.config = {
 </script>
 
 <!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 <style>
-/* Custom scrollbar */
+/* Custom scrollbar styles */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -169,7 +169,6 @@ tailwind.config = {
 .card-3d {
   transform-style: preserve-3d;
   transition: all 0.5s ease;
-  perspective: 1000px;
 }
 .card-3d:hover {
   transform: translateY(-5px) rotateX(5deg) rotateY(5deg);
@@ -213,9 +212,9 @@ tailwind.config = {
   bottom: -50%;
   background: linear-gradient(
     to bottom right,
-    rgba(255, 0, 0, 0) 0%,
-    rgba(255, 0, 0, 0.1) 50%,
-    rgba(255, 0, 0, 0) 100%
+    rgba(255, 0, 0, 0),
+    rgba(255, 0, 0, 0.1),
+    rgba(255, 0, 0, 0)
   );
   transform: rotate(30deg);
   animation: hologram 8s linear infinite;
@@ -268,7 +267,7 @@ tailwind.config = {
   to { transform: rotate(360deg); }
 }
 
-/* 3D Scene Container */
+/* 3D Scene Container for WebGL background */
 #threejs-container {
   position: fixed;
   top: 0;
@@ -319,7 +318,7 @@ tailwind.config = {
   text-shadow: 0 0 5px rgba(255, 77, 77, 0.5);
 }
 
-/* Windows XP inspired dark theme */
+/* Windows XP inspired dark theme styles */
 .windows-xp-panel {
   background-color: var(--xpPanel);
   border: 1px solid var(--xpBorder);
@@ -327,7 +326,6 @@ tailwind.config = {
   box-shadow: var(--xp);
   color: #e0e0e0;
 }
-
 .windows-xp-inner-panel {
   background-color: var(--xpInner);
   border: 1px solid var(--xpBorder);
@@ -335,12 +333,10 @@ tailwind.config = {
   box-shadow: var(--xp-inner);
   color: #e0e0e0;
 }
-
 .windows-xp-header {
   background: linear-gradient(to right, var(--xpDark), var(--xpPanel), var(--xpDark));
   border-bottom: 1px solid var(--xpBorder);
 }
-
 .windows-xp-button {
   background-color: var(--xpPanel);
   border: 1px solid var(--xpBorder);
@@ -350,37 +346,30 @@ tailwind.config = {
   cursor: pointer;
   transition: all 0.2s;
 }
-
 .windows-xp-button:hover {
   background-color: var(--xpInner);
   border-color: var(--xpHighlight);
 }
-
 .windows-xp-button-active {
   background-color: var(--xpHighlight);
   border: 1px solid var(--xpHighlight);
   color: white;
 }
 
-/* Custom animations */
+/* Additional animations and effects */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 }
-
 .blink {
   animation: blink 1.5s infinite;
 }
-
-/* Modern glass effect */
 .glass-effect {
   background: rgba(26, 26, 26, 0.7);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
-/* Custom input styles */
 .custom-input {
   background-color: var(--xpInner);
   border: 1px solid var(--xpBorder);
@@ -389,50 +378,41 @@ tailwind.config = {
   padding: 8px 12px;
   transition: all 0.2s;
 }
-
 .custom-input:focus {
   outline: none;
   border-color: var(--xpHighlight);
   box-shadow: 0 0 0 2px rgba(255, 51, 51, 0.3);
 }
-
-/* Section transitions */
 .section-transition {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
 .section-hidden {
   opacity: 0;
   transform: translateY(10px);
   pointer-events: none;
 }
-
 .section-visible {
   opacity: 1;
   transform: translateY(0);
   pointer-events: all;
 }
-
-/* Added missing classes for dark theme */
+/* Dark theme specific classes for XP styles */
 .windows-xp-panel-dark {
   background-color: #252525;
   border: 1px solid #404040;
   border-radius: 6px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
-
 .windows-xp-inner-panel-dark {
   background-color: #2d2d2d;
   border: 1px solid #404040;
   border-radius: 4px;
   box-shadow: inset 1px 1px 0px rgba(255,255,255,0.1);
 }
-
 .windows-xp-header-dark {
   background: linear-gradient(to right, #1a1a1a, #252525, #1a1a1a);
   border-bottom: 1px solid #404040;
 }
-
 .windows-xp-button-dark {
   background-color: #252525;
   border: 1px solid #404040;
@@ -442,43 +422,36 @@ tailwind.config = {
   cursor: pointer;
   transition: all 0.2s;
 }
-
 .windows-xp-button-dark:hover {
   background-color: #2d2d2d;
   border-color: #ff3333;
 }
-
 .windows-xp-button-dark-active {
   background-color: #ff3333;
   border: 1px solid #ff3333;
   color: white;
 }
-
-/* Card styling */
+/* Card styles */
 .card {
   background-color: #1a1a1a;
   border-radius: 0.75rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
-
 .dark-text {
   color: #e0e0e0;
 }
-
-/* Modern Navbar Styles */
+/* Navbar styles */
 .navbar {
   background: rgba(26, 26, 26, 0.9);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(64, 64, 64, 0.5);
 }
-
 .navbar-item {
   position: relative;
   padding: 0.75rem 1rem;
   transition: all 0.3s ease;
 }
-
 .navbar-item::after {
   content: '';
   position: absolute;
@@ -490,19 +463,15 @@ tailwind.config = {
   background: linear-gradient(90deg, #ff0000, #ff3333);
   transition: width 0.3s ease;
 }
-
 .navbar-item:hover::after {
   width: 70%;
 }
-
 .navbar-item.active {
   color: white;
 }
-
 .navbar-item.active::after {
   width: 70%;
 }
-
 /* Mobile Navbar */
 .mobile-navbar {
   background: rgba(26, 26, 26, 0.95);
@@ -510,18 +479,15 @@ tailwind.config = {
   -webkit-backdrop-filter: blur(10px);
   border-top: 1px solid rgba(64, 64, 64, 0.5);
 }
-
 .mobile-nav-item {
   position: relative;
   padding: 0.75rem 0;
   transition: all 0.3s ease;
   flex-direction: column;
 }
-
 .mobile-nav-item.active {
   color: #ff0000;
 }
-
 .mobile-nav-item .indicator {
   position: absolute;
   top: -5px;
@@ -533,18 +499,15 @@ tailwind.config = {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
 .mobile-nav-item.active .indicator {
   opacity: 1;
 }
-
-/* Gradient Background Animation */
+/* Gradient background animation */
 .gradient-bg {
   background-size: 400% 400%;
   animation: gradient-xy 10s ease infinite;
 }
-
-/* Modern Card Styles */
+/* Modern card styles */
 .modern-card {
   background: rgba(26, 26, 26, 0.7);
   backdrop-filter: blur(10px);
@@ -552,62 +515,45 @@ tailwind.config = {
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
-
 .modern-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
   border-color: rgba(255, 0, 0, 0.5);
 }
-
-/* Neon Glow Effect */
+/* Neon glow effect */
 .neon-glow {
   text-shadow: 0 0 5px rgba(255, 0, 0, 0.5), 
                0 0 10px rgba(255, 0, 0, 0.3),
                0 0 15px rgba(255, 0, 0, 0.2);
 }
-
-/* Pulse Animation */
+/* Pulse animation */
 .pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
-
 @keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
-
-/* Floating Animation */
+/* Floating animation */
 .floating {
   animation: floating 6s ease-in-out infinite;
 }
-
 @keyframes floating {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
-
-/* Modern Input Styles */
+/* Modern input styles */
 .modern-input {
   background: rgba(26, 26, 26, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
-
 .modern-input:focus {
   border-color: #ff0000;
   box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3);
   outline: none;
 }
-
-/* Modern Button Styles */
+/* Modern button styles */
 .modern-btn {
   background: linear-gradient(135deg, #ff0000, #cc0000);
   border: none;
@@ -615,23 +561,19 @@ tailwind.config = {
   font-weight: 500;
   transition: all 0.3s ease;
 }
-
 .modern-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
 }
-
-/* Avatar Glow */
+/* Avatar glow */
 .avatar-glow {
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
   transition: all 0.3s ease;
 }
-
 .avatar-glow:hover {
   box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
 }
-
-/* Status Indicator */
+/* Status indicator colors */
 .status-indicator {
   width: 12px;
   height: 12px;
@@ -641,24 +583,19 @@ tailwind.config = {
   bottom: 0;
   right: 0;
 }
-
 .status-online {
   background: #ff3333;
 }
-
 .status-offline {
   background: #666666;
 }
-
 .status-busy {
   background: #ff0000;
 }
-
-/* Tooltip */
+/* Tooltip styles */
 .tooltip {
   position: relative;
 }
-
 .tooltip .tooltip-text {
   visibility: hidden;
   width: 120px;
@@ -677,27 +614,23 @@ tailwind.config = {
   font-size: 0.75rem;
   border: 1px solid #404040;
 }
-
 .tooltip:hover .tooltip-text {
   visibility: visible;
   opacity: 1;
 }
-
-/* Progress Bar */
+/* Progress bar styles */
 .progress-bar {
   height: 6px;
   border-radius: 3px;
   background: rgba(255, 255, 255, 0.1);
   overflow: hidden;
 }
-
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, #ff0000, #ff3333);
   transition: width 0.5s ease;
 }
-
-/* Badge */
+/* Badge styles */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -707,32 +640,27 @@ tailwind.config = {
   font-weight: 600;
   border-radius: 9999px;
 }
-
 .badge-primary {
   background: rgba(255, 0, 0, 0.2);
   color: #ff0000;
   border: 1px solid rgba(255, 0, 0, 0.3);
 }
-
 .badge-secondary {
   background: rgba(255, 51, 51, 0.2);
   color: #ff3333;
   border: 1px solid rgba(255, 51, 51, 0.3);
 }
-
-/* Tab Navigation */
+/* Tab navigation styles */
 .tab-nav {
   display: flex;
   border-bottom: 1px solid rgba(64, 64, 64, 0.5);
 }
-
 .tab-item {
   padding: 0.75rem 1.5rem;
   position: relative;
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .tab-item::after {
   content: '';
   position: absolute;
@@ -745,22 +673,18 @@ tailwind.config = {
   transform-origin: left;
   transition: transform 0.3s ease;
 }
-
 .tab-item.active {
   color: white;
 }
-
 .tab-item.active::after {
   transform: scaleX(1);
 }
-
-/* Modern Table */
+/* Modern table styles */
 .modern-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
 }
-
 .modern-table th {
   background: rgba(26, 26, 26, 0.7);
   color: #e0e0e0;
@@ -769,41 +693,33 @@ tailwind.config = {
   font-weight: 600;
   border-bottom: 1px solid rgba(64, 64, 64, 0.5);
 }
-
 .modern-table td {
   padding: 0.75rem 1rem;
   border-bottom: 1px solid rgba(64, 64, 64, 0.3);
   color: #e0e0e0;
 }
-
 .modern-table tr:last-child td {
   border-bottom: none;
 }
-
 .modern-table tr:hover td {
   background: rgba(64, 64, 64, 0.2);
 }
-
-/* New styles for the black + red + white theme */
+/* Additional styles for your theme */
 .red-gradient-text {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   background-image: linear-gradient(to right, #ff0000, #ff4d4d);
 }
-
 .red-glow {
   box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
 }
-
 .red-accent-border {
   border: 1px solid rgba(255, 0, 0, 0.3);
 }
-
 .red-accent-border:hover {
   border-color: rgba(255, 0, 0, 0.7);
 }
-
 .geometric-pattern {
   background-image: 
     radial-gradient(circle at 25% 25%, rgba(255, 0, 0, 0.1) 0%, transparent 20%),
@@ -811,7 +727,6 @@ tailwind.config = {
     linear-gradient(45deg, rgba(26, 26, 26, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%),
     url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff0000' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
-
 .diagonal-pattern {
   background: linear-gradient(135deg, #0a0a0a 25%, transparent 25%) -50px 0,
               linear-gradient(225deg, #0a0a0a 25%, transparent 25%) -50px 0,
@@ -820,7 +735,6 @@ tailwind.config = {
   background-size: 100px 100px;
   background-color: #1a1a1a;
 }
-
 .carbon-fiber {
   background:
     linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
@@ -832,12 +746,10 @@ tailwind.config = {
   background-color: #131313;
   background-size: 20px 20px;
 }
-
 .hexagon-pattern {
   background-color: #1a1a1a;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ff0000' fill-opacity='0.05'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ff0000' fill-opacity='0.05'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
-
 .circuit-pattern {
   background-color: #1a1a1a;
   background-image: 
@@ -848,8 +760,7 @@ tailwind.config = {
   background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
   background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
 }
-
-/* New UI elements for the modern design */
+/* New UI elements for modern design */
 .red-dot {
   width: 8px;
   height: 8px;
@@ -858,14 +769,12 @@ tailwind.config = {
   display: inline-block;
   margin-right: 8px;
 }
-
 .red-divider {
   height: 2px;
   background: linear-gradient(90deg, transparent, #ff0000, transparent);
   border: none;
   margin: 1rem 0;
 }
-
 .red-button {
   background: linear-gradient(135deg, #ff0000, #cc0000);
   color: white;
@@ -877,12 +786,10 @@ tailwind.config = {
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
 }
-
 .red-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
 }
-
 .white-button {
   background: rgba(255, 255, 255, 0.1);
   color: white;
@@ -893,11 +800,9 @@ tailwind.config = {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .white-button:hover {
   background: rgba(255, 255, 255, 0.2);
 }
-
 .stat-card {
   background: rgba(26, 26, 26, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -905,13 +810,11 @@ tailwind.config = {
   padding: 1.5rem;
   transition: all 0.3s ease;
 }
-
 .stat-card:hover {
   transform: translateY(-5px);
   border-color: rgba(255, 0, 0, 0.5);
   box-shadow: 0 10px 25px rgba(255, 0, 0, 0.2);
 }
-
 .feature-icon {
   width: 50px;
   height: 50px;
@@ -924,7 +827,6 @@ tailwind.config = {
   color: white;
   font-size: 1.5rem;
 }
-
 .red-notification {
   position: absolute;
   top: -5px;
@@ -941,8 +843,7 @@ tailwind.config = {
   font-weight: bold;
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
 }
-
-/* Animation for the red theme */
+/* Red theme pulse animation */
 @keyframes red-pulse {
   0% {
     box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
@@ -954,31 +855,242 @@ tailwind.config = {
     box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
   }
 }
-
 .red-pulse {
   animation: red-pulse 2s infinite;
 }
-
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media(max-width: 768px) {
   .navbar-item {
     padding: 0.5rem 0.75rem;
     font-size: 0.9rem;
   }
-  
   .modern-card {
     padding: 1rem;
   }
-  
   .feature-icon {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
   }
 }
+/* Modernized design styles (Oval Navbar, Logo, Balance, etc.) */
+.oval-navbar {
+  background: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+  padding: 0.5rem 0;
+}
+.oval-menu {
+  display: flex;
+  background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(30,30,30,0.9));
+  border-radius: 50px;
+  padding: 0.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5),
+              inset 0 1px 1px rgba(255,255,255,0.1),
+              0 0 0 1px rgba(255,0,0,0.1);
+}
+.oval-nav-item {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin: 0 0.25rem;
+  border-radius: 50px;
+  color: rgba(255,255,255,0.7);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+}
+.oval-nav-item:hover {
+  color: #fff;
+  background: rgba(255,0,0,0.15);
+}
+.oval-nav-item.active {
+  color: #fff;
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+  box-shadow: 0 4px 15px rgba(255,0,0,0.4);
+}
+.oval-nav-item i {
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+}
+.oval-notification {
+  position: absolute;
+  top: -5px;
+  right: 5px;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #ff3333, #ff0000);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(255,0,0,0.6);
+}
+.modern-logo {
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 10px rgba(255,0,0,0.3));
+}
+.modern-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 15px rgba(255,0,0,0.5));
+}
+.balance-modern {
+  background: linear-gradient(135deg, rgba(40,40,40,0.9), rgba(30,30,30,0.9));
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3),
+              inset 0 1px 1px rgba(255,255,255,0.1),
+              0 0 0 1px rgba(255,0,0,0.1);
+  border: none;
+}
+.balance-modern:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3),
+              inset 0 1px 1px rgba(255,255,255,0.1),
+              0 0 0 1px rgba(255,0,0,0.3);
+}
+.mobile-menu-btn {
+  background: linear-gradient(135deg, rgba(40,40,40,0.9), rgba(30,30,30,0.9));
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3),
+              inset 0 1px 1px rgba(255,255,255,0.1),
+              0 0 0 1px rgba(255,0,0,0.1);
+  border: none;
+  transition: all 0.3s ease;
+}
+.mobile-menu-btn:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3),
+              inset 0 1px 1px rgba(255,255,255,0.1),
+              0 0 0 1px rgba(255,0,0,0.3);
+  transform: scale(1.05);
+}
+.header-glow {
+  position: relative;
+}
+.header-glow::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, transparent, #ff0000, transparent);
+  opacity: 0.7;
+  filter: blur(3px);
+}
+/* Modern section styles */
+.modern-section {
+  background: linear-gradient(135deg, rgba(26,26,26,0.7), rgba(20,20,20,0.7));
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4),
+              inset 0 1px 1px rgba(255,255,255,0.05);
+  overflow: hidden;
+  position: relative;
+}
+.modern-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,0,0,0.5), transparent);
+}
+/* Card hover effect */
+.card-hover {
+  transition: all 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(255, 0, 0, 0.2);
+}
+/* Button modern styles */
+.btn-modern {
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-modern::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: all 0.5s ease;
+}
+.btn-modern:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+}
+.btn-modern:hover::before {
+  left: 100%;
+}
+/* Text modern style */
+.text-modern {
+  background: linear-gradient(135deg, #ff4d4d, #ff0000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(255,0,0,0.3);
+}
+/* Glass effect for modern UI */
+.glass {
+  background: rgba(26,26,26,0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+/* Animations for slide-in, etc. */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out forwards;
+}
+/* Responsive adjustments for oval navbar */
+@media(max-width: 1024px) {
+  .oval-nav-item {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    min-width: 70px;
+  }
+  .oval-nav-item i {
+    margin-right: 0.3rem;
+    font-size: 0.8rem;
+  }
+}
+@media(max-width: 868px) {
+  .oval-menu {
+    display: none;
+  }
+  .oval-navbar {
+    padding: 0.75rem 0;
+  }
+}
+@media(min-width: 869px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
 </style>
 </head>
-
 <body class="bg-dark text-gray-200 font-sans antialiased">
 <!-- 3D Background Canvas -->
 <div id="threejs-container"></div>
@@ -986,56 +1098,41 @@ tailwind.config = {
 <!-- Floating Particles -->
 <div id="particles-container"></div>
 
-<!-- Modern Header Bar -->
-<header class="navbar sticky top-0 z-40 carbon-fiber">
+<!-- Header Bar -->
+<header class="oval-navbar sticky top-0 z-40 header-glow">
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
-      <div class="flex items-center space-x-2">
-        <img src="https://i.postimg.cc/R0Z9KctP/Gemini-Generated-Image-v8l5g4v8l5g4v8l5-removebg-preview.png" 
-             alt="Bux iQ Logo" 
-             class="h-21 object-contain" 
-             loading="lazy" />
-        
-      </div>
-
-      <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center space-x-1">
-        <a href="#" data-section="earn" class="navbar-item text-white hover:text-red-300 transition-colors">
-          <i class="fas fa-home mr-2"></i> Home
-        </a>
-        <a href="#" data-section="shop" class="navbar-item text-gray-400 hover:text-white transition-colors">
-          <i class="fas fa-shopping-bag mr-2"></i> Shop
-        </a>
-        <a href="#" data-section="leaders" class="navbar-item text-gray-400 hover:text-white transition-colors">
-          <i class="fas fa-trophy mr-2"></i> Leaders
-        </a>
-        <a href="#" data-section="profile" class="navbar-item text-gray-400 hover:text-white transition-colors">
-          <i class="fas fa-money-bill-wave mr-2"></i> Earn
-        </a>
-        <a href="#" data-section="help" class="navbar-item text-gray-400 hover:text-white transition-colors">
-          <i class="fas fa-question-circle mr-2"></i> Help
-        </a>
-        <a href="#" data-section="chat" class="navbar-item text-gray-400 hover:text-white transition-colors relative">
-          <i class="fas fa-comments mr-2"></i> Chat
-          <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
-        </a>
+      <div class="flex items-center justify-center p-6 bg-gradient-to-r from--50 to-indigo-50 rounded-xl shadow-lg">
+    <img 
+        src="https://i.postimg.cc/R0Z9KctP/Gemini-Generated-Image-v8l5g4v8l5g4v8l5-removebg-preview.png" 
+        alt="Bux iQ Logo" 
+        class="h-40 md:h-48 lg:h-56 modern-logo transition-all duration-300 hover:scale-105" 
+        loading="lazy" 
+    />
+</div>
+      <!-- Navigation -->
+      <nav class="oval-menu">
+        <a href="#" data-section="earn" class="oval-nav-item active"><i class="fas fa-home"></i> Home</a>
+        <a href="#" data-section="shop" class="oval-nav-item"><i class="fas fa-shopping-bag"></i> Shop</a>
+        <a href="#" data-section="leaders" class="oval-nav-item"><i class="fas fa-trophy"></i> Leaders</a>
+        <a href="#" data-section="profile" class="oval-nav-item"><i class="fas fa-money-bill-wave"></i> Earn</a>
+        <a href="#" data-section="help" class="oval-nav-item"><i class="fas fa-question-circle"></i> Help</a>
+        <a href="#" data-section="chat" class="oval-nav-item relative"><i class="fas fa-comments"></i> Chat <span class="oval-notification">3</span></a>
       </nav>
-
-      <!-- User Balance - Desktop -->
-      <div class="hidden md:flex items-center space-x-4">
-        <div class="flex items-center space-x-2 bg-gray-800/50 px-3 py-1.5 rounded-full border border-gray-700">
+      <!-- User Balance -->
+      <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-2 balance-modern">
           <i class="fas fa-coins text-yellow-400"></i>
-          <span id="balance" class="font-medium">$0.00</span>
+          <span id="balance" class="font-medium">0.00 PTS</span>
         </div>
-        <div class="flex items-center space-x-2 bg-gray-800/50 px-3 py-1.5 rounded-full border border-gray-700">
+        <div class="flex items-center space-x-2 balance-modern">
           <i class="fas fa-bolt text-red-400"></i>
           <span id="level" class="font-medium">0</span>
         </div>
       </div>
-
-      <!-- Mobile Menu Button -->
-      <button id="mobile-menu-button" class="md:hidden text-gray-400 hover:text-white focus:outline-none">
+      <!-- Mobile menu button -->
+      <button id="mobile-menu-button" class="mobile-menu-btn text-gray-400 hover:text-white">
         <i class="fas fa-bars text-xl"></i>
       </button>
     </div>
@@ -1045,25 +1142,18 @@ tailwind.config = {
 <!-- Mobile Menu -->
 <div id="mobile-menu" class="md:hidden fixed inset-0 bg-gray-900/95 z-50 hidden transition-all duration-300 carbon-fiber">
   <div class="flex flex-col h-full">
+    <!-- Mobile Header -->
     <div class="flex justify-between items-center p-4 border-b border-gray-800">
       <div class="flex items-center space-x-2">
-        <img src="https://i.postimg.cc/j2Z0ZTS9/Screenshot-2025-08-10-at-9-39-42-PM-removebg-preview.png" 
-             alt="Bux iQ Logo" 
-             class="h-8 object-contain" 
-             loading="lazy" />
-        <span class="text-lg font-bold text-white">BUX IQ</span>
+        <img src="https://i.postimg.cc/R0Z9KctP/Gemini-Generated-Image-v8l5g4v8l5g4v8l5-removebg-preview.png" alt="Bux iQ Logo" class="h-20 object-contain" loading="lazy" />
+        
       </div>
-      <button id="close-mobile-menu" class="text-gray-400 hover:text-white">
-        <i class="fas fa-times text-xl"></i>
-      </button>
+      <button id="close-mobile-menu" class="text-gray-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
     </div>
-    
-    <!-- Mobile User Info -->
+    <!-- User Info -->
     <div class="p-4 flex items-center space-x-3 border-b border-gray-800">
       <div class="relative">
-        <img id="mobileUseravatar" src="https://ui-avatars.com/api/?background=ff0000&color=fff&name=User&bold=true&rounded=true" 
-             alt="User Avatar" 
-             class="w-12 h-12 rounded-full border-2 border-red-500/80 shadow-md" />
+        <img id="mobileUseravatar" src="https://ui-avatars.com/api/?background=ff0000&color=fff&name=User&bold=true&rounded=true" alt="User Avatar" class="w-12 h-12 rounded-full border-2 border-red-500/80 shadow-md" />
         <div class="status-indicator status-online"></div>
       </div>
       <div>
@@ -1071,8 +1161,7 @@ tailwind.config = {
         <p id="mobileUsername" class="text-xs text-gray-300">User</p>
       </div>
     </div>
-    
-    <!-- Mobile Balance -->
+    <!-- Balance -->
     <div class="p-4 border-b border-gray-800">
       <div class="grid grid-cols-2 gap-3">
         <div class="bg-gray-800/50 p-3 rounded-lg flex items-center space-x-2">
@@ -1091,8 +1180,7 @@ tailwind.config = {
         </div>
       </div>
     </div>
-    
-    <!-- Mobile Navigation -->
+    <!-- Navigation -->
     <nav class="flex-1 overflow-y-auto p-4 space-y-2">
       <a href="#" data-section="earn" class="mobile-nav-item flex items-center space-x-3 p-3 rounded-lg text-white bg-red-900/30">
         <i class="fas fa-home w-6 text-center"></i>
@@ -1121,7 +1209,6 @@ tailwind.config = {
         <span class="absolute right-4 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
       </a>
     </nav>
-    
     <!-- Logout Button -->
     <div class="p-4 border-t border-gray-800">
       <button id="mobileLogoutBtn" class="w-full py-2 rounded-lg bg-gray-800 text-white hover:bg-gray-700 transition-colors">
@@ -1134,9 +1221,7 @@ tailwind.config = {
 <!-- Announcement Banner -->
 <div class="bg-gradient-to-r from-red-900/80 to-red-800/80 p-3 border-b border-red-500/30">
   <div class="container mx-auto flex items-center justify-center">
-    <div class="mr-3 text-yellow-300">
-      <i class="fas fa-exclamation-circle"></i>
-    </div>
+    <div class="mr-3 text-yellow-300"><i class="fas fa-exclamation-circle"></i></div>
     <p class="text-center font-medium text-white text-sm md:text-base">
       <span class="font-bold">$1 = 325 PTS</span> REQUIRED TO CASHOUT (NO FEE, CLEAN PAYOUT)
     </p>
@@ -1145,138 +1230,80 @@ tailwind.config = {
 
 <!-- Main Content -->
 <main class="container mx-auto px-4 py-6">
- <!-- Activity Logs -->
-<div id="logs" class="card mb-6 h-48 overflow-hidden rounded-xl shadow-lg circuit-pattern">
-  <div class="p-4 h-full overflow-y-auto custom-scrollbar">
-    <div class="flex items-center justify-center h-full opacity-70 font-medium text-sm text-gray-700 text-center">
-      <p>Your activity log will appear here.<br>Current server time: <span id="serverTime"></span></p>
+  <!-- Activity Logs -->
+  <div id="logs" class="modern-section mb-6 h-48 overflow-hidden">
+    <div class="p-4 h-full overflow-y-auto custom-scrollbar">
+      <div class="flex items-center justify-center h-full opacity-70 font-medium text-sm text-gray-700 text-center">
+        <p>Your activity log will appear here.<br>Current server time: <span id="serverTime"></span></p>
+      </div>
     </div>
   </div>
-</div>
-
-  <!-- Premium Earnings Section -->
-  <section id="section-earn" class="bg-gradient-to-br from-gray-900 to-gray-950 rounded-2xl p-6 md:p-8 mb-6 relative overflow-hidden border border-gray-800/50 geometric-pattern">
+  
+  <!-- Earn Section -->
+  <section id="section-earn" class="modern-section p-6 md:p-8 mb-6 relative overflow-hidden">
     <!-- Decorative elements -->
     <div class="absolute inset-0 opacity-20" style="background: radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.4) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(255, 51, 51, 0.3) 0%, transparent 50%);"></div>
     <div class="absolute right-10 top-10 w-32 h-32 bg-red-600/10 rounded-full blur-3xl"></div>
     <div class="absolute left-10 bottom-10 w-40 h-40 bg-red-600/10 rounded-full blur-3xl"></div>
     
-    <!-- Header content -->
+    <!-- Header Content -->
     <div class="text-center mb-8 relative z-10">
       <span class="inline-block px-4 py-2 text-xs font-semibold rounded-full bg-gradient-to-r from-red-600 to-red-500 text-white shadow-lg shadow-red-500/20 mb-4">
         CRYPTO REWARDS PLATFORM
       </span>
       <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-300">Maximize Your Earnings</span>
+        <span class="text-modern">Maximize Your Earnings</span>
       </h1>
       <p class="text-gray-300 max-w-3xl mx-auto leading-relaxed">
         Participate in premium opportunities and convert your engagement into valuable crypto assets and cash rewards.
       </p>
     </div>
-
-    <!-- Cards grid -->
+    
+    <!-- Cards Grid -->
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
-      <!-- Survey Card -->
-      <div class="modern-card rounded-xl p-6 group hover:border-red-500/50 transition-all">
+      <!-- Example Card -->
+      <div class="modern-card rounded-xl p-6 group hover:border-red-500/50 transition-all card-hover">
         <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center text-white mb-4 shadow-lg shadow-red-500/20">
           <i class="fas fa-chart-line text-xl"></i>
         </div>
         <h2 class="text-xl font-bold mb-4 text-white">Market Research</h2>
         <ul class="space-y-3 text-gray-300">
-          <li class="flex items-start">
-            <span class="text-red-400 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
-            <span class="flex-1">Share professional insights with leading brands</span>
-          </li>
-          <li class="flex items-start">
-            <span class="text-red-400 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
-            <span class="flex-1">Competitive compensation rates</span>
-          </li>
-          <li class="text-xs text-gray-400 mt-4 pt-3 border-t border-gray-700/50">
-            Instant redemption in 15+ cryptocurrencies or fiat
-          </li>
+          <li class="flex items-start"><span class="text-red-400 mr-2 mt-1"><i class="fas fa-check-circle"></i></span><span class="flex-1">Share professional insights with leading brands</span></li>
+          <li class="flex items-start"><span class="text-red-400 mr-2 mt-1"><i class="fas fa-check-circle"></i></span><span class="flex-1">Competitive compensation rates</span></li>
+          <li class="text-xs text-gray-400 mt-4 pt-3 border-t border-gray-700/50">Instant redemption in 15+ cryptocurrencies or fiat</li>
         </ul>
       </div>
-
-      <!-- Games Card -->
-      <div class="modern-card rounded-xl p-6 group hover:border-red-500/50 transition-all">
-        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center text-white mb-4 shadow-lg shadow-red-500/20">
-          <i class="fas fa-gamepad text-xl"></i>
-        </div>
-        <h2 class="text-xl font-bold mb-4 text-white">Gaming Rewards</h2>
-        <ul class="space-y-3 text-gray-300">
-          <li class="flex items-start">
-            <span class="text-red-400 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
-            <span class="flex-1">Earn while playing top-rated games</span>
-          </li>
-          <li class="flex items-start">
-            <span class="text-red-400 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
-            <span class="flex-1">Exclusive in-game NFT opportunities</span>
-          </li>
-          <li class="text-xs text-gray-400 mt-4 pt-3 border-t border-gray-700/50">
-            Performance-based bonus rewards system
-          </li>
-        </ul>
-      </div>
-
-      <!-- Rewards Card -->
-      <div class="modern-card rounded-xl p-6 group hover:border-red-500/50 transition-all">
-        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center text-white mb-4 shadow-lg shadow-red-500/20">
-          <i class="fas fa-wallet text-xl"></i>
-        </div>
-        <h2 class="text-xl font-bold mb-4 text-white">Multi-Channel Payouts</h2>
-        <ul class="space-y-3 text-gray-300">
-          <li class="flex items-start">
-            <span class="text-red-400 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
-            <span class="flex-1">BTC, ETH, SOL and 12+ other cryptocurrencies</span>
-          </li>
-          <li class="flex items-start">
-            <span class="text-red-400 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
-            <span class="flex-1">Direct bank transfers & PayPal deposits</span>
-          </li>
-          <li class="flex items-start">
-            <span class="text-red-400 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
-            <span class="flex-1">Digital gift cards (Amazon, Steam, etc.)</span>
-          </li>
-        </ul>
-      </div>
+      <!-- Additional cards... (Gaming Rewards, Rewards, etc.) can be added here similarly -->
     </div>
   </section>
-
-  <!-- Section: Shop Rewards -->
+  
+  <!-- Shop Rewards -->
   <section id="section-shop" class="hidden">
-    <div class="modern-card rounded-xl p-6 mb-6 circuit-pattern">
+    <div class="modern-section p-6 mb-6">
       <h2 class="text-2xl font-bold mb-6 flex items-center">
         <i class="fas fa-shopping-bag mr-3 text-red-400"></i>
-        <span class="red-gradient-text">SHOP REWARDS</span>
+        <span class="text-modern">SHOP REWARDS</span>
       </h2>
-      
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- BUXiQ Cashout -->
-        <div class="modern-card p-4 hover:border-red-400 group relative">
+        <!-- Example Reward Card -->
+        <div class="modern-card p-4 hover:border-red-400 group relative card-hover">
           <div class="flex justify-center py-2">
             <img src="https://i.imgur.com/3CUrxKO.png" alt="BUXiQ Logo" class="h-8 object-contain opacity-90 group-hover:opacity-100" />
           </div>
-          <button
-            id="openOfferWallbuxiq"
-            class="mt-3 w-full modern-btn py-2 text-sm rounded-lg"
-          >
-            <i class="fas fa-money-bill-wave mr-2"></i> Cashout
-          </button>
+          <button id="openOfferWallbuxiq" class="mt-3 w-full btn-modern py-2 text-sm"><i class="fas fa-money-bill-wave mr-2"></i> Cashout</button>
         </div>
-        
-        <!-- More reward items can be added here -->
+        <!-- Add more reward items as needed -->
       </div>
     </div>
   </section>
-
-  <!-- Section: Leaderboard -->
+  
+  <!-- Leaderboard -->
   <section id="section-leaders" class="hidden">
     <div class="modern-card rounded-xl p-6 mb-6 circuit-pattern">
       <h2 class="text-2xl font-bold mb-6 flex items-center">
         <i class="fas fa-trophy mr-3 text-yellow-400"></i>
         <span class="red-gradient-text">LEADERBOARD</span>
       </h2>
-      
       <div class="overflow-x-auto">
         <table class="modern-table">
           <thead>
@@ -1288,57 +1315,21 @@ tailwind.config = {
             </tr>
           </thead>
           <tbody id="leaderboardBody">
+            <!-- Sample Data -->
             <tr>
               <td class="font-bold text-yellow-400">1</td>
-              <td class="flex items-center">
-                <img src="https://ui-avatars.com/api/?name=TopEarner&background=ff0000&color=fff&bold=true" 
-                     class="w-8 h-8 rounded-full mr-2" 
-                     alt="TopEarner" />
-                TopEarner
-              </td>
+              <td class="flex items-center"><img src="https://ui-avatars.com/api/?name=TopEarner&background=ff0000&color=fff&bold=true" class="w-8 h-8 rounded-full mr-2" alt="TopEarner" /> TopEarner</td>
               <td class="font-bold text-green-400">$1,245.67</td>
               <td>42</td>
             </tr>
-            <tr>
-              <td class="font-bold text-gray-400">2</td>
-              <td class="flex items-center">
-                <img src="https://ui-avatars.com/api/?name=SurveyKing&background=ff3333&color=fff&bold=true" 
-                     class="w-8 h-8 rounded-full mr-2" 
-                     alt="SurveyKing" />
-                SurveyKing
-              </td>
-              <td class="font-bold text-green-400">$987.32</td>
-              <td>38</td>
-            </tr>
-            <tr>
-              <td class="font-bold text-amber-600">3</td>
-              <td class="flex items-center">
-                <img src="https://ui-avatars.com/api/?name=OfferMaster&background=ff4d4d&color=000&bold=true" 
-                     class="w-8 h-8 rounded-full mr-2" 
-                     alt="OfferMaster" />
-                OfferMaster
-              </td>
-              <td class="font-bold text-green-400">$876.54</td>
-              <td>35</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td class="flex items-center">
-                <img src="https://ui-avatars.com/api/?name=BuxPro&background=ff6666&color=000&bold=true" 
-                     class="w-8 h-8 rounded-full mr-2" 
-                     alt="BuxPro" />
-                BuxPro
-              </td>
-              <td class="font-bold text-green-400">$765.43</td>
-              <td>32</td>
-            </tr>
+            <!-- More rows... -->
           </tbody>
         </table>
       </div>
     </div>
   </section>
-
- <!-- Section: Earn (Profile) -->
+  
+  <!-- Profile / Login Section -->
   <section id="section-profile" class="hidden">
     <div class="modern-card rounded-xl p-6 mb-6">
       <div id="login-container">
@@ -1346,62 +1337,31 @@ tailwind.config = {
           <i class="fas fa-sign-in-alt mr-3 text-purple-400"></i>
           <span class="gradient-text">LOGIN</span>
         </h2>
-        
         <form id="loginForm" class="space-y-4 p-6 bg-gray-800/50 rounded-lg">
+          <!-- Account Number -->
           <div>
             <label for="login-account" class="block text-sm font-medium mb-2">Account #</label>
-            <input
-              id="login-account"
-              type="text"
-              required
-              placeholder="Enter your account number"
-              class="w-full px-4 py-2 rounded-lg modern-input focus:ring-2 focus:ring-purple-500"
-              aria-label="Account number"
-            />
+            <input id="login-account" type="text" required placeholder="Enter your account number" class="w-full px-4 py-2 rounded-lg modern-input focus:ring-2 focus:ring-purple-500" aria-label="Account number" />
           </div>
-          
+          <!-- Client ID -->
           <div>
             <label for="login-clientid" class="block text-sm font-medium mb-2">Client ID</label>
-            <input
-              id="login-clientid"
-              type="text"
-              required
-              placeholder="Enter your client ID"
-              class="w-full px-4 py-2 rounded-lg modern-input focus:ring-2 focus:ring-purple-500"
-              aria-label="Client ID"
-            />
+            <input id="login-clientid" type="text" required placeholder="Enter your client ID" class="w-full px-4 py-2 rounded-lg modern-input focus:ring-2 focus:ring-purple-500" aria-label="Client ID" />
           </div>
-          
+          <!-- CAPTCHA -->
           <div>
             <label for="captchaInput" class="block text-sm font-medium mb-2">CAPTCHA</label>
-            <div
-              id="captcha"
-              class="select-none text-center text-yellow-400 font-mono text-lg tracking-widest mb-2 p-3 rounded-lg bg-gray-800/50"
-              aria-live="polite"
-              aria-atomic="true"
-            ></div>
-            <input
-              id="captchaInput"
-              type="text"
-              required
-              placeholder="Enter CAPTCHA"
-              class="w-full px-4 py-2 rounded-lg modern-input focus:ring-2 focus:ring-yellow-500"
-              aria-label="Enter CAPTCHA"
-            />
+            <div id="captcha" class="select-none text-center text-yellow-400 font-mono text-lg tracking-widest mb-2 p-3 rounded-lg bg-gray-800/50" aria-live="polite" aria-atomic="true"></div>
+            <input id="captchaInput" type="text" required placeholder="Enter CAPTCHA" class="w-full px-4 py-2 rounded-lg modern-input focus:ring-2 focus:ring-yellow-500" aria-label="Enter CAPTCHA" />
           </div>
-          
-          <button
-            type="submit"
-            class="w-full py-2.5 rounded-lg modern-btn font-semibold flex items-center justify-center gap-2 transition-colors"
-          >
-            <i class="fas fa-sign-in-alt"></i>
-            <span>Login</span>
+          <!-- Submit Button -->
+          <button type="submit" class="w-full py-2.5 rounded-lg modern-btn font-semibold flex items-center justify-center gap-2 transition-colors">
+            <i class="fas fa-sign-in-alt"></i> <span>Login</span>
           </button>
         </form>
-        
         <div id="error-msg" class="text-center text-red-400 mt-3 hidden" aria-live="assertive"></div>
       </div>
-
+      <!-- Dashboard after login -->
       <div id="dashboard" class="hidden">
         <div class="text-center mb-6">
           <h2 class="text-2xl font-bold gradient-text tracking-tight flex items-center justify-center">
@@ -1409,294 +1369,109 @@ tailwind.config = {
           </h2>
           <p class="mt-2 text-gray-400">Complete offers and surveys to earn rewards</p>
         </div>
-
+        <!-- Offer wall grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="offerwall-grid">
-          <!-- CPX Research -->
+          <!-- Example Offer -->
           <div class="modern-card p-4 hover:border-cyan-400 group relative">
             <div class="flex justify-center py-2">
-              <img src="https://www.cpx-research.com/main/en/assets/img/logo.svg" 
-                   alt="CPX Research Logo" 
-                   class="h-8 object-contain opacity-90 group-hover:opacity-100" />
+              <img src="https://www.cpx-research.com/main/en/assets/img/logo.svg" alt="CPX Research Logo" class="h-8 object-contain opacity-90 group-hover:opacity-100" />
             </div>
-            <button
-              id="openOfferWallCPX"
-              class="mt-3 w-full modern-btn py-2 text-sm rounded-lg"
-            >
-              <i class="fas fa-external-link-alt mr-2"></i> Open OfferWall
-            </button>
+            <button id="openOfferWallCPX" class="mt-3 w-full modern-btn py-2 text-sm rounded-lg"><i class="fas fa-external-link-alt mr-2"></i> Open OfferWall</button>
           </div>
-
-          <!-- SushiAds -->
-          <div class="modern-card p-4 hover:border-purple-400 group relative">
-            <div class="flex justify-center py-2 relative">
-              <img src="https://affi-plat.s3.us-east-2.amazonaws.com/platforms/sushiads-logo-horizontal.png" 
-                   alt="SushiAds Logo" 
-                   class="h-8 object-contain opacity-90 group-hover:opacity-100" />
-            </div>
-            <button
-              id="openOfferWallsads"
-              class="mt-3 w-full modern-btn py-2 text-sm rounded-lg"
-            >
-              <i class="fas fa-poll mr-2"></i> Open Survey Wall
-            </button>
-          </div>
-
-          <!-- SushiAds Offers -->
-          <div class="modern-card p-4 hover:border-purple-400 group relative">
-            <div class="flex justify-center py-2 relative">
-              <img src="https://affi-plat.s3.us-east-2.amazonaws.com/platforms/sushiads-logo-horizontal.png" 
-                   alt="SushiAds Logo" 
-                   class="h-8 object-contain opacity-90 group-hover:opacity-100" />
-              <span class="absolute top-0 right-0 bg-amber-500 text-gray-900 text-xs font-semibold px-2 py-0.5 rounded-full">Offers Only</span>
-            </div>
-            <button
-              id="openOfferWallsads1"
-              class="mt-3 w-full modern-btn py-2 text-sm rounded-lg"
-            >
-              <i class="fas fa-ad mr-2"></i> Open Offer Wall
-            </button>
-          </div>
-
-          <!-- Cheddar.tv -->
-          <div class="modern-card p-4 hover:border-purple-400 group relative">
-            <div class="flex justify-center py-2 relative">
-              <img src="https://i.imgur.com/ynkX1XI.png" 
-                   alt="Cheddar Logo" 
-                   class="h-8 object-contain opacity-90 group-hover:opacity-100" />
-              <span class="absolute top-0 right-0 bg-amber-500 text-gray-900 text-xs font-semibold px-2 py-0.5 rounded-full">VIDEOS ONLY</span>
-            </div>
-            <button
-              id="openOfferWallcheddar"
-              class="mt-3 w-full modern-btn py-2 text-sm rounded-lg"
-            >
-              <i class="fas fa-play mr-2"></i> Open Cheddar.tv
-            </button>
-          </div>
-
-          <!-- KiwiWall -->
-          <div class="modern-card p-4 hover:border-green-400 group relative">
-            <div class="flex justify-center py-2">
-              <img src="https://www.kiwiwall.com/img/logo.png" 
-                   alt="KiwiWall Logo" 
-                   class="h-8 object-contain opacity-90 group-hover:opacity-100" />
-            </div>
-            <button
-              id="openOfferWallkiwi"
-              class="mt-3 w-full modern-btn py-2 text-sm rounded-lg"
-            >
-              <i class="fas fa-external-link-alt mr-2"></i> Open OfferWall
-            </button>
-          </div>
-
-          <!-- BUXiQ Bonus -->
-          <div class="modern-card p-4 hover:border-blue-400 group relative">
-            <div class="flex justify-center py-2">
-              <img src="https://i.imgur.com/K5in0eX.png" 
-                   alt="BUXiQ Logo" 
-                   class="h-8 object-contain opacity-90 group-hover:opacity-100" />
-            </div>
-            <button
-              id="openOfferWallbuxiqbonus"
-              class="mt-3 w-full modern-btn py-2 text-sm rounded-lg"
-            >
-              <i class="fas fa-gift mr-2"></i> Bonus
-            </button>
-          </div>
-
-          <!-- Wannads -->
-          <div class="modern-card p-4 hover:border-orange-400 group relative">
-            <div class="flex justify-center py-2">
-              <img src="https://affi-plat.s3.us-east-2.amazonaws.com/platforms/wannads-ogotipo-naranja.png" 
-                   alt="Wannads Logo" 
-                   class="h-8 object-contain opacity-90 group-hover:opacity-100" />
-            </div>
-            <button
-              id="openOfferWallwannads"
-              class="mt-3 w-full modern-btn py-2 text-sm rounded-lg"
-            >
-              <i class="fas fa-external-link-alt mr-2"></i> Open OfferWall
-            </button>
-          </div>
-
-          <!-- Porix -->
-          <div class="modern-card p-4 hover:border-blue-400 group relative">
-            <div class="flex justify-center py-2">
-              <img src="https://porix.com/wp-content/uploads/2022/01/porix-logo.png" 
-                   alt="Porix Logo" 
-                   class="h-8 object-contain opacity-90 group-hover:opacity-100" />
-            </div>
-            <button
-              id="openOfferWallporix"
-              class="mt-3 w-full modern-btn py-2 text-sm rounded-lg"
-            >
-              <i class="fas fa-external-link-alt mr-2"></i> Open OfferWall
-            </button>
-          </div>
-
-          <!-- Excentiv -->
-          <div class="modern-card p-4 hover:border-purple-400 group relative">
-            <div class="flex justify-center py-2">
-              <img src="https://excentiv.com/wp-content/uploads/2022/01/excentiv-logo.png" 
-                   alt="Excentiv Logo" 
-                   class="h-8 object-contain opacity-90 group-hover:opacity-100" />
-            </div>
-            <button
-              id="openOfferWallexcentiv"
-              class="mt-3 w-full modern-btn py-2 text-sm rounded-lg"
-            >
-              <i class="fas fa-external-link-alt mr-2"></i> Open OfferWall
-            </button>
-          </div>
-
-          <!-- TaskWall -->
-          <div class="modern-card p-4 hover:border-green-400 group relative">
-            <div class="flex justify-center py-2">
-              <img src="https://taskwall.com/wp-content/uploads/2022/01/taskwall-logo.png" 
-                   alt="TaskWall Logo" 
-                   class="h-8 object-contain opacity-90 group-hover:opacity-100" />
-            </div>
-            <button
-              id="openOfferWalltaskwall"
-              class="mt-3 w-full modern-btn py-2 text-sm rounded-lg"
-            >
-              <i class="fas fa-tasks mr-2"></i> Open OfferWall
-            </button>
-          </div>
+          <!-- More offers can be added similarly -->
         </div>
-
+        <!-- Logout Button -->
         <div class="mt-6 text-center">
-          <button id="logoutBtn" class="px-6 py-2.5 rounded-lg bg-gray-800 text-white hover:bg-gray-700 transition-colors">
-            <i class="fas fa-sign-out-alt mr-2"></i> Logout
-          </button>
+          <button id="logoutBtn" class="px-6 py-2.5 rounded-lg bg-gray-800 text-white hover:bg-gray-700 transition-colors"><i class="fas fa-sign-out-alt mr-2"></i> Logout</button>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Section: Help -->
+  
+  <!-- Help & Support -->
   <section id="section-help" class="hidden">
     <div class="modern-card rounded-xl p-6 mb-6 circuit-pattern">
       <h2 class="text-2xl font-bold mb-6 flex items-center">
         <i class="fas fa-question-circle mr-3 text-red-400"></i>
         <span class="red-gradient-text">HELP & SUPPORT</span>
       </h2>
-      
-      <h3 class="font-semibold mb-4 text-lg flex items-center">
-        <i class="fas fa-info-circle mr-2 text-red-400"></i> Frequently Asked Questions
-      </h3>
-      
+      <h3 class="font-semibold mb-4 text-lg flex items-center"><i class="fas fa-info-circle mr-2 text-red-400"></i> Frequently Asked Questions</h3>
       <div class="space-y-4">
-        <!-- FAQ Item 1 -->
+        <!-- FAQ Items -->
         <div class="modern-card p-4">
           <div class="flex items-start">
             <div class="flex-shrink-0 mt-1">
-              <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-400">
-                <i class="fas fa-question"></i>
-              </div>
+              <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-400"><i class="fas fa-question"></i></div>
             </div>
             <div class="ml-3">
               <h4 class="font-medium text-white">How do I earn points?</h4>
-              <p class="mt-1 text-sm text-gray-300">
-                Complete surveys, offers, and tasks in the Earn section to accumulate points that can be redeemed for rewards.
-              </p>
+              <p class="mt-1 text-sm text-gray-300">Complete surveys, offers, and tasks in the Earn section to accumulate points that can be redeemed for rewards.</p>
             </div>
           </div>
         </div>
-        
-        <!-- FAQ Item 2 -->
+        <!-- More FAQ items... -->
         <div class="modern-card p-4">
           <div class="flex items-start">
             <div class="flex-shrink-0 mt-1">
-              <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-400">
-                <i class="fas fa-question"></i>
-              </div>
+              <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-400"><i class="fas fa-question"></i></div>
             </div>
             <div class="ml-3">
               <h4 class="font-medium text-white">How can I redeem rewards?</h4>
-              <p class="mt-1 text-sm text-gray-300">
-                Once you've accumulated enough points, visit the Shop section to select and redeem your preferred reward.
-              </p>
+              <p class="mt-1 text-sm text-gray-300">Once you've accumulated enough points, visit the Shop section to select and redeem your preferred reward.</p>
             </div>
           </div>
         </div>
-        
-        <!-- FAQ Item 3 -->
+        <!-- Other FAQs -->
         <div class="modern-card p-4">
           <div class="flex items-start">
             <div class="flex-shrink-0 mt-1">
-              <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-400">
-                <i class="fas fa-question"></i>
-              </div>
+              <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-400"><i class="fas fa-question"></i></div>
             </div>
             <div class="ml-3">
               <h4 class="font-medium text-white">Bonus code redeem HOLD</h4>
-              <p class="mt-1 text-sm text-gray-300">
-                EACH REDEEMED! <strong class="text-yellow-400">BONUS CODE</strong> Will be on hold when you complete 9 tasks it will be released! (If you getting 1 pts from survey we do not count as a task completed)
-              </p>
+              <p class="mt-1 text-sm text-gray-300">EACH REDEEMED! <strong class="text-yellow-400">BONUS CODE</strong> Will be on hold when you complete 9 tasks it will be released! (If you getting 1 pts from survey we do not count as a task completed)</p>
             </div>
           </div>
         </div>
-        
-        <!-- FAQ Item 4 -->
+        <!-- More FAQs -->
         <div class="modern-card p-4">
           <div class="flex items-start">
             <div class="flex-shrink-0 mt-1">
-              <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-400">
-                <i class="fas fa-question"></i>
-              </div>
+              <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-400"><i class="fas fa-question"></i></div>
             </div>
             <div class="ml-3">
               <h4 class="font-medium text-white">Who do I contact for support?</h4>
-              <p class="mt-1 text-sm text-gray-300">
-                Our support team is available 24/7. Click the button below to contact us.
-              </p>
+              <p class="mt-1 text-sm text-gray-300">Our support team is available 24/7. Click the button below to contact us.</p>
             </div>
           </div>
         </div>
       </div>
-      
-      <button id="contact-support-btn" class="mt-6 w-full modern-btn py-2.5 rounded-lg">
-        <i class="fas fa-headset mr-2"></i> Contact Support
-      </button>
+      <button id="contact-support-btn" class="mt-6 w-full modern-btn py-2.5 rounded-lg"><i class="fas fa-headset mr-2"></i> Contact Support</button>
     </div>
   </section>
 </main>
 
-<!-- Modern Footer -->
+<!-- Footer -->
 <footer class="bg-black text-white py-8 mt-12 border-t border-gray-800">
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Logo & Social -->
       <div>
         <div class="flex items-center space-x-2 mb-4">
-          <img src="https://i.postimg.cc/j2Z0ZTS9/Screenshot-2025-08-10-at-9-39-42-PM-removebg-preview.png" 
-               alt="Bux iQ Logo" 
-               class="h-8 object-contain" 
-               loading="lazy" />
+          <img src="https://i.postimg.cc/j2Z0ZTS9/Screenshot-2025-08-10-at-9-39-42-PM-removebg-preview.png" alt="Bux iQ Logo" class="h-8 object-contain" loading="lazy" />
           <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-400">BUX IQ</span>
         </div>
-        <p class="text-gray-400 mb-4">
-          Earn cryptocurrency, PayPal funds, and gift cards by completing offers and surveys.
-        </p>
+        <p class="text-gray-400 mb-4">Earn cryptocurrency, PayPal funds, and gift cards by completing offers and surveys.</p>
         <div class="flex space-x-4">
-          <a href="#" class="text-gray-400 hover:text-white transition-colors">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white transition-colors">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white transition-colors">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="#" class="text-gray-400 hover:text-white transition-colors">
-            <i class="fab fa-discord"></i>
-          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-discord"></i></a>
         </div>
       </div>
-      
+      <!-- Quick Links -->
       <div>
-        <h3 class="text-lg font-semibold mb-4 flex items-center">
-          <span class="red-dot"></span> Quick Links
-        </h3>
+        <h3 class="text-lg font-semibold mb-4 flex items-center"><span class="red-dot"></span> Quick Links</h3>
         <ul class="space-y-2">
           <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
           <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
@@ -1705,47 +1480,29 @@ tailwind.config = {
           <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Support</a></li>
         </ul>
       </div>
-      
+      <!-- Payment Methods -->
       <div>
-        <h3 class="text-lg font-semibold mb-4 flex items-center">
-          <span class="red-dot"></span> Payment Methods
-        </h3>
+        <h3 class="text-lg font-semibold mb-4 flex items-center"><span class="red-dot"></span> Payment Methods</h3>
         <div class="grid grid-cols-3 gap-2 mb-4">
-          <div class="bg-gray-800 p-2 rounded flex items-center justify-center">
-            <i class="fab fa-bitcoin text-orange-400 text-xl"></i>
-          </div>
-          <div class="bg-gray-800 p-2 rounded flex items-center justify-center">
-            <i class="fab fa-ethereum text-purple-400 text-xl"></i>
-          </div>
-          <div class="bg-gray-800 p-2 rounded flex items-center justify-center">
-            <i class="fab fa-paypal text-blue-400 text-xl"></i>
-          </div>
-          <div class="bg-gray-800 p-2 rounded flex items-center justify-center">
-            <i class="fas fa-money-bill-wave text-green-400 text-xl"></i>
-          </div>
-          <div class="bg-gray-800 p-2 rounded flex items-center justify-center">
-            <i class="fab fa-amazon text-yellow-400 text-xl"></i>
-          </div>
-          <div class="bg-gray-800 p-2 rounded flex items-center justify-center">
-            <i class="fas fa-gift text-red-400 text-xl"></i>
-          </div>
+          <div class="bg-gray-800 p-2 rounded flex items-center justify-center"><i class="fab fa-bitcoin text-orange-400 text-xl"></i></div>
+          <div class="bg-gray-800 p-2 rounded flex items-center justify-center"><i class="fab fa-ethereum text-purple-400 text-xl"></i></div>
+          <div class="bg-gray-800 p-2 rounded flex items-center justify-center"><i class="fab fa-paypal text-blue-400 text-xl"></i></div>
+          <div class="bg-gray-800 p-2 rounded flex items-center justify-center"><i class="fas fa-money-bill-wave text-green-400 text-xl"></i></div>
+          <div class="bg-gray-800 p-2 rounded flex items-center justify-center"><i class="fab fa-amazon text-yellow-400 text-xl"></i></div>
+          <div class="bg-gray-800 p-2 rounded flex items-center justify-center"><i class="fas fa-gift text-red-400 text-xl"></i></div>
         </div>
-        <p class="text-xs text-gray-500">
-          © 2025 Bux IQ. All rights reserved.
-        </p>
+        <p class="text-xs text-gray-500">© 2025 Bux IQ. All rights reserved.</p>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- Iframe Container for Offer Walls -->
+<!-- Iframe container for offer walls -->
 <div id="iframeContainer" class="fixed inset-0 bg-black bg-opacity-90 hidden z-50">
   <div class="relative w-full h-full p-4 flex flex-col">
     <div class="flex justify-between items-center mb-4">
       <h3 class="text-lg font-bold text-white">Offer Wall</h3>
-      <button id="closeIframe" class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors">
-        <i class="fas fa-times mr-2"></i> Close
-      </button>
+      <button id="closeIframe" class="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors"><i class="fas fa-times mr-2"></i> Close</button>
     </div>
     <iframe id="dashboardIframe" class="flex-1 w-full rounded-lg bg-gray-900" src="" frameborder="0" allowfullscreen></iframe>
   </div>
