@@ -1905,7 +1905,7 @@ async function updateBalance() {
             if (mobileBalanceEl) mobileBalanceEl.textContent = balance;
         } else {
             // If user not found (e.g., after logout), reset balance display to 0
-            if (balanceEl) balanceEl.textContent = '$0.00';
+            if (balanceEl) balanceEl.textContent = '0.00';
             if (mobileBalanceEl) mobileBalanceEl.textContent = '0.00';
         }
     } catch (err) {
