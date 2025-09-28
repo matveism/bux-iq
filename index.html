@@ -1267,352 +1267,7 @@ tailwind.config = {
         </div>
     </div>
 
-    <script>
-    // Configuration
-    const CRYSTALS_PER_VERIFICATION = 5;
-    const CRYSTAL_VALUE_USD = 0.001;
-    const POSTBACK_URL = "https://script.google.com/macros/s/AKfycbyvw4LiShTvgnTTLRLISnTYJRhqeStmZgL9YD_ZuQEJubcDPH8bSbGpHPCVHDfx0dbW/exec";
 
-    // State variables
-    let words = [];
-    let currentWordIndex = 0;
-    let crystals = 0;
-    let verifiedCount = 0;
-    let failedCount = 0;
-    let skippedCount = 0;
-    let userId = "user_" + Math.random().toString(36).substr(2, 9); // Mock user ID
-
-    // DOM elements (will be initialized after DOM loads)
-    let csvUrlInput, loadCsvBtn, wordText, lastLetterInput, verifyBtn, skipBtn;
-    let resultMessage, crystalCount, usdValue, verifiedCountElem, failedCountElem, skippedCountElem, logoutBtn;
-
-    // Initialize when DOM is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        initializeElements();
-        setupEventListeners();
-        loadStoredData();
-    });
-
-    function initializeElements() {
-        csvUrlInput = document.getElementById('csvUrl');
-        loadCsvBtn = document.getElementById('loadCsvBtn');
-        wordText = document.getElementById('wordText');
-        lastLetterInput = document.getElementById('lastLetterInput');
-        verifyBtn = document.getElementById('verifyBtn');
-        skipBtn = document.getElementById('skipBtn');
-        resultMessage = document.getElementById('resultMessage');
-        crystalCount = document.getElementById('crystalCount');
-        usdValue = document.getElementById('usdValue');
-        verifiedCountElem = document.getElementById('verifiedCount');
-        failedCountElem = document.getElementById('failedCount');
-        skippedCountElem = document.getElementById('skippedCount');
-        logoutBtn = document.getElementById('logoutBtn');
-
-        // Set initial values
-        if (wordText) wordText.textContent = '---';
-        updateUI();
-    }
-
-    function setupEventListeners() {
-        if (loadCsvBtn) loadCsvBtn.addEventListener('click', loadCsvData);
-        if (verifyBtn) verifyBtn.addEventListener('click', verifyWord);
-        if (skipBtn) skipBtn.addEventListener('click', skipWord);
-        if (logoutBtn) logoutBtn.addEventListener('click', logout);
-        
-        // Add Enter key support for verification
-        if (lastLetterInput) {
-            lastLetterInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    verifyWord();
-                }
-            });
-        }
-    }
-
-    function loadStoredData() {
-        // Load saved data from localStorage
-        const savedCrystals = localStorage.getItem('wordGame_crystals');
-        const savedVerified = localStorage.getItem('wordGame_verified');
-        const savedFailed = localStorage.getItem('wordGame_failed');
-        const savedSkipped = localStorage.getItem('wordGame_skipped');
-        const savedUserId = localStorage.getItem('wordGame_userId');
-        const savedWords = localStorage.getItem('wordGame_words');
-
-        if (savedCrystals) crystals = parseInt(savedCrystals);
-        if (savedVerified) verifiedCount = parseInt(savedVerified);
-        if (savedFailed) failedCount = parseInt(savedFailed);
-        if (savedSkipped) skippedCount = parseInt(savedSkipped);
-        if (savedUserId) userId = savedUserId;
-        if (savedWords) words = JSON.parse(savedWords);
-
-        updateUI();
-        
-        // Set sample CSV URL if input exists
-        if (csvUrlInput) {
-            csvUrlInput.value = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT8of_K1AFAQpPr4njDakBaBA8GC1qQTYj5r7pbLfhdAKEpOVCbXhxS-hL2tRF1MwEV3dTAsTnhXVae/pub?gid=0&single=true&output=csv';
-        }
-
-        // Display random word if words are loaded
-        if (words.length > 0) {
-            displayRandomWord();
-        }
-    }
-
-    function saveData() {
-        localStorage.setItem('wordGame_crystals', crystals.toString());
-        localStorage.setItem('wordGame_verified', verifiedCount.toString());
-        localStorage.setItem('wordGame_failed', failedCount.toString());
-        localStorage.setItem('wordGame_skipped', skippedCount.toString());
-        localStorage.setItem('wordGame_userId', userId);
-        localStorage.setItem('wordGame_words', JSON.stringify(words));
-    }
-
-    // Load CSV data from URL
-    function loadCsvData() {
-        const url = csvUrlInput.value.trim();
-        if (!url) {
-            showResult('Please enter a valid CSV URL', 'error');
-            return;
-        }
-
-        showResult('Loading words...', 'info');
-        
-        // Use Papa Parse if available, otherwise fallback to fetch
-        if (typeof Papa !== 'undefined') {
-            Papa.parse(url, {
-                download: true,
-                header: false,
-                complete: function(results) {
-                    handleCsvData(results.data);
-                },
-                error: function(error) {
-                    showResult('Error loading CSV: ' + error.message, 'error');
-                    // Try fallback method
-                    loadCsvFallback(url);
-                }
-            });
-        } else {
-            loadCsvFallback(url);
-        }
-    }
-
-    function loadCsvFallback(url) {
-        fetch(url)
-            .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
-                return response.text();
-            })
-            .then(csvText => {
-                const lines = csvText.split('\n');
-                const extractedWords = [];
-                
-                lines.forEach(line => {
-                    const cells = line.split(',').map(cell => cell.trim().replace(/^"|"$/g, ''));
-                    cells.forEach(cell => {
-                        if (cell && cell.length > 0) {
-                            extractedWords.push(cell);
-                        }
-                    });
-                });
-                
-                words = extractedWords.filter(word => word && word.trim().length > 0);
-                handleCsvLoadResult();
-            })
-            .catch(error => {
-                showResult('Error loading CSV: ' + error.message, 'error');
-            });
-    }
-
-    function handleCsvData(data) {
-        // Flatten the array and filter empty entries
-        words = data.flat()
-            .filter(word => word && word.toString().trim().length > 0)
-            .map(word => word.toString().trim());
-        
-        handleCsvLoadResult();
-    }
-
-    function handleCsvLoadResult() {
-        if (words.length === 0) {
-            showResult('No valid words found in CSV', 'error');
-            return;
-        }
-        
-        showResult(`Loaded ${words.length} words successfully!`, 'success');
-        saveData();
-        resetVerification();
-        displayRandomWord();
-    }
-
-    // Display a random word from the loaded list
-    function displayRandomWord() {
-        if (words.length === 0) {
-            if (wordText) wordText.textContent = '---';
-            return;
-        }
-        
-        currentWordIndex = Math.floor(Math.random() * words.length);
-        if (wordText) wordText.textContent = words[currentWordIndex];
-        if (lastLetterInput) {
-            lastLetterInput.value = '';
-            lastLetterInput.focus();
-        }
-    }
-
-    // Verify the last letter of the current word
-    function verifyWord() {
-        if (words.length === 0) {
-            showResult('Please load words first', 'error');
-            return;
-        }
-        
-        const currentWord = words[currentWordIndex];
-        const userInput = lastLetterInput.value.trim().toLowerCase();
-        const lastLetter = currentWord.charAt(currentWord.length - 1).toLowerCase();
-        
-        if (!userInput) {
-            showResult('Please enter a letter', 'error');
-            return;
-        }
-        
-        if (userInput.length > 1) {
-            showResult('Please enter only one letter', 'error');
-            lastLetterInput.value = userInput.charAt(0);
-            return;
-        }
-        
-        if (userInput === lastLetter) {
-            // Correct verification
-            crystals += CRYSTALS_PER_VERIFICATION;
-            verifiedCount++;
-            updateUI();
-            showResult(`Correct! +${CRYSTALS_PER_VERIFICATION} crystals earned`, 'success');
-            
-            // Send postback
-            sendPostback('completed', CRYSTALS_PER_VERIFICATION, CRYSTALS_PER_VERIFICATION * CRYSTAL_VALUE_USD);
-            
-            // Success animation
-            const wordDisplay = document.getElementById('wordDisplay');
-            if (wordDisplay) {
-                wordDisplay.classList.add('success-animation');
-                setTimeout(() => {
-                    wordDisplay.classList.remove('success-animation');
-                }, 1000);
-            }
-        } else {
-            // Incorrect verification
-            failedCount++;
-            updateUI();
-            showResult(`Incorrect! The last letter was "${lastLetter.toUpperCase()}"`, 'error');
-        }
-        
-        saveData();
-        
-        // Move to next word after a delay
-        setTimeout(displayRandomWord, 2000);
-    }
-
-    // Skip the current word
-    function skipWord() {
-        if (words.length === 0) {
-            showResult('Please load words first', 'error');
-            return;
-        }
-        
-        skippedCount++;
-        updateUI();
-        saveData();
-        showResult('Word skipped', 'info');
-        displayRandomWord();
-    }
-
-    // Update UI with current stats
-    function updateUI() {
-        if (crystalCount) crystalCount.textContent = crystals;
-        if (usdValue) usdValue.textContent = (crystals * CRYSTAL_VALUE_USD).toFixed(3);
-        if (verifiedCountElem) verifiedCountElem.textContent = verifiedCount;
-        if (failedCountElem) failedCountElem.textContent = failedCount;
-        if (skippedCountElem) skippedCountElem.textContent = skippedCount;
-    }
-
-    // Show result message
-    function showResult(message, type) {
-        if (!resultMessage) return;
-        
-        resultMessage.textContent = message;
-        resultMessage.className = 'mt-4 p-3 rounded-lg';
-        
-        switch(type) {
-            case 'success':
-                resultMessage.classList.add('bg-green-900', 'text-green-300');
-                break;
-            case 'error':
-                resultMessage.classList.add('bg-red-900', 'text-red-300');
-                break;
-            case 'info':
-                resultMessage.classList.add('bg-blue-900', 'text-blue-300');
-                break;
-        }
-        
-        resultMessage.classList.remove('hidden');
-        
-        // Auto-hide after 3 seconds
-        setTimeout(() => {
-            if (resultMessage) {
-                resultMessage.classList.add('hidden');
-            }
-        }, 3000);
-    }
-
-    // Reset verification state
-    function resetVerification() {
-        currentWordIndex = 0;
-        crystals = 0;
-        verifiedCount = 0;
-        failedCount = 0;
-        skippedCount = 0;
-        saveData();
-        updateUI();
-    }
-
-    // Send postback to the provided URL
-    function sendPostback(status, amountLocal, amountUsd) {
-        const transId = "trans_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5);
-        const offerId = "word_verification";
-        
-        // Create postback URL with parameters
-        const postbackUrl = `${POSTBACK_URL}?status=${status}&trans_id=${transId}&user_id=${userId}&sub_id=&sub_id_2=&amount_local=${amountLocal}&amount_usd=${amountUsd}&offer_id=${offerId}&hash=&ip_click=`;
-        
-        // Send postback using an image pixel (avoids CORS issues)
-        const img = new Image();
-        img.src = postbackUrl;
-    }
-
-    // Logout function
-    function logout() {
-        if (confirm('Are you sure you want to logout? This will reset your progress.')) {
-            // Clear localStorage
-            localStorage.removeItem('wordGame_crystals');
-            localStorage.removeItem('wordGame_verified');
-            localStorage.removeItem('wordGame_failed');
-            localStorage.removeItem('wordGame_skipped');
-            localStorage.removeItem('wordGame_userId');
-            localStorage.removeItem('wordGame_words');
-            
-            // Reset state
-            words = [];
-            crystals = 0;
-            verifiedCount = 0;
-            failedCount = 0;
-            skippedCount = 0;
-            userId = "user_" + Math.random().toString(36).substr(2, 9);
-            
-            updateUI();
-            if (wordText) wordText.textContent = '---';
-            showResult('Logged out successfully. Progress reset.', 'info');
-        }
-    }
-</script>
 </body>
 </html>
 
@@ -1808,9 +1463,15 @@ tailwind.config = {
 let captchaCode = '';
 let currentUser = null;
 let loggedInUsers = {};
+let threeJSScene = null;
+let threeJSCamera = null;
+let threeJSRenderer = null;
+let threeJSParticles = null;
 
 // DOM Content Loaded - Initialize everything
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Initializing BuxIQ application...');
+    
     // Generate initial CAPTCHA
     generateCaptcha();
 
@@ -1833,163 +1494,268 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Initialize Three.js background
 function initThreeJS() {
-    const container = document.getElementById('threejs-container');
-    if (!container) return;
+    try {
+        const container = document.getElementById('threejs-container');
+        if (!container) {
+            console.warn('Three.js container not found');
+            return;
+        }
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    container.appendChild(renderer.domElement);
+        // Check if Three.js is available
+        if (typeof THREE === 'undefined') {
+            console.warn('Three.js not loaded');
+            return;
+        }
 
-    // Create a grid of points
-    const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 1000;
-    const posArray = new Float32Array(particlesCount * 3);
-
-    for (let i = 0; i < particlesCount * 3; i++) {
-        posArray[i] = (Math.random() - 0.5) * 10;
-    }
-
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    const particlesMaterial = new THREE.PointsMaterial({
-        size: 0.02,
-        color: 0x8b5cf6,
-        transparent: true,
-        opacity: 0.8
-    });
-    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-    scene.add(particlesMesh);
-
-    camera.position.z = 3;
-
-    // Animation loop
-    function animate() {
-        requestAnimationFrame(animate);
-        particlesMesh.rotation.x += 0.0005;
-        particlesMesh.rotation.y += 0.0005;
-        renderer.render(scene, camera);
-    }
-    animate();
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ 
+            alpha: true, 
+            antialias: true,
+            powerPreference: "high-performance"
+        });
+        
         renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio for performance
+        container.appendChild(renderer.domElement);
+
+        // Create a grid of points
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 500; // Reduced for better performance
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 10;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.03,
+            color: 0x8b5cf6,
+            transparent: true,
+            opacity: 0.6
+        });
+        
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        camera.position.z = 3;
+
+        // Store references for cleanup
+        threeJSScene = scene;
+        threeJSCamera = camera;
+        threeJSRenderer = renderer;
+        threeJSParticles = particlesMesh;
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            if (particlesMesh) {
+                particlesMesh.rotation.x += 0.0003;
+                particlesMesh.rotation.y += 0.0003;
+            }
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle window resize with debounce
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }, 250);
+        });
+
+    } catch (error) {
+        console.error('Error initializing Three.js:', error);
+    }
+}
+
+// Cleanup Three.js resources
+function cleanupThreeJS() {
+    if (threeJSRenderer) {
+        threeJSRenderer.dispose();
+        threeJSRenderer = null;
+    }
+    if (threeJSParticles) {
+        threeJSParticles.geometry.dispose();
+        threeJSParticles.material.dispose();
+        threeJSParticles = null;
+    }
+    threeJSScene = null;
+    threeJSCamera = null;
 }
 
 // Create floating particles for background
 function createParticles() {
-    const container = document.getElementById('particles-container');
-    if (!container) return;
+    try {
+        const container = document.getElementById('particles-container');
+        if (!container) return;
 
-    const particleCount = 30;
-    
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
+        // Clear existing particles
+        container.innerHTML = '';
         
-        // Random size between 2px and 6px
-        const size = Math.random() * 4 + 2;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
+        const particleCount = 20; // Reduced for better performance
         
-        // Random position
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.top = `${Math.random() * 100}%`;
-        
-        // Random animation duration and delay
-        const duration = Math.random() * 20 + 10;
-        const delay = Math.random() * 10;
-        particle.style.animationDuration = `${duration}s`;
-        particle.style.animationDelay = `${delay}s`;
-        
-        container.appendChild(particle);
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Random size between 2px and 5px
+            const size = Math.random() * 3 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Random position
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            
+            // Random animation duration and delay
+            const duration = Math.random() * 15 + 10;
+            const delay = Math.random() * 5;
+            particle.style.animationDuration = `${duration}s`;
+            particle.style.animationDelay = `${delay}s`;
+            
+            container.appendChild(particle);
+        }
+    } catch (error) {
+        console.error('Error creating particles:', error);
     }
 }
 
 // Check for existing user session
 function checkExistingSession() {
-    const savedAccount = localStorage.getItem('buxiq_account');
-    if (savedAccount) {
-        // Attempt to log in with saved account
-        document.getElementById('login-account').value = savedAccount;
-        // Mark as auto-login to bypass CAPTCHA check initially
-        document.getElementById('captchaInput').value = 'auto_login_temp';
-        handleLogin(new Event('auto'));
-    } else {
-        // Show default section if no session
+    try {
+        const savedAccount = localStorage.getItem('buxiq_account');
+        if (savedAccount) {
+            console.log('Found saved account:', savedAccount);
+            document.getElementById('login-account').value = savedAccount;
+            // Show loading state
+            showError(document.getElementById('error-msg'), 'Auto-login in progress...', 'info');
+            
+            // Use a small delay to ensure DOM is ready
+            setTimeout(() => {
+                handleLogin(new Event('auto'));
+            }, 500);
+        } else {
+            showSection('earn');
+        }
+    } catch (error) {
+        console.error('Error checking existing session:', error);
         showSection('earn');
     }
 }
 
 // Initialize all event listeners
 function initializeEventListeners() {
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-button')?.addEventListener('click', () => {
-        document.getElementById('mobile-menu').classList.remove('hidden');
-    });
-    
-    document.getElementById('close-mobile-menu')?.addEventListener('click', () => {
-        document.getElementById('mobile-menu').classList.add('hidden');
-    });
-    
-    // Mobile logout button
-    document.getElementById('mobileLogoutBtn')?.addEventListener('click', logout);
+    try {
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('hidden');
+            });
+        }
+        
+        if (closeMobileMenu && mobileMenu) {
+            closeMobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        }
+        
+        // Mobile logout button
+        const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
+        if (mobileLogoutBtn) {
+            mobileLogoutBtn.addEventListener('click', logout);
+        }
 
-    // Navigation handlers
-    document.querySelectorAll('.navbar-item, .mobile-nav-item').forEach(link => {
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            showSection(link.dataset.section);
-            // Close mobile menu if open
-            document.getElementById('mobile-menu').classList.add('hidden');
+        // Navigation handlers
+        document.querySelectorAll('.navbar-item, .mobile-nav-item').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const section = link.dataset.section;
+                if (section) {
+                    showSection(section);
+                    // Close mobile menu if open
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
         });
-    });
 
-    // Login form handler
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', handleLogin);
+        // Login form handler
+        const loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+            loginForm.addEventListener('submit', handleLogin);
+        }
+
+        // Iframe close button
+        const closeIframeBtn = document.getElementById('closeIframe');
+        if (closeIframeBtn) {
+            closeIframeBtn.addEventListener('click', closeIframe);
+        }
+
+        // Logout button
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', logout);
+        }
+
+        // Contact support button
+        const contactSupportBtn = document.getElementById('contact-support-btn');
+        if (contactSupportBtn) {
+            contactSupportBtn.addEventListener('click', () => {
+                alert('Please email support@buxiq.com for assistance.');
+            });
+        }
+
+        // CAPTCHA refresh button
+        const refreshCaptchaBtn = document.getElementById('refreshCaptcha');
+        if (refreshCaptchaBtn) {
+            refreshCaptchaBtn.addEventListener('click', generateCaptcha);
+        }
+
+        // Initialize offerwall buttons
+        initializeOfferwallButtons();
+
+        // Add keyboard event for CAPTCHA input (Enter key)
+        const captchaInput = document.getElementById('captchaInput');
+        if (captchaInput) {
+            captchaInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleLogin(e);
+                }
+            });
+        }
+
+        console.log('Event listeners initialized successfully');
+    } catch (error) {
+        console.error('Error initializing event listeners:', error);
     }
-
-    // Iframe close button
-    const closeIframeBtn = document.getElementById('closeIframe');
-    if (closeIframeBtn) {
-        closeIframeBtn.addEventListener('click', closeIframe);
-    }
-
-    // Logout button
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', logout);
-    }
-
-    // Contact support button
-    const contactSupportBtn = document.getElementById('contact-support-btn');
-    if (contactSupportBtn) {
-        contactSupportBtn.addEventListener('click', () => {
-            alert('Please email support@buxiq.com for assistance.');
-        });
-    }
-
-    // Initialize offerwall buttons
-    initializeOfferwallButtons();
 }
 
 // Initialize offerwall buttons with user validation
 function initializeOfferwallButtons() {
-    Object.keys(offerwallButtons).forEach(buttonId => {
-        const button = document.getElementById(buttonId);
-        if (button) {
-            // Remove any existing listeners to prevent duplicates
-            button.removeEventListener('click', offerwallClickHandler);
-            // Add new listener
-            button.addEventListener('click', offerwallClickHandler);
-        }
-    });
+    try {
+        Object.keys(offerwallButtons).forEach(buttonId => {
+            const button = document.getElementById(buttonId);
+            if (button) {
+                // Remove any existing listeners to prevent duplicates
+                button.replaceWith(button.cloneNode(true));
+                const newButton = document.getElementById(buttonId);
+                newButton.addEventListener('click', offerwallClickHandler);
+            }
+        });
+    } catch (error) {
+        console.error('Error initializing offerwall buttons:', error);
+    }
 }
 
 // Handler for offerwall button clicks
@@ -2007,63 +1773,89 @@ function offerwallClickHandler(e) {
 
     if (!urlGenerator) {
         console.error('No URL generator found for button:', buttonId);
+        alert('Offerwall not configured properly');
         return;
     }
 
-    // Use user[4] (username) or user[0] (account) as fallback
-    const username = currentUser[4] || currentUser[0] || 'user';
-    const url = typeof urlGenerator === 'function' ? urlGenerator(username) : urlGenerator;
+    try {
+        // Use user[4] (username) or user[0] (account) as fallback
+        const username = currentUser[4] || currentUser[0] || 'user';
+        const url = typeof urlGenerator === 'function' ? urlGenerator(username) : urlGenerator;
 
-    console.log(`Opening offerwall ${buttonId} for user ${username}`);
-    openIframe(url);
+        console.log(`Opening offerwall ${buttonId} for user ${username}`);
+        
+        // Special handling for external windows
+        if (buttonId === 'openOfferWallcheddar') {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        } else {
+            openIframe(url);
+        }
+    } catch (error) {
+        console.error('Error opening offerwall:', error);
+        alert('Error opening offerwall. Please try again.');
+    }
 }
 
 // Enhanced iframe functions
 function openIframe(url) {
-    const iframeContainer = document.getElementById('iframeContainer');
-    const dashboardIframe = document.getElementById('dashboardIframe');
+    try {
+        const iframeContainer = document.getElementById('iframeContainer');
+        const dashboardIframe = document.getElementById('dashboardIframe');
 
-    if (!iframeContainer || !dashboardIframe) {
-        console.error('Iframe elements not found');
-        return;
+        if (!iframeContainer || !dashboardIframe) {
+            console.error('Iframe elements not found');
+            return;
+        }
+
+        dashboardIframe.src = url;
+        iframeContainer.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    } catch (error) {
+        console.error('Error opening iframe:', error);
     }
-
-    dashboardIframe.src = url;
-    iframeContainer.style.display = 'block';
-    document.body.style.overflow = 'hidden'; // Prevent scrolling behind iframe
 }
 
 function closeIframe() {
-    const iframeContainer = document.getElementById('iframeContainer');
-    const dashboardIframe = document.getElementById('dashboardIframe');
+    try {
+        const iframeContainer = document.getElementById('iframeContainer');
+        const dashboardIframe = document.getElementById('dashboardIframe');
 
-    if (iframeContainer && dashboardIframe) {
-        iframeContainer.style.display = 'none';
-        dashboardIframe.src = '';
-        document.body.style.overflow = 'auto'; // Restore scrolling
+        if (iframeContainer && dashboardIframe) {
+            iframeContainer.classList.add('hidden');
+            dashboardIframe.src = '';
+            document.body.style.overflow = 'auto';
+        }
+    } catch (error) {
+        console.error('Error closing iframe:', error);
     }
 }
 
 // Update server time display
 function updateServerTime() {
-    const now = new Date();
-    
-    // Convert to PST (UTC-8) or PDT (UTC-7) depending on daylight saving
-    const pstOffset = now.getTimezoneOffset() >= 480 ? -8 * 60 : -7 * 60; // PST is UTC-8, PDT is UTC-7
-    const pstTime = new Date(now.getTime() + (now.getTimezoneOffset() - pstOffset) * 60000);
-    
-    // Format as HH:MM:SS
-    const hours = String(pstTime.getHours()).padStart(2, '0');
-    const minutes = String(pstTime.getMinutes()).padStart(2, '0');
-    const seconds = String(pstTime.getSeconds()).padStart(2, '0');
-    
-    document.getElementById('serverTime').textContent = `${hours}:${minutes}:${seconds} PST`;
+    try {
+        const now = new Date();
+        
+        // Convert to PST (UTC-8) or PDT (UTC-7)
+        const pstOffset = now.getTimezoneOffset() >= 480 ? -8 * 60 : -7 * 60;
+        const pstTime = new Date(now.getTime() + (now.getTimezoneOffset() - pstOffset) * 60000);
+        
+        const hours = String(pstTime.getHours()).padStart(2, '0');
+        const minutes = String(pstTime.getMinutes()).padStart(2, '0');
+        const seconds = String(pstTime.getSeconds()).padStart(2, '0');
+        
+        const serverTimeElement = document.getElementById('serverTime');
+        if (serverTimeElement) {
+            serverTimeElement.textContent = `${hours}:${minutes}:${seconds} PST`;
+        }
+    } catch (error) {
+        console.error('Error updating server time:', error);
+    }
 }
 
-// Object with offerwall URLs and open functions
+// Offerwall URLs configuration
 const offerwallButtons = {
-    'openOfferWallCPX': (user) => `https://offers.cpx-research.com/index.php?app_id=26219&ext_user_id=${user}&username=${user}&subid_1=&subid_2`,
-    'openOfferWallSPARKWALL': (user) => `https://spark-wall.com/offerwall/G2kA8XaPF2jjstApSCZsK6aE6qudMN/${user}&username=${user}&subid_1=&subid_2`,
+    'openOfferWallCPX': (user) => `https://offers.cpx-research.com/index.php?app_id=26219&ext_user_id=${user}&username=${user}`,
+    'openOfferWallSPARKWALL': (user) => `https://spark-wall.com/offerwall/G2kA8XaPF2jjstApSCZsK6aE6qudMN/${user}`,
     'openOfferWallsads': (user) => `https://offerwall.sushiads.com/surveywall?apiKey=67e76c74ca62f460071524&userId=${user}`,
     'openOfferWallchat': () => `https://bux-iq.netlify.app/chat.html`,
     'openOfferWallwannads': (user) => `https://earn.wannads.com/wall?apiKey=67d3d43d63631681386947&userId=${user}`,
@@ -2076,106 +1868,170 @@ const offerwallButtons = {
     'openOfferWallporix': (user) => `https://porix.org/app/iframe/10221/${user}`,
     'openOfferWallcheddar': (user) => {
         const url = `https://revtoo.com/redirect?api_key=m7l0au6f6w8tzh0ghly11tur1oucce&offer_id=479&user_id=${user}`;
-        console.log('Opening URL:', url);
-        setTimeout(() => window.open(url, '_blank'), 100);
+        return url; // This will be handled specially in the click handler
     },
     'openOfferWallrevtoo': (user) => `https://revtoo.com/offerwall/m7l0au6f6w8tzh0ghly11tur1oucce/${user}`
 };
 
-// Login handler
+// Enhanced login handler
 async function handleLogin(e) {
-    e.preventDefault();
+    if (e && e.preventDefault) {
+        e.preventDefault();
+    }
 
-    const account = document.getElementById('login-account')?.value?.trim() || '';
-    const clientid = document.getElementById('login-clientid')?.value?.trim() || '';
-    const captchaInput = document.getElementById('captchaInput')?.value?.trim() || '';
+    const isAutoLogin = e.type === 'auto';
+    const accountInput = document.getElementById('login-account');
+    const clientidInput = document.getElementById('login-clientid');
+    const captchaInput = document.getElementById('captchaInput');
     const errorMsg = document.getElementById('error-msg');
 
-    // For auto-login, allow a temporary bypass for CAPTCHA verification
-    const isAutoLogin = e.type === 'auto';
-    if (!isAutoLogin && captchaInput !== captchaCode) {
-        showError(errorMsg, 'Invalid CAPTCHA');
-        generateCaptcha();
-        document.getElementById('captchaInput').value = '';
-        return;
+    const account = accountInput?.value?.trim() || '';
+    const clientid = clientidInput?.value?.trim() || '';
+    const captchaValue = captchaInput?.value?.trim() || '';
+
+    // Validate inputs for manual login
+    if (!isAutoLogin) {
+        if (!account || !clientid) {
+            showError(errorMsg, 'Please enter both account and client ID');
+            return;
+        }
+
+        if (captchaValue !== captchaCode) {
+            showError(errorMsg, 'Invalid CAPTCHA code');
+            generateCaptcha();
+            if (captchaInput) captchaInput.value = '';
+            return;
+        }
     }
 
     try {
+        showError(errorMsg, 'Logging in...', 'info');
+        
         const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQHuo-I6k4RbAnXvz_FvCzshqg7Cm5dqAXwNkvDLpgpZH84OGUSbX6TiOUfMrCHv3CiNnLnx0IhzNZC/pub?gid=0&single=true&output=csv');
-        if (!response.ok) throw new Error('Network response was not ok');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
         const data = await response.text();
-        const rows = data.trim().split('\n').map(row => row.split(','));
+        const rows = data.trim().split('\n').map(row => {
+            const cells = row.split(',').map(cell => cell.trim());
+            // Ensure we have at least 7 columns
+            while (cells.length < 7) cells.push('');
+            return cells;
+        });
 
-        // Find user in spreadsheet data based on account and clientid (if not auto-login)
-        const user = rows.find(r => r[0] === account && (isAutoLogin || r[1] === clientid));
+        // Find user - for auto-login, we only check account; for manual, check both
+        const user = rows.find(r => {
+            if (isAutoLogin) {
+                return r[0] === account;
+            } else {
+                return r[0] === account && r[1] === clientid;
+            }
+        });
 
         if (user) {
             const status = (user[2] || '').toLowerCase();
             if (status === 'blocked') {
-                showError(errorMsg, 'Your account is blocked.');
-                // Clear login fields and generate new CAPTCHA on blocked account
-                document.getElementById('login-account').value = '';
-                document.getElementById('login-clientid').value = '';
-                document.getElementById('captchaInput').value = '';
-                generateCaptcha();
+                showError(errorMsg, 'Your account has been blocked. Please contact support.');
+                resetLoginForm();
                 return;
             }
 
-            // Store current user globally
+            // Login successful
             currentUser = user;
-
-            // Add user to logged-in users
             loggedInUsers[account] = {
                 loginTime: new Date().toISOString(),
                 clientid: clientid
             };
 
-            // Update UI with user data
-            updateUserUI(user);
-
             // Store in local storage
             localStorage.setItem('buxiq_account', account);
 
-            // Show dashboard
-            document.getElementById('login-container')?.classList.add('hidden');
-            document.getElementById('dashboard')?.classList.remove('hidden');
-            if (errorMsg) errorMsg.classList.add('hidden');
-
-            // Initialize offerwalls for this user
-            initializeOfferwallButtons();
+            // Update UI
+            updateUserUI(user);
+            showDashboard();
 
             // Load additional data
-            fetchCSV(); // For activity logs
-            updateBalance(); // Update balance immediately after login
+            await Promise.all([
+                fetchCSV(),
+                updateBalance()
+            ]);
+
+            showError(errorMsg, 'Login successful!', 'success');
+            
         } else {
-            showError(errorMsg, 'Invalid credentials');
-            // Clear CAPTCHA input and generate new CAPTCHA on invalid credentials
-            document.getElementById('captchaInput').value = '';
-            generateCaptcha();
+            throw new Error(isAutoLogin ? 'Saved account not found' : 'Invalid credentials');
         }
+
     } catch (err) {
         console.error('Login error:', err);
-        showError(errorMsg, 'Error loading data. Please try again.');
-        // Clear CAPTCHA input and generate new CAPTCHA on error
-        document.getElementById('captchaInput').value = '';
-        generateCaptcha();
-    } finally {
-        // Ensure captchaInput is cleared if it was a temporary auto-login value
-        if (isAutoLogin && document.getElementById('captchaInput').value === 'auto_login_temp') {
-            document.getElementById('captchaInput').value = '';
+        const errorMessage = isAutoLogin ? 
+            'Auto-login failed. Please login manually.' : 
+            'Login failed. Please check your credentials.';
+        
+        showError(errorMsg, errorMessage);
+        
+        if (isAutoLogin) {
+            // Clear saved account on auto-login failure
+            localStorage.removeItem('buxiq_account');
+        } else {
+            generateCaptcha();
+            if (captchaInput) captchaInput.value = '';
         }
     }
 }
 
-// Helper function to show errors
-function showError(element, message) {
-    if (element) {
-        element.textContent = message;
-        element.classList.remove('hidden');
-    } else {
-        alert(message);
+// Helper function to show errors/messages
+function showError(element, message, type = 'error') {
+    if (!element) return;
+
+    element.textContent = message;
+    element.className = 'error-message'; // Reset classes
+    
+    switch(type) {
+        case 'success':
+            element.classList.add('success');
+            break;
+        case 'info':
+            element.classList.add('info');
+            break;
+        case 'error':
+        default:
+            element.classList.add('error');
+            break;
     }
+    
+    element.classList.remove('hidden');
+
+    // Auto-hide success/info messages after 3 seconds
+    if (type !== 'error') {
+        setTimeout(() => {
+            element.classList.add('hidden');
+        }, 3000);
+    }
+}
+
+// Reset login form
+function resetLoginForm() {
+    const accountInput = document.getElementById('login-account');
+    const clientidInput = document.getElementById('login-clientid');
+    const captchaInput = document.getElementById('captchaInput');
+    
+    if (accountInput) accountInput.value = '';
+    if (clientidInput) clientidInput.value = '';
+    if (captchaInput) captchaInput.value = '';
+    
+    generateCaptcha();
+}
+
+// Show dashboard and hide login
+function showDashboard() {
+    const loginContainer = document.getElementById('login-container');
+    const dashboard = document.getElementById('dashboard');
+    
+    if (loginContainer) loginContainer.classList.add('hidden');
+    if (dashboard) dashboard.classList.remove('hidden');
+    
+    // Reinitialize offerwall buttons for the logged-in user
+    initializeOfferwallButtons();
 }
 
 // Update user UI after login
@@ -2184,73 +2040,84 @@ function updateUserUI(user) {
         const avatarUrl = user[5] || `https://ui-avatars.com/api/?background=c31432&color=fff&name=${encodeURIComponent(user[4] || 'User')}`;
 
         // Update avatars
-        const userAvatar = document.getElementById('mobileUseravatar');
-        if (userAvatar) userAvatar.src = avatarUrl;
+        const avatars = document.querySelectorAll('[id*="avatar"], [id*="Avatar"]');
+        avatars.forEach(avatar => {
+            if (avatar.tagName === 'IMG') {
+                avatar.src = avatarUrl;
+            }
+        });
 
         // Update level
-        const levelEl = document.getElementById('level');
-        const mobileLevelEl = document.getElementById('mobileLevel');
-        if (levelEl) levelEl.textContent = user[6] || '1';
-        if (mobileLevelEl) mobileLevelEl.textContent = user[6] || '1';
+        const levelElements = document.querySelectorAll('[id*="level"], [id*="Level"]');
+        levelElements.forEach(el => {
+            el.textContent = user[6] || '1';
+        });
+
+        // Update username
+        const usernameElements = document.querySelectorAll('[id*="username"], [id*="Username"]');
+        usernameElements.forEach(el => {
+            el.textContent = user[4] || 'User';
+        });
 
         // Update balance
         updateBalance();
 
-        // Update username
-        const usernameEl = document.getElementById('mobileUsername');
-        if (usernameEl) usernameEl.textContent = user[4] || 'User';
-        
-        // Update desktop balance display
-        const balanceEl = document.getElementById('balance');
-        if (balanceEl) {
-            const balance = parseFloat(user[3] || '0').toFixed(2);
-            balanceEl.textContent = `$${balance}`;
-        }
     } catch (error) {
         console.error('Error updating user UI:', error);
     }
 }
 
-// Logout function
+// Enhanced logout function
 function logout() {
     try {
+        if (!confirm('Are you sure you want to logout?')) {
+            return;
+        }
+
         if (currentUser && currentUser[0]) {
-            // Remove user from logged-in users
             delete loggedInUsers[currentUser[0]];
         }
         
         currentUser = null;
         localStorage.removeItem('buxiq_account');
 
-        document.getElementById('dashboard')?.classList.add('hidden');
-        document.getElementById('login-container')?.classList.remove('hidden');
-        document.getElementById('login-account').value = '';
-        document.getElementById('login-clientid').value = '';
-        document.getElementById('captchaInput').value = '';
+        // Show login, hide dashboard
+        const loginContainer = document.getElementById('login-container');
+        const dashboard = document.getElementById('dashboard');
+        
+        if (loginContainer) loginContainer.classList.remove('hidden');
+        if (dashboard) dashboard.classList.add('hidden');
 
+        // Reset form
+        resetLoginForm();
+
+        // Reset UI elements
+        const balanceElements = document.querySelectorAll('[id*="balance"], [id*="Balance"]');
+        balanceElements.forEach(el => {
+            el.textContent = el.id.includes('mobile') ? '0.00' : '$0.00';
+        });
+
+        const usernameElements = document.querySelectorAll('[id*="username"], [id*="Username"]');
+        usernameElements.forEach(el => {
+            el.textContent = 'User';
+        });
+
+        const levelElements = document.querySelectorAll('[id*="level"], [id*="Level"]');
+        levelElements.forEach(el => {
+            el.textContent = '0';
+        });
+
+        showSection('earn');
+        
+        // Clear any error messages
         const errorMsg = document.getElementById('error-msg');
         if (errorMsg) errorMsg.classList.add('hidden');
 
-        generateCaptcha();
-        showSection('earn'); // Return to default 'earn' section on logout
-        
-        // Reset balance display
-        const balanceEl = document.getElementById('balance');
-        const mobileBalanceEl = document.getElementById('mobileBalance');
-        if (balanceEl) balanceEl.textContent = '$0.00';
-        if (mobileBalanceEl) mobileBalanceEl.textContent = '0.00';
-        
-        // Reset username
-        const usernameEl = document.getElementById('mobileUsername');
-        if (usernameEl) usernameEl.textContent = 'User';
-        
-        // Reset level
-        const levelEl = document.getElementById('level');
-        const mobileLevelEl = document.getElementById('mobileLevel');
-        if (levelEl) levelEl.textContent = '0';
-        if (mobileLevelEl) mobileLevelEl.textContent = '0';
+        console.log('Logout successful');
+
     } catch (error) {
         console.error('Error during logout:', error);
+        alert('Error during logout. Please refresh the page.');
     }
 }
 
@@ -2265,7 +2132,7 @@ function generateCaptcha() {
         return captchaCode;
     } catch (error) {
         console.error('Error generating CAPTCHA:', error);
-        return '12345'; // Fallback CAPTCHA
+        return '12345';
     }
 }
 
@@ -2280,26 +2147,17 @@ function showSection(section) {
             }
         });
 
-        // Highlight active nav links (desktop and mobile)
+        // Highlight active nav links
         document.querySelectorAll('.navbar-item, .mobile-nav-item').forEach(link => {
             if (link.dataset.section) {
                 const isActive = link.dataset.section === section;
                 
-                // Desktop nav styling
                 if (link.classList.contains('navbar-item')) {
                     link.classList.toggle('text-white', isActive);
                     link.classList.toggle('text-gray-400', !isActive);
-                    link.classList.toggle('hover:text-white', !isActive);
-                    
-                    // Update the ::after pseudo-element
-                    if (isActive) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
+                    link.classList.toggle('active', isActive);
                 }
                 
-                // Mobile nav styling
                 if (link.classList.contains('mobile-nav-item')) {
                     if (isActive) {
                         link.classList.remove('text-gray-400', 'hover:text-white', 'hover:bg-gray-800/50');
@@ -2311,72 +2169,80 @@ function showSection(section) {
                 }
             }
         });
+
+        // Load section-specific data
+        if (section === 'profile') {
+            fetchCSV();
+        }
+
     } catch (error) {
         console.error('Error showing section:', error);
     }
 }
 
-// Update balance function (can be called separately to refresh)
+// Update balance function
 async function updateBalance() {
     try {
-        // Use currentUser data if available, otherwise fetch from login fields
-        const account = currentUser ? currentUser[0] : (document.getElementById('login-account')?.value?.trim() || '');
-        const clientid = currentUser ? currentUser[1] : (document.getElementById('login-clientid')?.value?.trim() || '');
-
-        if (!account) {
-            console.warn('Cannot update balance: account is missing.');
-            return;
-        }
+        if (!currentUser) return;
 
         const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQHuo-I6k4RbAnXvz_FvCzshqg7Cm5dqAXwNkvDLpgpZH84OGUSbX6TiOUfMrCHv3CiNnLnx0IhzNZC/pub?gid=0&single=true&output=csv');
         if (!response.ok) throw new Error('Network error');
 
         const data = await response.text();
-        const rows = data.trim().split('\n').map(r => r.split(','));
-        // Find user by account and clientid for accuracy
-        const user = rows.find(r => r[0] === account && r[1] === clientid); 
+        const rows = data.trim().split('\n').map(r => {
+            const cells = r.split(',').map(cell => cell.trim());
+            while (cells.length < 7) cells.push('');
+            return cells;
+        });
 
-        const balanceEl = document.getElementById('balance');
-        const mobileBalanceEl = document.getElementById('mobileBalance');
+        const user = rows.find(r => r[0] === currentUser[0] && r[1] === currentUser[1]);
+        const balanceElements = document.querySelectorAll('[id*="balance"], [id*="Balance"]');
 
         if (user) {
             const balance = parseFloat(user[3] || '0').toFixed(2);
-            if (balanceEl) balanceEl.textContent = `$${balance}`;
-            if (mobileBalanceEl) mobileBalanceEl.textContent = balance;
+            balanceElements.forEach(el => {
+                if (el.id.includes('mobile')) {
+                    el.textContent = balance;
+                } else {
+                    el.textContent = `$${balance}`;
+                }
+            });
         } else {
-            // If user not found (e.g., after logout), reset balance display to 0
-            if (balanceEl) balanceEl.textContent = '$0.00';
-            if (mobileBalanceEl) mobileBalanceEl.textContent = '0.00';
+            balanceElements.forEach(el => {
+                el.textContent = el.id.includes('mobile') ? '0.00' : '$0.00';
+            });
         }
     } catch (err) {
         console.error('Error updating balance:', err);
     }
 }
 
-// Fetch CSV for activity logs
+// Enhanced CSV fetching for activity logs
 async function fetchCSV() {
     try {
         const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3p3daAnCETfJtrUUvaiNqoUreYkn9FIHus6rEyq-e8E8oLaV51L_NrVWjHp1CyTv3UqBqryq3aH-0/pub?gid=0&single=true&output=csv');
         if (!response.ok) throw new Error('Network error');
 
         const data = await response.text();
-        const rows = data.trim().split('\n').slice(1); // skip header
+        const rows = data.trim().split('\n').slice(1);
         const logsContainer = document.getElementById('logs')?.querySelector('div');
 
         if (!logsContainer) return;
+        
         logsContainer.innerHTML = '';
-
         let hasLogs = false;
+
         rows.forEach((row, index) => {
             const cols = row.split(',').map(c => c.trim());
-            // Ensure necessary columns exist and are not empty
             if (cols.length >= 7 && cols[2] && cols[6]) {
                 hasLogs = true;
                 const username = cols[2];
-                const amount = parseFloat(cols[6]).toFixed(2); // Format amount to 2 decimal places
+                const amount = parseFloat(cols[6]).toFixed(2);
+                
                 const logDiv = document.createElement('div');
                 logDiv.className = 'flex items-center justify-between p-3 mb-2 bg-white/5 rounded-lg text-sm animate-fade-in';
                 logDiv.style.animationDelay = `${index * 50}ms`;
+                
                 logDiv.innerHTML = `
                     <div class="flex items-center space-x-3">
                         <div class="w-8 h-8 flex items-center justify-center bg-gradient-to-br from-purple-600 to-pink-500 rounded-full text-white">
@@ -2389,18 +2255,20 @@ async function fetchCSV() {
                     </div>
                     <div class="text-green-400 font-semibold">+$${amount}</div>
                 `;
-                logsContainer.prepend(logDiv);
+                
+                logsContainer.appendChild(logDiv);
             }
         });
 
         if (!hasLogs) {
-            logsContainer.innerHTML = '<div class="text-center h-full flex items-center justify-center opacity-70 font-medium"><p>Your activity log will appear here</p></div>';
+            logsContainer.innerHTML = '<div class="text-center py-8 opacity-70 font-medium"><p>Your activity log will appear here</p></div>';
         }
+
     } catch (err) {
         console.error('Error fetching activity logs:', err);
         const logsContainer = document.getElementById('logs')?.querySelector('div');
         if (logsContainer) {
-            logsContainer.innerHTML = '<div class="text-center h-full flex items-center justify-center text-red-400 font-medium"><p>Error loading activity logs.</p></div>';
+            logsContainer.innerHTML = '<div class="text-center py-8 text-red-400 font-medium"><p>Error loading activity logs</p></div>';
         }
     }
 }
@@ -2418,22 +2286,26 @@ async function redeemBonusCode() {
             return;
         }
 
-        if (amountLocalInput) amountLocalInput.value = '';
-        if (amountUsdInput) amountUsdInput.value = '';
-
         const response = await fetch(`https://script.google.com/macros/s/AKfycbxmqOnPJLPuHD6u_DD66bwY0R4MYQ8v9uF1Mv0pm8Sg9APSS4R4oXzbs3zin2FoTMK5/exec?username=${encodeURIComponent(username)}&bonusCode=${encodeURIComponent(bonusCode)}`);
+        
+        if (!response.ok) throw new Error('Network error');
+        
         const result = await response.text();
 
         if (result.includes('Error')) {
             alert(result);
         } else {
-            const [amountLocal, amountUsd] = result.split(',').map(s => s.trim());
-            if (amountLocalInput) amountLocalInput.value = parseFloat(amountLocal).toFixed(2);
-            if (amountUsdInput) amountUsdInput.value = parseFloat(amountUsd).toFixed(2);
+            const [amountLocal, amountUsd] = result.split(',').map(s => parseFloat(s.trim()) || 0);
+            
+            if (amountLocalInput) amountLocalInput.value = amountLocal.toFixed(2);
+            if (amountUsdInput) amountUsdInput.value = amountUsd.toFixed(2);
+            
             sendPostback(amountLocal, amountUsd, username, bonusCode);
             alert('Bonus code redeemed successfully!');
-            updateBalance(); // Update balance after bonus redemption
-            fetchCSV(); // Refresh activity logs
+            
+            // Refresh data
+            await updateBalance();
+            await fetchCSV();
         }
     } catch (err) {
         console.error('Error redeeming bonus code:', err);
@@ -2445,7 +2317,7 @@ async function redeemBonusCode() {
 function sendPostback(amountLocal, amountUsd, username, bonusCode) {
     try {
         const timestamp = Date.now();
-        const url = `https://script.google.com/macros/s/AKfycbyvw4LiShTvgnTTLRLISnTYJRhqeStmZgL9YD_ZuQEJubcDPH8bSbGpHPCVHDfx0dbW/exec?status=success&trans_id=${timestamp}&user_id=${encodeURIComponent(username)}&bonusCode=${encodeURIComponent(bonusCode)}&sub_id=&sub_id_2=&amount_local=${encodeURIComponent(amountLocal)}&amount_usd=${encodeURIComponent(amountUsd)}&offer_id=bonus_redeem&hash=secure_hash_value&ip_click=192.168.1.1`;
+        const url = `https://script.google.com/macros/s/AKfycbyvw4LiShTvgnTTLRLISnTYJRhqeStmZgL9YD_ZuQEJubcDPH8bSbGpHPCVHDfx0dbW/exec?status=success&trans_id=${timestamp}&user_id=${encodeURIComponent(username)}&bonusCode=${encodeURIComponent(bonusCode)}&amount_local=${amountLocal}&amount_usd=${amountUsd}&offer_id=bonus_redeem`;
 
         fetch(url)
             .then(res => res.json())
@@ -2455,6 +2327,22 @@ function sendPostback(amountLocal, amountUsd, username, bonusCode) {
         console.error('Error sending postback:', error);
     }
 }
+
+// Add cleanup on page unload
+window.addEventListener('beforeunload', () => {
+    cleanupThreeJS();
+});
+
+// Export functions for global access (if needed)
+window.buxiqApp = {
+    logout,
+    updateBalance,
+    redeemBonusCode,
+    generateCaptcha,
+    showSection
+};
+
+console.log('BuxIQ script loaded successfully');
 </script>
 </body>
 </html>
