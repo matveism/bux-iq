@@ -536,7 +536,7 @@
             <div class="wm-tab" data-section="profile">Earn</div>
             <div class="wm-tab" data-section="bonus">Bonus</div>
             <div class="wm-tab" data-section="help">Help</div>
-            <div class="wm-tab" data-section="https://bux-iq.netlify.app/pre-screening.html">PRE_SCRENNING</div>
+            <div class="wm-tab" data-section="PRE_SCRENNING">PRE_SCRENNING</div>
         </div>
         
         <!-- Status Bar -->
@@ -618,10 +618,191 @@
                 </div>
             </div>
         </div>
+        <!-- Leaders Section -->
+        <div id="section-PRE_SCREENING" class="wm-section hidden">
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUX-IQ Pre-Screening</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .info-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-secondary {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+        
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            padding: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .iframe-container {
+                height: 500px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .iframe-container {
+                height: 400px;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+            <div class="iframe-container">
+                <iframe src="https://bux-iq.netlify.app/pre-screening.html" 
+                        title="BUX-IQ Pre-Screening Application" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+            
+            <div class="controls">
+                <button class="btn-primary" onclick="refreshIframe()">Refresh Application</button>
+               
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>BUX-IQ Pre-Screening &copy; 2023 | Embedded Application</p>
+    </footer>
+
+    <script>
+        function refreshIframe() {
+            const iframe = document.querySelector('iframe');
+            iframe.src = iframe.src;
+        }
+        
+        function openInNewTab() {
+            window.open('https://bux-iq.netlify.app/pre-screening.html', '_blank');
+        }
+    </script>
+</body>
+</html>
         <!-- Leaders Section -->
         <div id="section-leaders" class="wm-section hidden">
             <h2>Leaderboard</h2>
+            
             <div class="wm-leaderboard">
                 <table>
                     <thead>
