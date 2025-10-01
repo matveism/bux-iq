@@ -13,6 +13,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Bux iQ" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <style>
         /* Windows Mobile 6.5 Style */
         * {
@@ -149,6 +150,57 @@
         .wm-button.primary:active {
             background: linear-gradient(to bottom, #2c4163 0%, #4a6a9c 100%);
             box-shadow: inset 1px 1px 0 #1e3a6b, inset -1px -1px 0 #6b8cc0;
+        }
+        
+        /* Google Login Button */
+        .google-login-btn {
+            background: #4285f4;
+            color: white;
+            border: 1px solid #4285f4;
+            border-radius: 3px;
+            padding: 8px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 8px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .google-login-btn i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .google-login-btn:hover {
+            background: #3367d6;
+        }
+        
+        .divider {
+            text-align: center;
+            margin: 12px 0;
+            color: #4a6a9c;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #8faad6;
+            z-index: 1;
+        }
+        
+        .divider span {
+            background: #d4dff2;
+            padding: 0 8px;
+            position: relative;
+            z-index: 2;
         }
         
         /* Input Fields */
@@ -665,6 +717,24 @@
         <div id="section-profile" class="wm-section hidden">
             <div id="login-container">
                 <h2>Login</h2>
+                
+                <!-- Google Login Button -->
+                <div id="g_id_onload"
+                    data-client_id="387422659555-007kjhq0c41f2lq39e075ib5mtpf3q9o.apps.googleusercontent.com"
+                    data-context="signin"
+                    data-ux_mode="popup"
+                    data-login_uri="https://your-backend.example.com/auth/google"
+                    data-auto_prompt="false">
+                </div>
+
+                <div class="g_id_signin google-login-btn" data-type="standard" data-theme="filled_blue" data-text="signin_with" data-shape="rectangular" data-logo_alignment="left">
+                </div>
+                
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+                
+                <!-- Manual Login -->
                 <div class="wm-login-form">
                     <label for="login-account">Account #</label>
                     <input type="text" id="login-account" class="wm-input" placeholder="Enter your account number">
@@ -815,6 +885,17 @@ let captchaCode = '';
 let currentUser = null;
 let loggedInUsers = {};
 
+// Google Sheets structure:
+// Column A: Account #
+// Column B: Client ID
+// Column C: Status
+// Column D: Balance
+// Column E: Username
+// Column F: Avatar URL
+// Column G: Level
+// Column H: Google ID
+// Column I: Google Email
+
 // DOM Content Loaded - Initialize everything
 document.addEventListener('DOMContentLoaded', function() {
     // Generate initial CAPTCHA
@@ -833,21 +914,80 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update header time
     updateHeaderTime();
     setInterval(updateHeaderTime, 60000);
+    
+    // Initialize Google Sign-In
+    initializeGoogleSignIn();
 });
+
+// Initialize Google Sign-In
+function initializeGoogleSignIn() {
+    // Google Sign-In is initialized via the g_id_onload div
+    // The response is handled by handleGoogleCredentialResponse
+}
+
+// Handle Google Sign-In response
+function handleGoogleCredentialResponse(response) {
+    console.log("Google Sign-In response:", response);
+    
+    // Decode the JWT token to get user info
+    const responsePayload = parseJwt(response.credential);
+    
+    console.log("Google user info:", responsePayload);
+    
+    // Process Google login with the user info
+    processGoogleLogin({
+        id: responsePayload.sub,
+        email: responsePayload.email,
+        name: responsePayload.name,
+        picture: responsePayload.picture
+    });
+}
+
+// Parse JWT token
+function parseJwt(token) {
+    try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        
+        return JSON.parse(jsonPayload);
+    } catch (e) {
+        console.error("Error parsing JWT:", e);
+        return null;
+    }
+}
 
 // Check for existing user session
 function checkExistingSession() {
     const savedAccount = localStorage.getItem('buxiq_account');
-    if (savedAccount) {
-        // Attempt to log in with saved account
+    const savedGoogleUser = localStorage.getItem('buxiq_google_user');
+    
+    if (savedGoogleUser) {
+        // Handle Google user session restoration
+        const googleUser = JSON.parse(savedGoogleUser);
+        simulateGoogleLoginRestore(googleUser);
+    } else if (savedAccount) {
+        // Handle manual login session restoration
         document.getElementById('login-account').value = savedAccount;
-        // Mark as auto-login to bypass CAPTCHA check initially
         document.getElementById('captchaInput').value = 'auto_login_temp';
         handleLogin(new Event('auto'));
     } else {
         // Show default section if no session
         showSection('earn');
     }
+}
+
+// Simulate Google login restore
+function simulateGoogleLoginRestore(googleUser) {
+    const simulatedUser = {
+        email: googleUser.email,
+        name: googleUser.name,
+        id: googleUser.id,
+        picture: googleUser.picture
+    };
+    processGoogleLogin(simulatedUser);
 }
 
 // Initialize all event listeners
@@ -1018,6 +1158,74 @@ const offerwallButtons = {
     'openOfferWallrevtoo': (user) => `https://revtoo.com/offerwall/m7l0au6f6w8tzh0ghly11tur1oucce/${user}`
 };
 
+// Process Google Login
+async function processGoogleLogin(googleUser) {
+    const errorMsg = document.getElementById('error-msg');
+    
+    try {
+        // Check if user exists in Google Sheets
+        const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQHuo-I6k4RbAnXvz_FvCzshqg7Cm5dqAXwNkvDLpgpZH84OGUSbX6TiOUfMrCHv3CiNnLnx0IhzNZC/pub?gid=0&single=true&output=csv');
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        const data = await response.text();
+        const rows = data.trim().split('\n').map(row => row.split(','));
+
+        // Look for user by Google ID or email
+        const user = rows.find(r => r[7] === googleUser.id || r[8] === googleUser.email);
+
+        if (user) {
+            // Existing user - login
+            currentUser = user;
+            await completeLogin(user);
+        } else {
+            // New user - auto-register
+            await registerGoogleUser(googleUser);
+        }
+    } catch (err) {
+        console.error('Google login processing error:', err);
+        showError(errorMsg, 'Error during Google login. Please try again.');
+    }
+}
+
+// Register new Google user
+async function registerGoogleUser(googleUser) {
+    // Generate unique account number and client ID
+    const accountNumber = 'G' + Math.random().toString(36).substr(2, 8).toUpperCase();
+    const clientId = 'GC' + Math.random().toString(36).substr(2, 6).toUpperCase();
+    
+    // Create new user data
+    const newUser = [
+        accountNumber,      // 0: Account #
+        clientId,          // 1: Client ID
+        'active',          // 2: Status
+        '0.00',           // 3: Balance
+        googleUser.name,   // 4: Username
+        googleUser.picture, // 5: Avatar URL (Google profile picture)
+        '1',              // 6: Level
+        googleUser.id,    // 7: Google ID
+        googleUser.email  // 8: Google Email
+    ];
+    
+    // In a real implementation, you would send this to your backend/Google Apps Script
+    // For now, we'll use the new user data directly
+    currentUser = newUser;
+    
+    // Store in localStorage
+    localStorage.setItem('buxiq_google_user', JSON.stringify({
+        id: googleUser.id,
+        email: googleUser.email,
+        name: googleUser.name,
+        picture: googleUser.picture,
+        account: accountNumber,
+        clientId: clientId
+    }));
+    
+    await completeLogin(newUser);
+    
+    // Show welcome message for new users
+    addToLogs(`Welcome ${googleUser.name}! Your account has been created.`);
+}
+
 // Login handler
 async function handleLogin(e) {
     e.preventDefault();
@@ -1104,6 +1312,37 @@ async function handleLogin(e) {
     }
 }
 
+// Complete login process for both manual and Google login
+async function completeLogin(user) {
+    // Update user data
+    const avatarUrl = user[5] || `https://ui-avatars.com/api/?name=${encodeURIComponent(user[4] || 'User')}&background=2c5aa0&color=fff`;
+    
+    // Update UI
+    document.getElementById('userAvatar').src = avatarUrl;
+    document.getElementById('userName').textContent = user[4] || 'User';
+    document.getElementById('userLevel').textContent = user[6] || '1';
+    
+    // Store login
+    loggedInUsers[user[0]] = {
+        loginTime: new Date().toISOString(),
+        clientid: user[1],
+        isGoogle: !!user[7] // Mark as Google login
+    };
+    
+    localStorage.setItem('buxiq_account', user[0]);
+    
+    // Show dashboard
+    document.getElementById('login-container').classList.add('hidden');
+    document.getElementById('dashboard').classList.remove('hidden');
+    document.getElementById('error-msg').classList.add('hidden');
+    
+    // Update balance
+    await updateBalance();
+    
+    // Add login success message
+    addToLogs(`Welcome back ${user[4] || 'User'}!`);
+}
+
 // Helper function to show errors
 function showError(element, message) {
     if (element) {
@@ -1117,7 +1356,7 @@ function showError(element, message) {
 // Update user UI after login
 function updateUserUI(user) {
     try {
-        const avatarUrl = user[5] || `https://ui-avatars.com/api/?background=2c5aa0&color=fff&name=${encodeURIComponent(user[4] || 'User')}`;
+        const avatarUrl = user[5] || `https://ui-avatars.com/api/?name=${encodeURIComponent(user[4] || 'User')}&background=2c5aa0&color=fff`;
 
         // Update avatar
         const userAvatar = document.getElementById('userAvatar');
@@ -1141,9 +1380,14 @@ function updateUserUI(user) {
 // Logout function
 function logout() {
     try {
-        if (currentUser && currentUser[0]) {
+        if (currentUser) {
             // Remove user from logged-in users
             delete loggedInUsers[currentUser[0]];
+            
+            // If it's a Google user, remove Google data too
+            if (currentUser[7]) { // Google ID exists
+                localStorage.removeItem('buxiq_google_user');
+            }
         }
 
         currentUser = null;
@@ -1171,6 +1415,8 @@ function logout() {
         if (usernameEl) usernameEl.textContent = 'Guest User';
         if (levelEl) levelEl.textContent = '0';
         if (balanceEl) balanceEl.textContent = '$0.00';
+        
+        addToLogs('You have been logged out.');
     } catch (error) {
         console.error('Error during logout:', error);
     }
@@ -1287,6 +1533,26 @@ async function fetchCSV() {
             logsContainer.innerHTML = '<div class="wm-list-item"><div class="icon"><i class="fas fa-exclamation-triangle"></i></div><div>Error loading activity logs.</div></div>';
         }
     }
+}
+
+// Helper function to add messages to logs
+function addToLogs(message) {
+    const logsContainer = document.getElementById('logs');
+    const logEntry = document.createElement('div');
+    logEntry.className = 'wm-list-item';
+    logEntry.innerHTML = `
+        <div class="icon"><i class="fas fa-info-circle"></i></div>
+        <div>${new Date().toLocaleTimeString()} - ${message}</div>
+    `;
+    
+    // Remove initial placeholder if it exists
+    const initialMessage = logsContainer.querySelector('.wm-list-item:first-child');
+    if (initialMessage && initialMessage.textContent.includes('activity log will appear here')) {
+        logsContainer.removeChild(initialMessage);
+    }
+    
+    logsContainer.appendChild(logEntry);
+    logsContainer.scrollTop = logsContainer.scrollHeight;
 }
 
 // Bonus Code Redemption
