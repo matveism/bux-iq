@@ -1306,7 +1306,7 @@ async function addNewBonus() {
         formData.append('account', account);
         formData.append('clientId', clientId);
         formData.append('status', 'Active');
-        formData.append('balance', '0'); // Changed from 'UNUSED' to '0'
+        formData.append('balance', ''); // Changed from 'UNUSED' to '0'
         
         const response = await fetch(WEB_APP_URL, {
             method: 'POST',
