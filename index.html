@@ -891,7 +891,7 @@ let currentUser = null;
 let loggedInUsers = {};
 
 // Google Apps Script URL for posting data to Google Sheets
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3X7gQZQbC5X6X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5X5/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxLwW7NEXLMSDPh1A_PJbTjAucIuji6JtsgVu2xAdaMzXthTKsgk2xyWy83Dx8dO53Rrg/exec';
 
 // DOM Content Loaded - Initialize everything
 document.addEventListener('DOMContentLoaded', function() {
@@ -1220,7 +1220,7 @@ async function postUserToSheets(userData) {
         formData.append('googleEmail', userData[8]);
         
         // Send POST request to Google Apps Script
-        const response = await fetch(https://script.google.com/macros/s/AKfycbxLwW7NEXLMSDPh1A_PJbTjAucIuji6JtsgVu2xAdaMzXthTKsgk2xyWy83Dx8dO53Rrg/exec, {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
             body: formData
         });
