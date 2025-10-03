@@ -749,7 +749,10 @@
                         <img src="https://www.cpx-research.com/main/en/assets/img/logo.svg" alt="CPX Research Logo">
                         <div class="wm-button primary" id="openOfferWallCPX">Open OfferWall</div>
                     </div>
-                    
+                    <div class="wm-offer-item">
+                        <img src="https://affi-plat.s3.us-east-2.amazonaws.com/platforms/wannads-ogotipo-naranja.png" alt="CPX Research Logo">
+                        <div class="wm-button primary" id="openOfferWallwannads">Open OfferWall</div>
+                    </div>
                     
                     
                     
@@ -1048,6 +1051,7 @@ function updateHeaderTime() {
 // Object with offerwall URLs and open functions
 const offerwallButtons = {
     'openOfferWallCPX': (user) => `https://offers.cpx-research.com/index.php?app_id=26219&ext_user_id=${user}&username=${user}&subid_1=&subid_2`,
+    'openOfferWallwannads': (user) => `https://earn.wannads.com/surveywall?apiKey=67d3d43d63631681386947&userId=${user}`,
     'openOfferWallmc': (user) => `https://sdk.mychips.io/content?content_id=16cbcd08-387a-498f-b4bd-9f4d2c6883a7&user_id=${user}&ad_unit_id=${adUnit}`,
     'openOfferWallSPARKWALL': (user) => `https://spark-wall.com/offerwall/G2kA8XaPF2jjstApSCZsK6aE6qudMN/${user}&username=${user}&subid_1=&subid_2`,
     'openOfferWallowm': (user) => `https://offerwallmedia.com/offerwall/vfox4w1tpz3gflta3gblkkqp8b2aoj/${user}`,
