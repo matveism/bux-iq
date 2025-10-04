@@ -1,0 +1,2350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Earn crypto, PayPal funds, and gift cards by completing offers and surveys" />
+    <meta name="theme-color" content="#0a0a12" />
+    <meta name="clckd" content="45663763f89113271aedcb23f063dab2" />
+    <title>Bux IQ - Premium Rewards Platform</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/wppiqAy.png" />
+    <link rel="apple-touch-icon" href="https://i.imgur.com/wppiqAy.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Bux iQ" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://v1.mychips.io/SDK/latest/my-chips-sdk.bundle.js"></script>
+    
+    <style>
+        /* Windows Mobile 6.5 Style */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+        }
+        
+        body {
+            background: #5d7ca6;
+            color: #000;
+            font-size: 14px;
+            line-height: 1.4;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Header */
+        .wm-header {
+            background: linear-gradient(to bottom, #2c5aa0 0%, #1e3a6b 100%);
+            color: white;
+            height: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 8px;
+            border-bottom: 1px solid #0f1f3a;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .wm-header .start {
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .wm-header .title {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .wm-header .time {
+            font-size: 14px;
+        }
+        
+        /* Main Content */
+        .wm-content {
+            margin-top: 32px;
+            margin-bottom: 52px;
+            padding: 8px;
+            background: #5d7ca6;
+            min-height: calc(100vh - 84px);
+        }
+        
+        /* Windows Mobile Tabs */
+        .wm-tabs {
+            display: flex;
+            background: #4a6a9c;
+            border-bottom: 1px solid #2c4163;
+            overflow-x: auto;
+        }
+        
+        .wm-tab {
+            padding: 8px 16px;
+            background: #6b8cc0;
+            border: 1px solid #4a6a9c;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 2px;
+            color: white;
+            font-weight: bold;
+            white-space: nowrap;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .wm-tab.active {
+            background: #8faad6;
+            color: #000;
+        }
+        
+        /* Content Sections */
+        .wm-section {
+            background: #d4dff2;
+            border: 1px solid #8faad6;
+            border-radius: 4px;
+            padding: 12px;
+            margin-top: 8px;
+            box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #a3b3ce;
+        }
+        
+        .wm-section h2 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #1e3a6b;
+            border-bottom: 1px solid #8faad6;
+            padding-bottom: 4px;
+        }
+        
+        /* Windows Mobile Buttons */
+        .wm-button {
+            background: linear-gradient(to bottom, #f0f0f0 0%, #d4d4d4 100%);
+            border: 1px solid #808080;
+            border-radius: 3px;
+            padding: 6px 12px;
+            font-size: 14px;
+            color: #000;
+            cursor: pointer;
+            box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #a0a0a0;
+            margin: 4px 0;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .wm-button:active {
+            background: linear-gradient(to bottom, #d4d4d4 0%, #f0f0f0 100%);
+            box-shadow: inset 1px 1px 0 #a0a0a0, inset -1px -1px 0 #fff;
+        }
+        
+        .wm-button.primary {
+            background: linear-gradient(to bottom, #4a6a9c 0%, #2c4163 100%);
+            color: white;
+            border-color: #1e3a6b;
+            box-shadow: inset 1px 1px 0 #6b8cc0, inset -1px -1px 0 #1e3a6b;
+        }
+        
+        .wm-button.primary:active {
+            background: linear-gradient(to bottom, #2c4163 0%, #4a6a9c 100%);
+            box-shadow: inset 1px 1px 0 #1e3a6b, inset -1px -1px 0 #6b8cc0;
+        }
+        
+        /* Google Login Button */
+        .google-login-btn {
+            background: #4285f4;
+            color: white;
+            border: 1px solid #4285f4;
+            border-radius: 3px;
+            padding: 8px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 8px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .google-login-btn i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .google-login-btn:hover {
+            background: #3367d6;
+        }
+        
+        .divider {
+            text-align: center;
+            margin: 12px 0;
+            color: #4a6a9c;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #8faad6;
+            z-index: 1;
+        }
+        
+        .divider span {
+            background: #d4dff2;
+            padding: 0 8px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Input Fields */
+        .wm-input {
+            background: white;
+            border: 1px solid #808080;
+            border-radius: 3px;
+            padding: 6px 8px;
+            font-size: 14px;
+            width: 100%;
+            box-shadow: inset 1px 1px 0 #e0e0e0;
+            margin: 4px 0;
+        }
+        
+        /* List Items */
+        .wm-list {
+            background: white;
+            border: 1px solid #8faad6;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+        
+        .wm-list-item {
+            padding: 8px 12px;
+            border-bottom: 1px solid #d4dff2;
+            display: flex;
+            align-items: center;
+        }
+        
+        .wm-list-item:last-child {
+            border-bottom: none;
+        }
+        
+        .wm-list-item .icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #4a6a9c;
+            color: white;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        
+        /* Footer Navigation */
+        .wm-footer {
+            background: linear-gradient(to bottom, #2c5aa0 0%, #1e3a6b 100%);
+            height: 52px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 8px;
+            border-top: 1px solid #0f1f3a;
+            z-index: 1000;
+        }
+        
+        .wm-footer-button {
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            width: 64px;
+            height: 42px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .wm-footer-button i {
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+        
+        .wm-footer-button.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+        
+        /* Status Bar */
+        .wm-status-bar {
+            background: #4a6a9c;
+            color: white;
+            padding: 4px 8px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #2c4163;
+            border-bottom: 1px solid #2c4163;
+            margin-top: 8px;
+        }
+        
+        /* Hidden sections */
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Logs Section */
+        .wm-logs {
+            background: white;
+            border: 1px solid #8faad6;
+            border-radius: 3px;
+            height: 120px;
+            overflow-y: auto;
+            padding: 8px;
+            font-family: "Courier New", monospace;
+            font-size: 12px;
+            margin: 8px 0;
+        }
+        
+        /* Login Form */
+        .wm-login-form {
+            background: white;
+            border: 1px solid #8faad6;
+            border-radius: 3px;
+            padding: 12px;
+            margin: 8px 0;
+        }
+        
+        .wm-login-form label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: bold;
+            color: #1e3a6b;
+        }
+        
+        /* CAPTCHA */
+        .wm-captcha {
+            background: #e8eef7;
+            border: 1px solid #8faad6;
+            border-radius: 3px;
+            padding: 8px;
+            text-align: center;
+            font-family: "Courier New", monospace;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin: 8px 0;
+        }
+        
+        /* Offer Wall Grid */
+        .wm-offer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 8px 0;
+        }
+        
+        .wm-offer-item {
+            background: white;
+            border: 1px solid #8faad6;
+            border-radius: 3px;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        .wm-offer-item img {
+            max-width: 100%;
+            height: 40px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+        
+        /* Leaderboard */
+        .wm-leaderboard {
+            background: white;
+            border: 1px solid #8faad6;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+        
+        .wm-leaderboard table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .wm-leaderboard th {
+            background: #4a6a9c;
+            color: white;
+            padding: 6px 8px;
+            text-align: left;
+            font-weight: bold;
+            border-right: 1px solid #2c4163;
+        }
+        
+        .wm-leaderboard th:last-child {
+            border-right: none;
+        }
+        
+        .wm-leaderboard td {
+            padding: 6px 8px;
+            border-bottom: 1px solid #d4dff2;
+        }
+        
+        .wm-leaderboard tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* FAQ Items */
+        .wm-faq-item {
+            background: white;
+            border: 1px solid #8faad6;
+            border-radius: 3px;
+            padding: 8px;
+            margin: 8px 0;
+        }
+        
+        .wm-faq-item h4 {
+            color: #1e3a6b;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+        
+        /* Iframe Container */
+        .wm-iframe-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 2000;
+            display: none;
+        }
+        
+        .wm-iframe-header {
+            background: linear-gradient(to bottom, #2c5aa0 0%, #1e3a6b 100%);
+            color: white;
+            height: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 8px;
+            border-bottom: 1px solid #0f1f3a;
+        }
+        
+        .wm-iframe-content {
+            height: calc(100% - 32px);
+        }
+        
+        .wm-iframe-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Notification Badge */
+        .wm-notification-badge {
+            background: #ff0000;
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: -2px;
+            right: -2px;
+        }
+        
+        /* User Info */
+        .wm-user-info {
+            background: white;
+            border: 1px solid #8faad6;
+            border-radius: 3px;
+            padding: 8px;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .wm-user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 3px;
+            margin-right: 8px;
+            border: 1px solid #8faad6;
+        }
+        
+        .wm-user-details {
+            flex-grow: 1;
+        }
+        
+        .wm-user-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
+        
+        .wm-stat {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .wm-stat-value {
+            font-weight: bold;
+            font-size: 16px;
+            color: #1e3a6b;
+        }
+        
+        .wm-stat-label {
+            font-size: 10px;
+            color: #4a6a9c;
+        }
+        
+        /* Bonus Section Styles */
+        .bonus-code-section {
+            background: #d4dff2;
+            border: 1px solid #8faad6;
+            border-radius: 4px;
+            padding: 12px;
+            margin-top: 8px;
+            box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #a3b3ce;
+        }
+        
+        .info-box {
+            background: #fff9e6;
+            border: 1px solid #e6c200;
+            border-radius: 3px;
+            padding: 8px;
+            margin: 8px 0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-box i {
+            color: #e6c200;
+            margin-right: 8px;
+            margin-top: 2px;
+        }
+        
+        .bonus-form {
+            background: white;
+            border: 1px solid #8faad6;
+            border-radius: 3px;
+            padding: 12px;
+            margin: 8px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 12px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: bold;
+            color: #1e3a6b;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        /* Chat Section Styles */
+        .chat-container {
+            background: white;
+            border: 1px solid #8faad6;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 8px 0;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            background: #4a6a9c;
+            color: white;
+            padding: 8px 12px;
+            font-weight: bold;
+            border-bottom: 1px solid #2c4163;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px;
+            background: #f5f7fa;
+        }
+        
+        .message {
+            margin-bottom: 12px;
+            padding: 8px;
+            border-radius: 4px;
+            max-width: 80%;
+            position: relative;
+        }
+        
+        .message.own {
+            background: #e3f2fd;
+            margin-left: auto;
+            border: 1px solid #bbdefb;
+        }
+        
+        .message.other {
+            background: white;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 4px;
+            color: #4a6a9c;
+        }
+        
+        .message-username {
+            font-weight: bold;
+        }
+        
+        .message-level {
+            font-size: 10px;
+            background: #4a6a9c;
+            color: white;
+            padding: 1px 4px;
+            border-radius: 2px;
+        }
+        
+        .message-content {
+            word-break: break-word;
+        }
+        
+        .message-time {
+            font-size: 10px;
+            color: #757575;
+            text-align: right;
+            margin-top: 4px;
+        }
+        
+        .chat-input-container {
+            display: flex;
+            border-top: 1px solid #8faad6;
+            background: white;
+        }
+        
+        .chat-input {
+            flex: 1;
+            border: none;
+            padding: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+        
+        .chat-emoji-btn, .chat-gif-btn, .chat-send-btn {
+            background: #4a6a9c;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .chat-emoji-btn:hover, .chat-gif-btn:hover, .chat-send-btn:hover {
+            background: #2c4163;
+        }
+        
+        .emoji-picker {
+            position: absolute;
+            bottom: 40px;
+            right: 0;
+            background: white;
+            border: 1px solid #8faad6;
+            border-radius: 4px;
+            padding: 8px;
+            display: none;
+            z-index: 100;
+            max-width: 250px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .emoji-picker.active {
+            display: block;
+        }
+        
+        .emoji {
+            display: inline-block;
+            padding: 4px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .emoji:hover {
+            background: #e0e0e0;
+            border-radius: 4px;
+        }
+        
+        .gif-picker {
+            position: absolute;
+            bottom: 40px;
+            right: 0;
+            background: white;
+            border: 1px solid #8faad6;
+            border-radius: 4px;
+            padding: 8px;
+            display: none;
+            z-index: 100;
+            max-width: 250px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .gif-picker.active {
+            display: block;
+        }
+        
+        .gif {
+            width: 100%;
+            margin-bottom: 4px;
+            cursor: pointer;
+        }
+        
+        .chat-login-prompt {
+            padding: 20px;
+            text-align: center;
+            background: #f5f7fa;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .chat-login-prompt i {
+            font-size: 48px;
+            color: #4a6a9c;
+            margin-bottom: 16px;
+        }
+        
+        .balance-warning {
+            color: #d32f2f;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Windows Mobile Header -->
+    <div class="wm-header">
+        <div class="start">Start</div>
+        <div class="title">Bux iQ</div>
+        <div class="time" id="headerTime">12:00 PM</div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="wm-content">
+        <!-- Tabs -->
+        <div class="wm-tabs">
+            <div class="wm-tab active" data-section="earn">Home</div>
+            <div class="wm-tab" data-section="shop">Shop</div>
+            <div class="wm-tab" data-section="leaders">Leaders</div>
+            <div class="wm-tab" data-section="profile">Earn</div>
+            <div class="wm-tab" data-section="bonus">Bonus</div>
+            <div class="wm-tab" data-section="chat">Chat <span class="wm-notification-badge hidden" id="chatNotification">0</span></div>
+            <div class="wm-tab" data-section="help">Help</div>
+        </div>
+        
+        <!-- Status Bar -->
+        <div class="wm-status-bar">
+            <center><div>$1 . 00 => 1 pts</div></center>
+            <div id="serverTime">Server Time: 00:00:00</div>
+        </div>
+        
+        <!-- Home Section -->
+        <div id="section-earn" class="wm-section">
+            <h2>Welcome to Bux iQ</h2>
+            
+            <div class="wm-logs" id="logs">
+                <div class="wm-list-item">
+                    <div class="icon"><i class="fas fa-info-circle"></i></div>
+                    <div>Your activity log will appear here</div>
+                </div>
+            </div>
+            
+            <div class="wm-user-info" id="userInfo">
+                <img src="https://ui-avatars.com/api/?background=2c5aa0&color=fff&name=Guest&bold=true" class="wm-user-avatar" id="userAvatar" alt="User Avatar">
+                <div class="wm-user-details">
+                    <div id="userName">Guest User</div>
+                    <div class="wm-user-stats">
+                        <div class="wm-stat">
+                            <div class="wm-stat-value" id="userBalance">$0.00</div>
+                            <div class="wm-stat-label">Balance</div>
+                        </div>
+                        <div class="wm-stat">
+                            <div class="wm-stat-value" id="userLevel">0</div>
+                            <div class="wm-stat-label">Level</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wm-button primary" style="width: 100%;" id="loginButton">Login to Earn</div>
+            
+            <h2>How It Works</h2>
+            <div class="wm-list">
+                <div class="wm-list-item">
+                    <div class="icon"><i class="fas fa-tasks"></i></div>
+                    <div>Complete Surveys</div>
+                </div>
+                <div class="wm-list-item">
+                    <div class="icon"><i class="fas fa-star"></i></div>
+                    <div>Earn Stars</div>
+                </div>
+                <div class="wm-list-item">
+                    <div class="icon"><i class="fas fa-gift"></i></div>
+                    <div>Redeem Rewards</div>
+                </div>
+            </div>
+            
+            <h2>Cashout Options</h2>
+            <div class="wm-list">
+                <div class="wm-list-item">
+                    <div class="icon"><i class="fab fa-amazon"></i></div>
+                    <div>Amazon UK Voucher</div>
+                </div>
+                <div class="wm-list-item">
+                    <div class="icon"><i class="fab fa-bitcoin"></i></div>
+                    <div>LTC Crypto</div>
+                </div>
+                <div class="wm-list-item">
+                    <div class="icon"><i class="fas fa-plus"></i></div>
+                    <div>More Coming Soon!</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Shop Section -->
+        <div id="section-shop" class="wm-section hidden">
+            <h2>Shop Rewards</h2>
+            <div class="wm-offer-grid">
+                <div class="wm-offer-item">
+                    <img src="https://i.imgur.com/3CUrxKO.png" alt="BUXiQ Logo">
+                    <div class="wm-button primary" id="openOfferWallbuxiq">Cashout</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Leaders Section -->
+        <div id="section-leaders" class="wm-section hidden">
+            <h2>Leaderboard</h2>
+            <div class="wm-leaderboard">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Username</th>
+                            <th>Earnings</th>
+                            <th>Level</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardBody">
+                        <tr>
+                            <td>1</td>
+                            <td>Loading...</td>
+                            <td>$0.00</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Profile/Earn Section -->
+        <div id="section-profile" class="wm-section hidden">
+            <div id="login-container">
+                <h2>Login</h2>
+                
+                <!-- Google Login Button -->
+                <div id="g_id_onload"
+                    data-client_id="387422659555-007kjhq0c41f2lq39e075ib5mtpf3q9o.apps.googleusercontent.com"
+                    data-context="signin"
+                    data-ux_mode="popup"
+                    data-callback="handleGoogleCredentialResponse"
+                    data-auto_prompt="false">
+                </div>
+
+                <div class="g_id_signin google-login-btn" 
+                     data-type="standard" 
+                     data-theme="filled_blue" 
+                     data-text="signin_with" 
+                     data-shape="rectangular" 
+                     data-logo_alignment="left">
+                </div>
+                
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+                
+                <!-- Manual Login -->
+                <div class="wm-login-form">
+                    <label for="login-account">Account #</label>
+                    <input type="text" id="login-account" class="wm-input" placeholder="Enter your account number">
+                    
+                    <label for="login-clientid">Client ID</label>
+                    <input type="text" id="login-clientid" class="wm-input" placeholder="Enter your client ID">
+                    
+                    <label>CAPTCHA</label>
+                    <div class="wm-captcha" id="captcha"></div>
+                    <input type="text" id="captchaInput" class="wm-input" placeholder="Enter CAPTCHA">
+                    
+                    <div class="wm-button primary" style="width: 100%;" id="loginFormButton">Login</div>
+                </div>
+                <div id="error-msg" class="hidden" style="color: red; text-align: center; margin-top: 8px;"></div>
+            </div>
+            
+            <div id="dashboard" class="hidden">
+                <h2>Earning Portal</h2>
+                <p style="margin-bottom: 12px; text-align: center;">Complete offers and surveys to earn rewards</p>
+                
+                <div class="wm-offer-grid" id="offerwall-grid">
+                    <div class="wm-offer-item">
+                        <img src="https://www.cpx-research.com/main/en/assets/img/logo.svg" alt="CPX Research Logo">
+                        <div class="wm-button primary" id="openOfferWallCPX">Open OfferWall</div>
+                    </div>
+                    
+                    
+                </div>
+                
+                <div class="wm-button" style="width: 100%; margin-top: 12px;" id="logoutBtn">Logout</div>
+            </div>
+        </div>
+        
+        <!-- Bonus Section -->
+        <div id="section-bonus" class="bonus-code-section hidden">
+            <h2>Redeem Bonus Code</h2>
+            
+            <div class="info-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>WHO FIRST REDEEMED HIS/HER PTS! EACH BONUS CODE WILL BE MARKED AS UNUSED - FIRST COME FIRST SERVED!!!</div>
+            </div>
+            
+            <form class="bonus-form" id="redeemForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" class="wm-input" required placeholder="Enter your username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="bonusCode">Bonus Code</label>
+                    <input type="text" id="bonusCode" class="wm-input" required placeholder="Enter bonus code">
+                </div>
+                
+                <button type="button" class="wm-button primary" id="redeemBonusButton">Redeem Bonus Code</button>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="amountLocal">Amount (Local)</label>
+                        <input type="text" id="amountLocal" class="wm-input" readonly placeholder="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="amountUsd">Amount (USD)</label>
+                        <input type="text" id="amountUsd" class="wm-input" readonly placeholder="$0.00">
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Chat Section -->
+        <div id="section-chat" class="wm-section hidden">
+            <h2>Community Chat <span class="wm-notification-badge hidden" id="chatSectionNotification">0</span></h2>
+            
+            <div class="chat-container">
+                <div class="chat-header">
+                    Bux iQ Community
+                </div>
+                
+                <div id="chatMessages" class="chat-messages">
+                    <!-- Chat messages will be loaded here -->
+                </div>
+                
+                <div id="chatInputContainer" class="chat-input-container hidden">
+                    <div class="emoji-picker" id="emojiPicker">
+                        <div class="emoji" data-emoji="😀">😀</div>
+                        <div class="emoji" data-emoji="😂">😂</div>
+                        <div class="emoji" data-emoji="😍">😍</div>
+                        <div class="emoji" data-emoji="😎">😎</div>
+                        <div class="emoji" data-emoji="👍">👍</div>
+                        <div class="emoji" data-emoji="👋">👋</div>
+                        <div class="emoji" data-emoji="🎉">🎉</div>
+                        <div class="emoji" data-emoji="💯">💯</div>
+                        <div class="emoji" data-emoji="🔥">🔥</div>
+                        <div class="emoji" data-emoji="🙏">🙏</div>
+                    </div>
+                    
+                    <div class="gif-picker" id="gifPicker">
+                        <img class="gif" src="https://media.giphy.com/media/26AHONQ79FdWZhAI0/giphy.gif" data-gif="https://media.giphy.com/media/26AHONQ79FdWZhAI0/giphy.gif">
+                        <img class="gif" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" data-gif="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+                        <img class="gif" src="https://media.giphy.com/media/3o7aD2sN2u0K1Z1z2w/giphy.gif" data-gif="https://media.giphy.com/media/3o7aD2sN2u0K1Z1z2w/giphy.gif">
+                        <img class="gif" src="https://media.giphy.com/media/xT5LMHxhOfscxPfIfm/giphy.gif" data-gif="https://media.giphy.com/media/xT5LMHxhOfscxPfIfm/giphy.gif">
+                    </div>
+                    
+                    <input type="text" id="chatInput" class="chat-input" placeholder="Type your message..." disabled>
+                    <button class="chat-emoji-btn" id="emojiBtn"><i class="far fa-smile"></i></button>
+                    <button class="chat-gif-btn" id="gifBtn"><i class="fas fa-film"></i></button>
+                    <button class="chat-send-btn" id="sendBtn" disabled><i class="fas fa-paper-plane"></i></button>
+                </div>
+                
+                <div id="chatLoginPrompt" class="chat-login-prompt">
+                    <i class="fas fa-comments"></i>
+                    <h3>Join the Conversation</h3>
+                    <p>Login to chat with the Bux iQ community</p>
+                    <div class="wm-button primary" id="chatLoginButton">Login to Chat</div>
+                    <div class="balance-warning hidden" id="balanceWarning">You need at least $0.50 in your account to use the chat</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Help Section -->
+        <div id="section-help" class="wm-section hidden">
+            <h2>Help & Support</h2>
+            
+            <div class="wm-faq-item">
+                <h4>How do I earn points?</h4>
+                <p>1. IF YOU DID NOT LOGGED IN YET LOGIN FIRST AND THEN EITHER CLICK LOGIN TO EARN IF YOU ARE IN THE HOME PAGE.</p>
+                <p>2. CLICK EITHER TAB ABOVE, EITHER BELOW, BUTTON or TAB EARN.</p>
+                <p>3. YOU ALL SEE OFFERWALLS AND YOU CLICK ON THEM DO OFFERS OR SURVEYS!</p>
+            </div>
+            
+            <div class="wm-faq-item">
+                <h4>How can I redeem rewards?</h4>
+                <p>YOU MAY CLICK EITHER ABOVE, OR, BELOW TAB OR BUTTON "SHOP".</p>
+            </div>
+            
+            <div class="wm-faq-item">
+                <h4>HOW TO REDEEM BONUS CODE?</h4>
+                <p>CLICK TAB OR BUTTON<strong> BONUS</strong> YOU MUST FILL OUT A FORM PUT YOUR ACCOUNT# AND ENTER BONUS CODE.</p>
+            </div>
+            
+            <div class="wm-faq-item">
+                <h4>Who do I contact for support?</h4>
+                <p>Our ADMIN is available from 10 am - 5 pm PST. Click the button below to contact us.</p>
+            </div>
+            
+            <div class="wm-button primary" style="width: 100%;" id="contact-support-btn">Contact Support</div>
+        </div>
+    </div>
+    
+    <!-- Footer Navigation -->
+    <div class="wm-footer">
+        <div class="wm-footer-button active" data-section="earn">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </div>
+        <div class="wm-footer-button" data-section="shop">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Shop</span>
+        </div>
+        <div class="wm-footer-button" data-section="leaders">
+            <i class="fas fa-trophy"></i>
+            <span>Leaders</span>
+        </div>
+        <div class="wm-footer-button" data-section="profile">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>Earn</span>
+        </div>
+        <div class="wm-footer-button" data-section="bonus">
+            <i class="fas fa-star"></i>
+            <span>BONUS</span>
+        </div>
+        <div class="wm-footer-button" data-section="chat">
+            <i class="fas fa-comments"></i>
+            <span>Chat <span class="wm-notification-badge hidden" id="chatFooterNotification">0</span></span>
+        </div>
+        <div class="wm-footer-button" data-section="help">
+            <i class="fas fa-question-circle"></i>
+            <span>Help</span>
+        </div>
+    </div>
+    
+    <!-- Iframe Container -->
+    <div class="wm-iframe-container" id="iframeContainer">
+        <div class="wm-iframe-header">
+            <div>Offer Wall</div>
+            <div class="wm-button" id="closeIframe">Close</div>
+        </div>
+        <div class="wm-iframe-content">
+            <iframe id="dashboardIframe" src=""></iframe>
+        </div>
+    </div>
+    
+    <script>
+// Global variables
+let captchaCode = '';
+let currentUser = null;
+const adUnit = 'default_ad_unit'; // Added missing adUnit variable
+let chatMessages = [];
+let unreadChatMessages = 0;
+let chatInterval;
+
+// Google Apps Script URL for posting data to Google Sheets
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxLwW7NEXLMSDPh1A_PJbTjAucIuji6JtsgVu2xAdaMzXthTKsgk2xyWy83Dx8dO53Rrg/exec';
+
+// DOM Content Loaded - Initialize everything
+document.addEventListener('DOMContentLoaded', function() {
+    // Generate initial CAPTCHA
+    generateCaptcha();
+
+    // Check for existing session
+    checkExistingSession();
+
+    // Initialize all event listeners
+    initializeEventListeners();
+
+    // Start server time updates
+    updateServerTime();
+    setInterval(updateServerTime, 1000);
+    
+    // Update header time
+    updateHeaderTime();
+    setInterval(updateHeaderTime, 60000);
+    
+    // Load activity logs
+    fetchCSV();
+    
+    // Load leaderboard
+    loadLeaderboard();
+    
+    // Initialize chat
+    initializeChat();
+});
+
+// Initialize all event listeners
+function initializeEventListeners() {
+    // Tab click handlers
+    document.querySelectorAll('.wm-tab').forEach(tab => {
+        tab.addEventListener('click', e => {
+            e.preventDefault();
+            showSection(tab.dataset.section);
+            
+            // Update active tab
+            document.querySelectorAll('.wm-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            // Reset chat notifications if opening chat
+            if (tab.dataset.section === 'chat') {
+                resetChatNotifications();
+            }
+        });
+    });
+
+    // Footer navigation handlers
+    document.querySelectorAll('.wm-footer-button').forEach(button => {
+        button.addEventListener('click', e => {
+            e.preventDefault();
+            showSection(button.dataset.section);
+            
+            // Update active footer button
+            document.querySelectorAll('.wm-footer-button').forEach(b => b.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Reset chat notifications if opening chat
+            if (button.dataset.section === 'chat') {
+                resetChatNotifications();
+            }
+        });
+    });
+
+    // Login button
+    document.getElementById('loginButton')?.addEventListener('click', () => {
+        showSection('profile');
+        document.querySelectorAll('.wm-tab').forEach(t => t.classList.remove('active'));
+        document.querySelector('.wm-tab[data-section="profile"]').classList.add('active');
+        document.querySelectorAll('.wm-footer-button').forEach(b => b.classList.remove('active'));
+        document.querySelector('.wm-footer-button[data-section="profile"]').classList.add('active');
+    });
+
+    // Login form handler
+    document.getElementById('loginFormButton')?.addEventListener('click', handleLogin);
+
+    // Iframe close button
+    document.getElementById('closeIframe')?.addEventListener('click', closeIframe);
+
+    // Logout button
+    document.getElementById('logoutBtn')?.addEventListener('click', logout);
+
+    // Contact support button
+    document.getElementById('contact-support-btn')?.addEventListener('click', () => {
+        alert('Please email support@buxiq.com for assistance.');
+    });
+
+    // Bonus redeem button
+    document.getElementById('redeemBonusButton')?.addEventListener('click', redeemBonusCode);
+
+    // Initialize offerwall buttons
+    initializeOfferwallButtons();
+    
+    // Chat login button
+    document.getElementById('chatLoginButton')?.addEventListener('click', () => {
+        showSection('profile');
+        document.querySelectorAll('.wm-tab').forEach(t => t.classList.remove('active'));
+        document.querySelector('.wm-tab[data-section="profile"]').classList.add('active');
+        document.querySelectorAll('.wm-footer-button').forEach(b => b.classList.remove('active'));
+        document.querySelector('.wm-footer-button[data-section="profile"]').classList.add('active');
+    });
+}
+
+// Initialize chat functionality
+function initializeChat() {
+    // Load initial chat messages
+    loadChatMessages();
+    
+    // Set up chat interval to check for new messages
+    chatInterval = setInterval(loadChatMessages, 5000);
+    
+    // Set up chat input handlers
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const emojiBtn = document.getElementById('emojiBtn');
+    const gifBtn = document.getElementById('gifBtn');
+    const emojiPicker = document.getElementById('emojiPicker');
+    const gifPicker = document.getElementById('gifPicker');
+    
+    if (chatInput && sendBtn) {
+        // Enable/disable send button based on input
+        chatInput.addEventListener('input', () => {
+            sendBtn.disabled = chatInput.value.trim() === '';
+        });
+        
+        // Send message on Enter key
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !sendBtn.disabled) {
+                sendChatMessage();
+            }
+        });
+        
+        // Send message on button click
+        sendBtn.addEventListener('click', sendChatMessage);
+        
+        // Toggle emoji picker
+        emojiBtn.addEventListener('click', () => {
+            emojiPicker.classList.toggle('active');
+            gifPicker.classList.remove('active');
+        });
+        
+        // Toggle GIF picker
+        gifBtn.addEventListener('click', () => {
+            gifPicker.classList.toggle('active');
+            emojiPicker.classList.remove('active');
+        });
+        
+        // Add emoji to input
+        document.querySelectorAll('.emoji').forEach(emoji => {
+            emoji.addEventListener('click', () => {
+                chatInput.value += emoji.dataset.emoji;
+                chatInput.focus();
+                emojiPicker.classList.remove('active');
+            });
+        });
+        
+        // Add GIF to input
+        document.querySelectorAll('.gif').forEach(gif => {
+            gif.addEventListener('click', () => {
+                chatInput.value = `[GIF:${gif.dataset.gif}]`;
+                chatInput.focus();
+                gifPicker.classList.remove('active');
+            });
+        });
+        
+        // Close pickers when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!emojiBtn.contains(e.target) && !emojiPicker.contains(e.target)) {
+                emojiPicker.classList.remove('active');
+            }
+            if (!gifBtn.contains(e.target) && !gifPicker.contains(e.target)) {
+                gifPicker.classList.remove('active');
+            }
+        });
+    }
+}
+
+// Load chat messages
+function loadChatMessages() {
+    // In a real implementation, this would fetch from a server
+    // For now, we'll simulate with localStorage
+    const storedMessages = localStorage.getItem('buxiq_chat_messages');
+    
+    if (storedMessages) {
+        chatMessages = JSON.parse(storedMessages);
+    } else {
+        // Initialize with some sample messages
+        chatMessages = [
+            {
+                id: 1,
+                username: 'Admin',
+                level: 10,
+                message: 'Welcome to Bux iQ Community Chat!',
+                timestamp: new Date(Date.now() - 3600000).toISOString(),
+                isGif: false
+            },
+            {
+                id: 2,
+                username: 'JohnDoe',
+                level: 5,
+                message: 'Hello everyone! Just earned $5 from a survey!',
+                timestamp: new Date(Date.now() - 1800000).toISOString(),
+                isGif: false
+            },
+            {
+                id: 3,
+                username: 'SarahM',
+                level: 3,
+                message: '[GIF:https://media.giphy.com/media/26AHONQ79FdWZhAI0/giphy.gif]',
+                timestamp: new Date(Date.now() - 900000).toISOString(),
+                isGif: true
+            }
+        ];
+        localStorage.setItem('buxiq_chat_messages', JSON.stringify(chatMessages));
+    }
+    
+    // Update chat display
+    updateChatDisplay();
+    
+    // Update notification count if not on chat page
+    if (!document.getElementById('section-chat').classList.contains('hidden')) {
+        resetChatNotifications();
+    } else {
+        // Count new messages since last view
+        const lastViewed = localStorage.getItem('buxiq_chat_last_viewed') || 0;
+        const newMessages = chatMessages.filter(msg => 
+            new Date(msg.timestamp).getTime() > parseInt(lastViewed)
+        ).length;
+        
+        if (newMessages > 0) {
+            updateChatNotifications(newMessages);
+        }
+    }
+}
+
+// Update chat display
+function updateChatDisplay() {
+    const chatMessagesContainer = document.getElementById('chatMessages');
+    if (!chatMessagesContainer) return;
+    
+    // Clear existing messages
+    chatMessagesContainer.innerHTML = '';
+    
+    // Add messages to container
+    chatMessages.forEach(msg => {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${msg.username === (currentUser ? currentUser[4] : '') ? 'own' : 'other'}`;
+        
+        const messageHeader = document.createElement('div');
+        messageHeader.className = 'message-header';
+        
+        const usernameSpan = document.createElement('span');
+        usernameSpan.className = 'message-username';
+        usernameSpan.textContent = msg.username;
+        
+        const levelSpan = document.createElement('span');
+        levelSpan.className = 'message-level';
+        levelSpan.textContent = `Level ${msg.level}`;
+        
+        messageHeader.appendChild(usernameSpan);
+        messageHeader.appendChild(levelSpan);
+        
+        const messageContent = document.createElement('div');
+        messageContent.className = 'message-content';
+        
+        if (msg.isGif) {
+            // Extract GIF URL from message
+            const gifMatch = msg.message.match(/\[GIF:(.*?)\]/);
+            if (gifMatch && gifMatch[1]) {
+                const gifImg = document.createElement('img');
+                gifImg.src = gifMatch[1];
+                gifImg.style.maxWidth = '200px';
+                gifImg.style.borderRadius = '4px';
+                messageContent.appendChild(gifImg);
+            } else {
+                messageContent.textContent = msg.message;
+            }
+        } else {
+            messageContent.textContent = msg.message;
+        }
+        
+        const messageTime = document.createElement('div');
+        messageTime.className = 'message-time';
+        messageTime.textContent = formatTime(new Date(msg.timestamp));
+        
+        messageDiv.appendChild(messageHeader);
+        messageDiv.appendChild(messageContent);
+        messageDiv.appendChild(messageTime);
+        
+        chatMessagesContainer.appendChild(messageDiv);
+    });
+    
+    // Scroll to bottom
+    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+}
+
+// Format time for display
+function formatTime(date) {
+    const now = new Date();
+    const diffMs = now - date;
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    
+    if (diffMins < 1) {
+        return 'Just now';
+    } else if (diffMins < 60) {
+        return `${diffMins} min ago`;
+    } else if (diffHours < 24) {
+        return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+    } else {
+        return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    }
+}
+
+// Send chat message
+function sendChatMessage() {
+    if (!currentUser) {
+        alert('Please login to send messages');
+        return;
+    }
+    
+    const chatInput = document.getElementById('chatInput');
+    const message = chatInput.value.trim();
+    
+    if (!message) return;
+    
+    // Check if user has at least $0.50 balance
+    const balance = parseFloat(currentUser[3] || '0');
+    if (balance < 0.5) {
+        alert('You need at least $0.50 in your account to use the chat');
+        return;
+    }
+    
+    // Check if message is a GIF
+    const isGif = message.startsWith('[GIF:') && message.endsWith(']');
+    
+    // Create new message
+    const newMessage = {
+        id: chatMessages.length + 1,
+        username: currentUser[4] || 'User',
+        level: parseInt(currentUser[6]) || 1,
+        message: message,
+        timestamp: new Date().toISOString(),
+        isGif: isGif
+    };
+    
+    // Add to messages
+    chatMessages.push(newMessage);
+    
+    // Save to localStorage
+    localStorage.setItem('buxiq_chat_messages', JSON.stringify(chatMessages));
+    
+    // Clear input
+    chatInput.value = '';
+    document.getElementById('sendBtn').disabled = true;
+    
+    // Update display
+    updateChatDisplay();
+    
+    // In a real implementation, you would send to a server here
+    console.log('Message sent:', newMessage);
+}
+
+// Update chat UI based on login status
+function updateChatUI() {
+    const chatInputContainer = document.getElementById('chatInputContainer');
+    const chatLoginPrompt = document.getElementById('chatLoginPrompt');
+    const balanceWarning = document.getElementById('balanceWarning');
+    
+    if (currentUser) {
+        // User is logged in
+        chatLoginPrompt.classList.add('hidden');
+        
+        // Check balance
+        const balance = parseFloat(currentUser[3] || '0');
+        if (balance >= 0.5) {
+            // User has enough balance
+            chatInputContainer.classList.remove('hidden');
+            balanceWarning.classList.add('hidden');
+            
+            // Enable input
+            document.getElementById('chatInput').disabled = false;
+        } else {
+            // User doesn't have enough balance
+            chatInputContainer.classList.add('hidden');
+            balanceWarning.classList.remove('hidden');
+        }
+    } else {
+        // User is not logged in
+        chatInputContainer.classList.add('hidden');
+        chatLoginPrompt.classList.remove('hidden');
+        balanceWarning.classList.add('hidden');
+    }
+}
+
+// Update chat notifications
+function updateChatNotifications(count) {
+    unreadChatMessages = count;
+    
+    // Update tab notification
+    const chatTabNotification = document.getElementById('chatNotification');
+    if (chatTabNotification) {
+        if (count > 0) {
+            chatTabNotification.textContent = count > 9 ? '9+' : count.toString();
+            chatTabNotification.classList.remove('hidden');
+        } else {
+            chatTabNotification.classList.add('hidden');
+        }
+    }
+    
+    // Update section notification
+    const chatSectionNotification = document.getElementById('chatSectionNotification');
+    if (chatSectionNotification) {
+        if (count > 0) {
+            chatSectionNotification.textContent = count > 9 ? '9+' : count.toString();
+            chatSectionNotification.classList.remove('hidden');
+        } else {
+            chatSectionNotification.classList.add('hidden');
+        }
+    }
+    
+    // Update footer notification
+    const chatFooterNotification = document.getElementById('chatFooterNotification');
+    if (chatFooterNotification) {
+        if (count > 0) {
+            chatFooterNotification.textContent = count > 9 ? '9+' : count.toString();
+            chatFooterNotification.classList.remove('hidden');
+        } else {
+            chatFooterNotification.classList.add('hidden');
+        }
+    }
+}
+
+// Reset chat notifications (when user views chat)
+function resetChatNotifications() {
+    // Store current time as last viewed
+    localStorage.setItem('buxiq_chat_last_viewed', Date.now().toString());
+    
+    // Reset notification counts
+    updateChatNotifications(0);
+}
+
+// Initialize offerwall buttons with user validation
+function initializeOfferwallButtons() {
+    Object.keys(offerwallButtons).forEach(buttonId => {
+        const button = document.getElementById(buttonId);
+        if (button) {
+            // Remove any existing listeners to prevent duplicates
+            button.removeEventListener('click', offerwallClickHandler);
+            // Add new listener
+            button.addEventListener('click', offerwallClickHandler);
+        }
+    });
+}
+
+// Handler for offerwall button clicks
+function offerwallClickHandler(e) {
+    e.preventDefault();
+
+    if (!currentUser) {
+        alert('Please login first to access offerwalls');
+        showSection('profile');
+        return;
+    }
+
+    const buttonId = this.id;
+    const urlGenerator = offerwallButtons[buttonId];
+
+    if (!urlGenerator) {
+        console.error('No URL generator found for button:', buttonId);
+        return;
+    }
+
+    // Use user[4] (username) or user[0] (account) as fallback
+    const username = currentUser[4] || currentUser[0] || 'user';
+    const url = typeof urlGenerator === 'function' ? urlGenerator(username) : urlGenerator;
+
+    console.log(`Opening offerwall ${buttonId} for user ${username}`);
+    openIframe(url);
+}
+
+// Enhanced iframe functions
+function openIframe(url) {
+    const iframeContainer = document.getElementById('iframeContainer');
+    const dashboardIframe = document.getElementById('dashboardIframe');
+
+    if (!iframeContainer || !dashboardIframe) {
+        console.error('Iframe elements not found');
+        return;
+    }
+
+    dashboardIframe.src = url;
+    iframeContainer.style.display = 'block';
+}
+
+function closeIframe() {
+    const iframeContainer = document.getElementById('iframeContainer');
+    const dashboardIframe = document.getElementById('dashboardIframe');
+
+    if (iframeContainer && dashboardIframe) {
+        iframeContainer.style.display = 'none';
+        dashboardIframe.src = '';
+    }
+}
+
+// Update server time display
+function updateServerTime() {
+    const now = new Date();
+
+    // Convert to PST (UTC-8) or PDT (UTC-7) depending on daylight saving
+    const pstOffset = now.getTimezoneOffset() >= 480 ? -8 * 60 : -7 * 60; // PST is UTC-8, PDT is UTC-7
+    const pstTime = new Date(now.getTime() + (now.getTimezoneOffset() - pstOffset) * 60000);
+
+    // Format as HH:MM:SS
+    const hours = String(pstTime.getHours()).padStart(2, '0');
+    const minutes = String(pstTime.getMinutes()).padStart(2, '0');
+    const seconds = String(pstTime.getSeconds()).padStart(2, '0');
+
+    document.getElementById('serverTime').textContent = `Server Time: ${hours}:${minutes}:${seconds} PST`;
+}
+
+// Update header time
+function updateHeaderTime() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const displayHours = hours % 12 || 12;
+    
+    document.getElementById('headerTime').textContent = `${displayHours}:${minutes} ${ampm}`;
+}
+
+// Object with offerwall URLs and open functions
+    const offerwallButtons = {
+        'openOfferWallCPX': (user) => `https://offers.cpx-research.com/index.php?app_id=26219&ext_user_id=${user}&username=${user}&subid_1=&subid_2`,
+        'openOfferWallexcentiv': (user) => `https://excentiv.com/offerwall/?userid=${user}&key=q1v8KGQfCjmNeXnhsHyo`,
+        'openOfferWallwannads': (user) => `https://earn.wannads.com/surveywall?apiKey=67d3d43d63631681386947&userId=${user}`,
+        'openOfferWallmc': (user) => `https://sdk.mychips.io/content?content_id=16cbcd08-387a-498f-b4bd-9f4d2c6883a7&user_id=${user}&ad_unit_id=${adUnit}`,
+        'openOfferWallSPARKWALL': (user) => `https://spark-wall.com/offerwall/G2kA8XaPF2jjstApSCZsK6aE6qudMN/${user}&username=${user}&subid_1=&subid_2`,
+        'openOfferWallowm': (user) => `https://offerwallmedia.com/offerwall/vfox4w1tpz3gflta3gblkkqp8b2aoj/${user}`,
+        'openOfferWallbuxiq': () => `https://bux-iq.netlify.app/cashout.html`,
+        'openOfferWallnotik': (user) => `https://notik.me/coins?api_key=eQpYGMydTs5GP0DfFPQrJotOwKo6V0Hy&pub_id=LJ2g&app_id=GxEBh1Hn3m&user_id=${user}`
+    };
+
+// Check for existing user session
+function checkExistingSession() {
+    const savedAccount = localStorage.getItem('buxiq_account');
+    const savedGoogleUser = localStorage.getItem('buxiq_google_user');
+    
+    if (savedGoogleUser) {
+        // Handle Google user session restoration with blocked check
+        checkAndRestoreGoogleSession(savedGoogleUser);
+    } else if (savedAccount) {
+        // Handle manual login session restoration
+        restoreManualSession(savedAccount);
+    } else {
+        // Show default section if no session
+        showSection('earn');
+    }
+}
+
+// Check and restore Google session with blocked validation
+async function checkAndRestoreGoogleSession(savedGoogleUser) {
+    try {
+        const googleUser = JSON.parse(savedGoogleUser);
+        
+        // Check if user still exists and is not blocked
+        const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQHuo-I6k4RbAnXvz_FvCzshqg7Cm5dqAXwNkvDLpgpZH84OGUSbX6TiOUfMrCHv3CiNnLnx0IhzNZC/pub?gid=0&single=true&output=csv');
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        const data = await response.text();
+        const rows = data.trim().split('\n').map(row => row.split(','));
+
+        // Find user by Google ID or email
+        const user = rows.find(r => r[7] === googleUser.id || r[8] === googleUser.email);
+
+        if (user) {
+            // Check if user is blocked
+            const status = (user[2] || '').toLowerCase();
+            if (status === 'blocked') {
+                // Clear blocked user session
+                localStorage.removeItem('buxiq_google_user');
+                showSection('earn');
+                return;
+            }
+            
+            // User is valid, restore session
+            simulateGoogleLoginRestore(googleUser);
+        } else {
+            // User not found in database, clear session
+            localStorage.removeItem('buxiq_google_user');
+        }
+    } catch (err) {
+        console.error('Error checking Google session:', err);
+        // On error, clear session to be safe
+        localStorage.removeItem('buxiq_google_user');
+    }
+}
+
+// Restore manual session
+async function restoreManualSession(account) {
+    try {
+        const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQHuo-I6k4RbAnXvz_FvCzshqg7Cm5dqAXwNkvDLpgpZH84OGUSbX6TiOUfMrCHv3CiNnLnx0IhzNZC/pub?gid=0&single=true&output=csv');
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        const data = await response.text();
+        const rows = data.trim().split('\n').map(row => row.split(','));
+
+        // Find user by account number
+        const user = rows.find(r => r[0] === account);
+
+        if (user) {
+            // Check if user is blocked
+            const status = (user[2] || '').toLowerCase();
+            if (status === 'blocked') {
+                // Clear blocked user session
+                localStorage.removeItem('buxiq_account');
+                return;
+            }
+            
+            currentUser = user;
+            updateUserUI(user);
+            
+            // Show dashboard
+            document.getElementById('login-container').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+            
+            // Update balance
+            await updateBalance();
+            
+            // Update chat UI
+            updateChatUI();
+            
+            addToLogs(`Session restored for ${user[4] || 'User'}`);
+        } else {
+            // Clear invalid session
+            localStorage.removeItem('buxiq_account');
+        }
+    } catch (err) {
+        console.error('Error restoring session:', err);
+    }
+}
+
+// Simulate Google login restore
+function simulateGoogleLoginRestore(googleUser) {
+    const simulatedUser = {
+        email: googleUser.email,
+        name: googleUser.name,
+        id: googleUser.id,
+        picture: googleUser.picture
+    };
+    processGoogleLogin(simulatedUser);
+}
+
+// Handle Google Sign-In response
+function handleGoogleCredentialResponse(response) {
+    console.log("Google Sign-In response:", response);
+    
+    // Decode the JWT token to get user info
+    const responsePayload = parseJwt(response.credential);
+    
+    console.log("Google user info:", responsePayload);
+    
+    // Process Google login with the user info
+    processGoogleLogin({
+        id: responsePayload.sub,
+        email: responsePayload.email,
+        name: responsePayload.name,
+        picture: responsePayload.picture
+    });
+}
+
+// Parse JWT token
+function parseJwt(token) {
+    try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        
+        return JSON.parse(jsonPayload);
+    } catch (e) {
+        console.error("Error parsing JWT:", e);
+        return null;
+    }
+}
+
+// Process Google Login
+async function processGoogleLogin(googleUser) {
+    const errorMsg = document.getElementById('error-msg');
+    
+    try {
+        // Check if user exists in Google Sheets
+        const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQHuo-I6k4RbAnXvz_FvCzshqg7Cm5dqAXwNkvDLpgpZH84OGUSbX6TiOUfMrCHv3CiNnLnx0IhzNZC/pub?gid=0&single=true&output=csv');
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        const data = await response.text();
+        const rows = data.trim().split('\n').map(row => row.split(','));
+
+        // Look for user by Google ID or email
+        const user = rows.find(r => r[7] === googleUser.id || r[8] === googleUser.email);
+
+        if (user) {
+            // Check if user is blocked
+            const status = (user[2] || '').toLowerCase();
+            if (status === 'blocked') {
+                showError(errorMsg, 'Your account is blocked.');
+                // Clear any stored Google session data
+                localStorage.removeItem('buxiq_google_user');
+                return;
+            }
+
+            // Existing user - login
+            currentUser = user;
+            await completeLogin(user);
+            
+            // Store session for Google user
+            localStorage.setItem('buxiq_google_user', JSON.stringify({
+                id: googleUser.id,
+                email: googleUser.email,
+                name: googleUser.name,
+                picture: googleUser.picture
+            }));
+        } else {
+            // New user - auto-register
+            await registerGoogleUser(googleUser);
+        }
+    } catch (err) {
+        console.error('Google login processing error:', err);
+        showError(errorMsg, 'Error during Google login. Please try again.');
+    }
+}
+
+// Register new Google user
+async function registerGoogleUser(googleUser) {
+    // Generate unique account number and client ID
+    const accountNumber = 'G' + Math.random().toString(36).substr(2, 8).toUpperCase();
+    const clientId = 'GC' + Math.random().toString(36).substr(2, 6).toUpperCase();
+    
+    // Create new user data
+    const newUser = [
+        accountNumber,      // 0: Account #
+        clientId,          // 1: Client ID
+        'active',          // 2: Status
+        '0.00',           // 3: Balance
+        googleUser.name,   // 4: Username
+        googleUser.picture, // 5: Avatar URL (Google profile picture)
+        '1',              // 6: Level
+        googleUser.id,    // 7: Google ID
+        googleUser.email  // 8: Google Email
+    ];
+    
+    // Post new user to Google Sheets
+    await postUserToSheets(newUser);
+    
+    // In a real implementation, you would send this to your backend/Google Apps Script
+    // For now, we'll use the new user data directly
+    currentUser = newUser;
+    
+    // Store in localStorage
+    localStorage.setItem('buxiq_google_user', JSON.stringify({
+        id: googleUser.id,
+        email: googleUser.email,
+        name: googleUser.name,
+        picture: googleUser.picture,
+        account: accountNumber,
+        clientId: clientId
+    }));
+    
+    await completeLogin(newUser);
+    
+    // Show welcome message for new users
+    addToLogs(`Welcome ${googleUser.name}! Your account has been created.`);
+}
+
+// Post user data to Google Sheets
+async function postUserToSheets(userData) {
+    try {
+        // Prepare data for Google Sheets
+        const formData = new FormData();
+        formData.append('action', 'addUser');
+        formData.append('account', userData[0]);
+        formData.append('clientId', userData[1]);
+        formData.append('status', userData[2]);
+        formData.append('balance', userData[3]);
+        formData.append('username', userData[4]);
+        formData.append('avatar', userData[5]);
+        formData.append('level', userData[6]);
+        formData.append('googleId', userData[7]);
+        formData.append('googleEmail', userData[8]);
+        
+        // Send POST request to Google Apps Script
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: formData
+        });
+        
+        if (response.ok) {
+            console.log('User data successfully posted to Google Sheets');
+            return true;
+        } else {
+            console.error('Failed to post user data to Google Sheets');
+            return false;
+        }
+    } catch (error) {
+        console.error('Error posting user data to Google Sheets:', error);
+        return false;
+    }
+}
+
+// Login handler
+async function handleLogin(e) {
+    e.preventDefault();
+
+    const account = document.getElementById('login-account')?.value?.trim() || '';
+    const clientid = document.getElementById('login-clientid')?.value?.trim() || '';
+    const captchaInput = document.getElementById('captchaInput')?.value?.trim() || '';
+    const errorMsg = document.getElementById('error-msg');
+
+    // For auto-login, allow a temporary bypass for CAPTCHA verification
+    const isAutoLogin = e.type === 'auto';
+    if (!isAutoLogin && captchaInput !== captchaCode) {
+        showError(errorMsg, 'Invalid CAPTCHA');
+        generateCaptcha();
+        document.getElementById('captchaInput').value = '';
+        return;
+    }
+
+    try {
+        const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQHuo-I6k4RbAnXvz_FvCzshqg7Cm5dqAXwNkvDLpgpZH84OGUSbX6TiOUfMrCHv3CiNnLnx0IhzNZC/pub?gid=0&single=true&output=csv');
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        const data = await response.text();
+        const rows = data.trim().split('\n').map(row => row.split(','));
+
+        // Find user in spreadsheet data based on account and clientid (if not auto-login)
+        const user = rows.find(r => r[0] === account && (isAutoLogin || r[1] === clientid));
+
+        if (user) {
+            const status = (user[2] || '').toLowerCase();
+            if (status === 'blocked') {
+                showError(errorMsg, 'Your account is blocked.');
+                // Clear login fields and generate new CAPTCHA on blocked account
+                document.getElementById('login-account').value = '';
+                document.getElementById('login-clientid').value = '';
+                document.getElementById('captchaInput').value = '';
+                generateCaptcha();
+                return;
+            }
+
+            // Store current user globally
+            currentUser = user;
+
+            // Store in local storage
+            localStorage.setItem('buxiq_account', account);
+
+            // Update UI with user data
+            updateUserUI(user);
+
+            // Show dashboard
+            document.getElementById('login-container')?.classList.add('hidden');
+            document.getElementById('dashboard')?.classList.remove('hidden');
+            if (errorMsg) errorMsg.classList.add('hidden');
+
+            // Initialize offerwalls for this user
+            initializeOfferwallButtons();
+
+            // Update chat UI
+            updateChatUI();
+
+            // Load additional data
+            fetchCSV(); // For activity logs
+            updateBalance(); // Update balance immediately after login
+            
+            addToLogs(`Login successful for ${user[4] || 'User'}`);
+        } else {
+            showError(errorMsg, 'Invalid credentials');
+            // Clear CAPTCHA input and generate new CAPTCHA on invalid credentials
+            document.getElementById('captchaInput').value = '';
+            generateCaptcha();
+        }
+    } catch (err) {
+        console.error('Login error:', err);
+        showError(errorMsg, 'Error loading data. Please try again.');
+        // Clear CAPTCHA input and generate new CAPTCHA on error
+        document.getElementById('captchaInput').value = '';
+        generateCaptcha();
+    } finally {
+        // Ensure captchaInput is cleared if it was a temporary auto-login value
+        if (isAutoLogin && document.getElementById('captchaInput').value === 'auto_login_temp') {
+            document.getElementById('captchaInput').value = '';
+        }
+    }
+}
+
+// Complete login process for both manual and Google login
+async function completeLogin(user) {
+    // Update user data
+    const avatarUrl = user[5] || `https://ui-avatars.com/api/?name=${encodeURIComponent(user[4] || 'User')}&background=e94560&color=fff`;
+    
+    // Update UI
+    document.getElementById('userAvatar').src = avatarUrl;
+    document.getElementById('userName').textContent = user[4] || 'User';
+    
+    // Show dashboard
+    document.getElementById('login-container').classList.add('hidden');
+    document.getElementById('dashboard').classList.remove('hidden');
+    document.getElementById('error-msg').classList.add('hidden');
+    
+    // Update balance and level
+    await updateBalance();
+    
+    // Update chat UI
+    updateChatUI();
+    
+    // Add login success message
+    addToLogs(`Login successful for ${user[4] || 'User'}`);
+}
+
+// Helper function to show errors
+function showError(element, message) {
+    if (element) {
+        element.textContent = message;
+        element.classList.remove('hidden');
+    } else {
+        alert(message);
+    }
+}
+
+// Update user UI after login
+function updateUserUI(user) {
+    try {
+        const avatarUrl = user[5] || `https://ui-avatars.com/api/?name=${encodeURIComponent(user[4] || 'User')}&background=e94560&color=fff`;
+
+        // Update avatar
+        const userAvatar = document.getElementById('userAvatar');
+        if (userAvatar) userAvatar.src = avatarUrl;
+
+        // Update username
+        const usernameEl = document.getElementById('userName');
+        if (usernameEl) usernameEl.textContent = user[4] || 'User';
+
+        // Update level
+        const levelEl = document.getElementById('userLevel');
+        if (levelEl) levelEl.textContent = user[6] || '1';
+
+        // Update balance
+        updateBalance();
+        
+        // Update chat UI
+        updateChatUI();
+    } catch (error) {
+        console.error('Error updating user UI:', error);
+    }
+}
+
+// Logout function
+function logout() {
+    try {
+        if (currentUser) {
+            // If it's a Google user, remove Google data too
+            if (currentUser[7]) { // Google ID exists
+                localStorage.removeItem('buxiq_google_user');
+            }
+        }
+
+        currentUser = null;
+        localStorage.removeItem('buxiq_account');
+
+        document.getElementById('dashboard')?.classList.add('hidden');
+        document.getElementById('login-container')?.classList.remove('hidden');
+        document.getElementById('login-account').value = '';
+        document.getElementById('login-clientid').value = '';
+        document.getElementById('captchaInput').value = '';
+
+        const errorMsg = document.getElementById('error-msg');
+        if (errorMsg) errorMsg.classList.add('hidden');
+
+        generateCaptcha();
+        showSection('earn'); // Return to default 'earn' section on logout
+
+        // Reset user info display
+        const userAvatar = document.getElementById('userAvatar');
+        const usernameEl = document.getElementById('userName');
+        const levelEl = document.getElementById('userLevel');
+        const balanceEl = document.getElementById('userBalance');
+        
+        if (userAvatar) userAvatar.src = 'https://ui-avatars.com/api/?background=e94560&color=fff&name=Guest&bold=true';
+        if (usernameEl) usernameEl.textContent = 'Guest User';
+        if (levelEl) levelEl.textContent = '0';
+        if (balanceEl) balanceEl.textContent = '$0.00';
+        
+        // Update chat UI
+        updateChatUI();
+        
+        addToLogs('You have been logged out.');
+    } catch (error) {
+        console.error('Error during logout:', error);
+    }
+}
+
+// Generate CAPTCHA
+function generateCaptcha() {
+    try {
+        captchaCode = Math.floor(10000 + Math.random() * 90000).toString();
+        const captchaEl = document.getElementById('captcha');
+        if (captchaEl) {
+            captchaEl.textContent = captchaCode;
+        }
+        return captchaCode;
+    } catch (error) {
+        console.error('Error generating CAPTCHA:', error);
+        return '12345'; // Fallback CAPTCHA
+    }
+}
+
+// Navigation handler
+function showSection(section) {
+    try {
+        const sections = ['earn', 'shop', 'leaders', 'profile', 'bonus', 'chat', 'help'];
+        sections.forEach(sec => {
+            const sectionEl = document.getElementById('section-' + sec);
+            if (sectionEl) {
+                sectionEl.classList.toggle('hidden', sec !== section);
+            }
+        });
+    } catch (error) {
+        console.error('Error showing section:', error);
+    }
+}
+
+// Update balance function (can be called separately to refresh)
+async function updateBalance() {
+    try {
+        if (!currentUser) {
+            console.warn('Cannot update balance: no current user.');
+            return;
+        }
+
+        const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQHuo-I6k4RbAnXvz_FvCzshqg7Cm5dqAXwNkvDLpgpZH84OGUSbX6TiOUfMrCHv3CiNnLnx0IhzNZC/pub?gid=0&single=true&output=csv');
+        if (!response.ok) throw new Error('Network error');
+
+        const data = await response.text();
+        const rows = data.trim().split('\n').map(r => r.split(','));
+        // Find user by account and clientid for accuracy
+        const user = rows.find(r => r[0] === currentUser[0] && r[1] === currentUser[1]);
+
+        const balanceEl = document.getElementById('userBalance');
+        const levelEl = document.getElementById('userLevel');
+
+        if (user) {
+            // Fix NaN issue by ensuring we have a valid number
+            const balance = parseFloat(user[3] || '0');
+            if (!isNaN(balance)) {
+                if (balanceEl) balanceEl.textContent = `$${balance.toFixed(2)}`;
+            } else {
+                if (balanceEl) balanceEl.textContent = '$0.00';
+            }
+            
+            // Update level
+            if (levelEl) levelEl.textContent = user[6] || '1';
+            
+            // Update currentUser with latest data
+            currentUser = user;
+            
+            // Update chat UI based on balance
+            updateChatUI();
+        } else {
+            // If user not found (e.g., after logout), reset balance display to 0
+            if (balanceEl) balanceEl.textContent = '$0.00';
+            if (levelEl) levelEl.textContent = '0';
+        }
+    } catch (err) {
+        console.error('Error updating balance:', err);
+    }
+}
+
+// Fetch CSV for activity logs
+async function fetchCSV() {
+    try {
+        const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3p3daAnCETfJtrUUvaiNqoUreYkn9FIHus6rEyq-e8E8oLaV51L_NrVWjHp1CyTv3UqBqryq3aH-0/pub?gid=0&single=true&output=csv');
+        if (!response.ok) throw new Error('Network error');
+
+        const data = await response.text();
+        const rows = data.trim().split('\n').slice(1); // skip header
+        const logsContainer = document.getElementById('logs');
+
+        if (!logsContainer) return;
+        
+        // Clear existing logs except the initial message
+        const initialMessage = logsContainer.querySelector('.wm-list-item');
+        logsContainer.innerHTML = '';
+        if (initialMessage && rows.length === 0) {
+            logsContainer.appendChild(initialMessage);
+        }
+
+        let hasLogs = false;
+        rows.forEach((row, index) => {
+            const cols = row.split(',').map(c => c.trim());
+            // Ensure necessary columns exist and are not empty
+            if (cols.length >= 7 && cols[2] && cols[6]) {
+                hasLogs = true;
+                const username = cols[2];
+                const amount = parseFloat(cols[6]).toFixed(2); // Format amount to 2 decimal places
+                const logDiv = document.createElement('div');
+                logDiv.className = 'wm-list-item';
+                logDiv.innerHTML = `
+                    <div class="icon"><i class="fas fa-user"></i></div>
+                    <div>${username} earned $${amount}</div>
+                `;
+                logsContainer.appendChild(logDiv);
+            }
+        });
+
+        if (!hasLogs && initialMessage) {
+            // Keep the initial message if no logs
+        }
+    } catch (err) {
+        console.error('Error fetching activity logs:', err);
+        const logsContainer = document.getElementById('logs');
+        if (logsContainer) {
+            logsContainer.innerHTML = '<div class="wm-list-item"><div class="icon"><i class="fas fa-exclamation-triangle"></i></div><div>Error loading activity logs.</div></div>';
+        }
+    }
+}
+
+// Load leaderboard from CSV
+async function loadLeaderboard() {
+    try {
+        const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQHuo-I6k4RbAnXvz_FvCzshqg7Cm5dqAXwNkvDLpgpZH84OGUSbX6TiOUfMrCHv3CiNnLnx0IhzNZC/pub?gid=0&single=true&output=csv');
+        if (!response.ok) throw new Error('Network error');
+
+        const data = await response.text();
+        const rows = data.trim().split('\n').slice(1); // skip header
+        
+        // Sort users by balance (descending)
+        const users = rows.map(row => {
+            const cols = row.split(',');
+            return {
+                username: cols[4] || 'Unknown',
+                balance: parseFloat(cols[3] || 0),
+                level: cols[6] || '1'
+            };
+        }).sort((a, b) => b.balance - a.balance).slice(0, 10); // Top 10 users
+        
+        const leaderboardBody = document.getElementById('leaderboardBody');
+        if (!leaderboardBody) return;
+        
+        leaderboardBody.innerHTML = '';
+        
+        users.forEach((user, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${user.username}</td>
+                <td>$${user.balance.toFixed(2)}</td>
+                <td>${user.level}</td>
+            `;
+            leaderboardBody.appendChild(row);
+        });
+    } catch (err) {
+        console.error('Error loading leaderboard:', err);
+    }
+}
+
+// Helper function to add messages to logs
+function addToLogs(message) {
+    const logsContainer = document.getElementById('logs');
+    const logEntry = document.createElement('div');
+    logEntry.className = 'wm-list-item';
+    logEntry.innerHTML = `
+        <div class="icon"><i class="fas fa-info-circle"></i></div>
+        <div>${new Date().toLocaleTimeString()} - ${message}</div>
+    `;
+    
+    // Remove initial placeholder if it exists
+    const initialMessage = logsContainer.querySelector('.wm-list-item:first-child');
+    if (initialMessage && initialMessage.textContent.includes('activity log will appear here')) {
+        logsContainer.removeChild(initialMessage);
+    }
+    
+    logsContainer.appendChild(logEntry);
+    logsContainer.scrollTop = logsContainer.scrollHeight;
+}
+
+// Bonus Code Redemption
+async function redeemBonusCode() {
+    const username = document.getElementById('username')?.value?.trim();
+    const bonusCode = document.getElementById('bonusCode')?.value?.trim();
+    
+    if (!username || !bonusCode) {
+        alert('Please fill in all fields');
+        return;
+    }
+    
+    try {
+        // Send a request to the Google Apps Script web app to fetch data from the Google Sheets
+        const response = await fetch(`https://script.google.com/macros/s/AKfycbxmqOnPJLPuHD6u_DD66bwY0R4MYQ8v9uF1Mv0pm8Sg9APSS4R4oXzbs3zin2FoTMK5/exec?username=${username}&bonusCode=${bonusCode}`);
+        const result = await response.text();
+
+        console.log('Bonus redemption result:', result); // For debugging
+
+        if (result.includes("Error")) {
+            alert(result);
+        } else {
+            const [amountLocal, amountUsd] = result.split(','); // Expecting data in format "amountLocal,amountUsd"
+            document.getElementById('amountLocal').value = amountLocal;
+            document.getElementById('amountUsd').value = amountUsd;
+            sendPostback(amountLocal, amountUsd, username, bonusCode); // Call the postback function
+            alert('Bonus code redeemed successfully!');
+        }
+    } catch (error) {
+        console.error('Error redeeming bonus code:', error);
+        alert('Error redeeming bonus code. Please try again.');
+    }
+}
+
+// Postback Function
+function sendPostback(amountLocal, amountUsd, username, bonusCode) {
+    const timestamp = new Date().getTime();
+    const postbackUrl = `https://script.google.com/macros/s/AKfycbyvw4LiShTvgnTTLRLISnTYJRhqeStmZgL9YD_ZuQEJubcDPH8bSbGpHPCVHDfx0dbW/exec?status=success&trans_id=${timestamp}&user_id=${username}&bonusCode=${bonusCode}&sub_id=&sub_id_2=&amount_local=${amountLocal}&amount_usd=${amountUsd}&offer_id=offer001&hash=secure_hash_value&ip_click=192.168.1.1`;
+
+    fetch(postbackUrl)
+        .then(response => response.json())
+        .then(data => console.log('Postback Success:', data))
+        .catch(error => console.error('Postback Error:', error));
+}
+    </script>
+</body>
+</html>
