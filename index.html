@@ -17,16 +17,16 @@
     <script src="https://v1.mychips.io/SDK/latest/my-chips-sdk.bundle.js"></script>
     
     <style>
-        /* Windows Mobile 6.5 Style */
+        /* Modern Windows Mobile 6.5 Style */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            font-family: "Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif;
         }
         
         body {
-            background: #5d7ca6;
+            background: linear-gradient(135deg, #5d7ca6 0%, #3a5a8c 100%);
             color: #000;
             font-size: 14px;
             line-height: 1.4;
@@ -36,32 +36,34 @@
         
         /* Header */
         .wm-header {
-            background: linear-gradient(to bottom, #2c5aa0 0%, #1e3a6b 100%);
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a6b 50%, #0f1f3a 100%);
             color: white;
-            height: 32px;
+            height: 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 8px;
+            padding: 0 12px;
             border-bottom: 1px solid #0f1f3a;
             font-weight: bold;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
         
         .wm-header .start {
-            font-size: 16px;
+            font-size: 18px;
             display: flex;
             align-items: center;
         }
         
         .wm-header .title {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
             text-align: center;
             flex-grow: 1;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
         
         .wm-header .time {
@@ -70,88 +72,109 @@
         
         /* Main Content */
         .wm-content {
-            margin-top: 32px;
-            margin-bottom: 52px;
-            padding: 8px;
-            background: #5d7ca6;
-            min-height: calc(100vh - 84px);
+            margin-top: 40px;
+            margin-bottom: 60px;
+            padding: 12px;
+            min-height: calc(100vh - 100px);
         }
         
         /* Windows Mobile Tabs */
         .wm-tabs {
             display: flex;
-            background: #4a6a9c;
+            background: linear-gradient(135deg, #4a6a9c 0%, #2c4163 100%);
             border-bottom: 1px solid #2c4163;
             overflow-x: auto;
+            border-radius: 6px 6px 0 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         
         .wm-tab {
-            padding: 8px 16px;
-            background: #6b8cc0;
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #6b8cc0 0%, #4a6a9c 100%);
             border: 1px solid #4a6a9c;
             border-bottom: none;
-            border-radius: 4px 4px 0 0;
+            border-radius: 6px 6px 0 0;
             margin-right: 2px;
             color: white;
             font-weight: bold;
             white-space: nowrap;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .wm-tab:hover {
+            background: linear-gradient(135deg, #7b9cd0 0%, #5a7aac 100%);
         }
         
         .wm-tab.active {
-            background: #8faad6;
+            background: linear-gradient(135deg, #8faad6 0%, #6b8cc0 100%);
             color: #000;
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.5);
         }
         
         /* Content Sections */
         .wm-section {
-            background: #d4dff2;
+            background: linear-gradient(135deg, #e8eef7 0%, #d4dff2 100%);
             border: 1px solid #8faad6;
-            border-radius: 4px;
-            padding: 12px;
-            margin-top: 8px;
-            box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #a3b3ce;
+            border-radius: 6px;
+            padding: 16px;
+            margin-top: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), inset 1px 1px 0 #fff, inset -1px -1px 0 #a3b3ce;
         }
         
         .wm-section h2 {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             color: #1e3a6b;
-            border-bottom: 1px solid #8faad6;
-            padding-bottom: 4px;
+            border-bottom: 2px solid #8faad6;
+            padding-bottom: 6px;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
         }
         
         /* Windows Mobile Buttons */
         .wm-button {
-            background: linear-gradient(to bottom, #f0f0f0 0%, #d4d4d4 100%);
+            background: linear-gradient(135deg, #f0f0f0 0%, #d4d4d4 50%, #b8b8b8 100%);
             border: 1px solid #808080;
-            border-radius: 3px;
-            padding: 6px 12px;
+            border-radius: 4px;
+            padding: 8px 16px;
             font-size: 14px;
             color: #000;
             cursor: pointer;
-            box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #a0a0a0;
-            margin: 4px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin: 6px 0;
             display: inline-block;
             text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .wm-button:hover {
+            background: linear-gradient(135deg, #f8f8f8 0%, #e0e0e0 50%, #c8c8c8 100%);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
         }
         
         .wm-button:active {
-            background: linear-gradient(to bottom, #d4d4d4 0%, #f0f0f0 100%);
-            box-shadow: inset 1px 1px 0 #a0a0a0, inset -1px -1px 0 #fff;
+            background: linear-gradient(135deg, #d4d4d4 0%, #b8b8b8 50%, #a0a0a0 100%);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .wm-button.primary {
-            background: linear-gradient(to bottom, #4a6a9c 0%, #2c4163 100%);
+            background: linear-gradient(135deg, #4a6a9c 0%, #2c4163 50%, #1e3a6b 100%);
             color: white;
             border-color: #1e3a6b;
-            box-shadow: inset 1px 1px 0 #6b8cc0, inset -1px -1px 0 #1e3a6b;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+        }
+        
+        .wm-button.primary:hover {
+            background: linear-gradient(135deg, #5a7aac 0%, #3c5173 50%, #2e4a7b 100%);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
         }
         
         .wm-button.primary:active {
-            background: linear-gradient(to bottom, #2c4163 0%, #4a6a9c 100%);
-            box-shadow: inset 1px 1px 0 #1e3a6b, inset -1px -1px 0 #6b8cc0;
+            background: linear-gradient(135deg, #3a5a8c 0%, #1c3153 50%, #0e2a5b 100%);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
         }
         
         /* Google Login Button */
@@ -159,16 +182,18 @@
             background: #4285f4;
             color: white;
             border: 1px solid #4285f4;
-            border-radius: 3px;
-            padding: 8px 12px;
+            border-radius: 4px;
+            padding: 10px 16px;
             font-size: 14px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            margin: 8px 0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
         
         .google-login-btn i {
@@ -178,11 +203,12 @@
         
         .google-login-btn:hover {
             background: #3367d6;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.3);
         }
         
         .divider {
             text-align: center;
-            margin: 12px 0;
+            margin: 16px 0;
             color: #4a6a9c;
             position: relative;
         }
@@ -200,7 +226,7 @@
         
         .divider span {
             background: #d4dff2;
-            padding: 0 8px;
+            padding: 0 12px;
             position: relative;
             z-index: 2;
         }
@@ -209,28 +235,41 @@
         .wm-input {
             background: white;
             border: 1px solid #808080;
-            border-radius: 3px;
-            padding: 6px 8px;
+            border-radius: 4px;
+            padding: 8px 12px;
             font-size: 14px;
             width: 100%;
-            box-shadow: inset 1px 1px 0 #e0e0e0;
-            margin: 4px 0;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            margin: 6px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .wm-input:focus {
+            border-color: #4a6a9c;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 0 5px rgba(74, 106, 156, 0.5);
+            outline: none;
         }
         
         /* List Items */
         .wm-list {
             background: white;
             border: 1px solid #8faad6;
-            border-radius: 3px;
+            border-radius: 6px;
             overflow: hidden;
-            margin: 8px 0;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .wm-list-item {
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-bottom: 1px solid #d4dff2;
             display: flex;
             align-items: center;
+            transition: background 0.3s ease;
+        }
+        
+        .wm-list-item:hover {
+            background: #f0f5ff;
         }
         
         .wm-list-item:last-child {
@@ -238,31 +277,33 @@
         }
         
         .wm-list-item .icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
+            width: 28px;
+            height: 28px;
+            margin-right: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #4a6a9c;
+            background: linear-gradient(135deg, #4a6a9c 0%, #2c4163 100%);
             color: white;
-            border-radius: 3px;
-            font-size: 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         
         /* Footer Navigation */
         .wm-footer {
-            background: linear-gradient(to bottom, #2c5aa0 0%, #1e3a6b 100%);
-            height: 52px;
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a6b 50%, #0f1f3a 100%);
+            height: 60px;
             position: fixed;
             bottom: 0;
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 8px;
+            padding: 0 12px;
             border-top: 1px solid #0f1f3a;
             z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
         }
         
         .wm-footer-button {
@@ -273,32 +314,38 @@
             justify-content: center;
             font-size: 10px;
             width: 64px;
-            height: 42px;
+            height: 48px;
             text-align: center;
             cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
         }
         
         .wm-footer-button i {
-            font-size: 16px;
-            margin-bottom: 2px;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+        
+        .wm-footer-button:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
         
         .wm-footer-button.active {
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
         }
         
         /* Status Bar */
         .wm-status-bar {
-            background: #4a6a9c;
+            background: linear-gradient(135deg, #4a6a9c 0%, #2c4163 100%);
             color: white;
-            padding: 4px 8px;
+            padding: 8px 12px;
             font-size: 12px;
             display: flex;
             justify-content: space-between;
-            border-top: 1px solid #2c4163;
-            border-bottom: 1px solid #2c4163;
-            margin-top: 8px;
+            border-radius: 4px;
+            margin-top: 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         
         /* Hidden sections */
@@ -310,27 +357,29 @@
         .wm-logs {
             background: white;
             border: 1px solid #8faad6;
-            border-radius: 3px;
-            height: 120px;
+            border-radius: 6px;
+            height: 140px;
             overflow-y: auto;
-            padding: 8px;
+            padding: 10px;
             font-family: "Courier New", monospace;
             font-size: 12px;
-            margin: 8px 0;
+            margin: 10px 0;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         
         /* Login Form */
         .wm-login-form {
             background: white;
             border: 1px solid #8faad6;
-            border-radius: 3px;
-            padding: 12px;
-            margin: 8px 0;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .wm-login-form label {
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             font-weight: bold;
             color: #1e3a6b;
         }
@@ -339,46 +388,55 @@
         .wm-captcha {
             background: #e8eef7;
             border: 1px solid #8faad6;
-            border-radius: 3px;
-            padding: 8px;
+            border-radius: 4px;
+            padding: 10px;
             text-align: center;
             font-family: "Courier New", monospace;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
-            letter-spacing: 2px;
-            margin: 8px 0;
+            letter-spacing: 3px;
+            margin: 10px 0;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         
         /* Offer Wall Grid */
         .wm-offer-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin: 8px 0;
+            gap: 10px;
+            margin: 10px 0;
         }
         
         .wm-offer-item {
             background: white;
             border: 1px solid #8faad6;
-            border-radius: 3px;
-            padding: 8px;
+            border-radius: 6px;
+            padding: 12px;
             text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .wm-offer-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
         
         .wm-offer-item img {
             max-width: 100%;
-            height: 40px;
+            height: 50px;
             object-fit: contain;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         
         /* Leaderboard */
         .wm-leaderboard {
             background: white;
             border: 1px solid #8faad6;
-            border-radius: 3px;
+            border-radius: 6px;
             overflow: hidden;
-            margin: 8px 0;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .wm-leaderboard table {
@@ -387,9 +445,9 @@
         }
         
         .wm-leaderboard th {
-            background: #4a6a9c;
+            background: linear-gradient(135deg, #4a6a9c 0%, #2c4163 100%);
             color: white;
-            padding: 6px 8px;
+            padding: 8px 10px;
             text-align: left;
             font-weight: bold;
             border-right: 1px solid #2c4163;
@@ -400,7 +458,7 @@
         }
         
         .wm-leaderboard td {
-            padding: 6px 8px;
+            padding: 8px 10px;
             border-bottom: 1px solid #d4dff2;
         }
         
@@ -408,18 +466,23 @@
             border-bottom: none;
         }
         
+        .wm-leaderboard tr:hover {
+            background: #f0f5ff;
+        }
+        
         /* FAQ Items */
         .wm-faq-item {
             background: white;
             border: 1px solid #8faad6;
-            border-radius: 3px;
-            padding: 8px;
-            margin: 8px 0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .wm-faq-item h4 {
             color: #1e3a6b;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             font-weight: bold;
         }
         
@@ -436,18 +499,18 @@
         }
         
         .wm-iframe-header {
-            background: linear-gradient(to bottom, #2c5aa0 0%, #1e3a6b 100%);
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a6b 100%);
             color: white;
-            height: 32px;
+            height: 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 8px;
+            padding: 0 12px;
             border-bottom: 1px solid #0f1f3a;
         }
         
         .wm-iframe-content {
-            height: calc(100% - 32px);
+            height: calc(100% - 40px);
         }
         
         .wm-iframe-content iframe {
@@ -461,8 +524,8 @@
             background: #ff0000;
             color: white;
             border-radius: 50%;
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             font-size: 10px;
             display: flex;
             align-items: center;
@@ -476,19 +539,21 @@
         .wm-user-info {
             background: white;
             border: 1px solid #8faad6;
-            border-radius: 3px;
-            padding: 8px;
-            margin: 8px 0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 10px 0;
             display: flex;
             align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .wm-user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 3px;
-            margin-right: 8px;
+            width: 50px;
+            height: 50px;
+            border-radius: 6px;
+            margin-right: 12px;
             border: 1px solid #8faad6;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         
         .wm-user-details {
@@ -498,7 +563,7 @@
         .wm-user-stats {
             display: flex;
             justify-content: space-between;
-            margin-top: 8px;
+            margin-top: 10px;
         }
         
         .wm-stat {
@@ -508,67 +573,234 @@
         
         .wm-stat-value {
             font-weight: bold;
-            font-size: 16px;
+            font-size: 18px;
             color: #1e3a6b;
         }
         
         .wm-stat-label {
-            font-size: 10px;
+            font-size: 11px;
             color: #4a6a9c;
         }
         
         /* Bonus Section Styles */
         .bonus-code-section {
-            background: #d4dff2;
+            background: linear-gradient(135deg, #e8eef7 0%, #d4dff2 100%);
             border: 1px solid #8faad6;
-            border-radius: 4px;
-            padding: 12px;
-            margin-top: 8px;
-            box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #a3b3ce;
+            border-radius: 6px;
+            padding: 16px;
+            margin-top: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), inset 1px 1px 0 #fff, inset -1px -1px 0 #a3b3ce;
         }
         
         .info-box {
             background: #fff9e6;
             border: 1px solid #e6c200;
-            border-radius: 3px;
-            padding: 8px;
-            margin: 8px 0;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
             display: flex;
             align-items: flex-start;
         }
         
         .info-box i {
             color: #e6c200;
-            margin-right: 8px;
+            margin-right: 10px;
             margin-top: 2px;
         }
         
         .bonus-form {
             background: white;
             border: 1px solid #8faad6;
-            border-radius: 3px;
-            padding: 12px;
-            margin: 8px 0;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .form-group {
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             font-weight: bold;
             color: #1e3a6b;
         }
         
         .form-row {
             display: flex;
-            gap: 8px;
+            gap: 10px;
         }
         
         .form-row .form-group {
             flex: 1;
+        }
+        
+        /* Game Styles */
+        .game-container {
+            background: white;
+            border: 1px solid #8faad6;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 10px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .game-title {
+            color: #1e3a6b;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        
+        .game-description {
+            margin-bottom: 16px;
+            color: #4a6a9c;
+        }
+        
+        .bet-input-container {
+            margin-bottom: 16px;
+        }
+        
+        .bet-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #8faad6;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .bet-info {
+            font-size: 12px;
+            color: #4a6a9c;
+        }
+        
+        .game-roller {
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(135deg, #4a6a9c 0%, #2c4163 100%);
+            border-radius: 6px;
+            margin: 16px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .roller-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .game-result {
+            margin: 16px 0;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .win {
+            background: #d4ffd4;
+            color: #006400;
+            border: 1px solid #006400;
+        }
+        
+        .lose {
+            background: #ffd4d4;
+            color: #8b0000;
+            border: 1px solid #8b0000;
+        }
+        
+        .cooldown-message {
+            margin: 10px 0;
+            padding: 8px;
+            background: #fff9e6;
+            border: 1px solid #e6c200;
+            border-radius: 4px;
+            color: #8b7500;
+            display: none;
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            display: none;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a6b 100%);
+            color: white;
+            padding: 16px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .modal-body {
+            padding: 16px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        
+        .modal-body h3 {
+            color: #1e3a6b;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .modal-body p {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        .modal-body ul {
+            margin-left: 20px;
+            margin-bottom: 12px;
         }
     </style>
 </head>
@@ -590,6 +822,8 @@
             <div class="wm-tab" data-section="profile">Earn</div>
             <div class="wm-tab" data-section="bonus">Bonus</div>
             <div class="wm-tab" data-section="help">Help</div>
+            <div class="wm-tab" data-section="privacy">Privacy</div>
+            <div class="wm-tab" data-section="tos">TOS</div>
         </div>
         
         <!-- Status Bar -->
@@ -750,20 +984,21 @@
                         <div class="wm-button primary" id="openOfferWallCPX">Open OfferWall</div>
                     </div>
                     <div class="wm-offer-item">
-                        <img src="https://affi-plat.s3.us-east-2.amazonaws.com/platforms/wannads-ogotipo-naranja.png" alt="CPX Research Logo">
+                        <img src="https://affi-plat.s3.us-east-2.amazonaws.com/platforms/wannads-ogotipo-naranja.png" alt="Wannads Logo">
                         <div class="wm-button primary" id="openOfferWallwannads">Open OfferWall</div>
                     </div>
                     <div class="wm-offer-item">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmpR4eOpo8ckwPlqM2UXcwd-FJixOFTruEJQ&s" alt="Notik Logo">
-    <div class="wm-button primary" onclick="openNotikOfferwall()">Open OfferWall</div>
-</div>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmpR4eOpo8ckwPlqM2UXcwd-FJixOFTruEJQ&s" alt="Notik Logo">
+                        <div class="wm-button primary" id="openOfferWallnotik">Open OfferWall</div>
+                    </div>
                     <div class="wm-offer-item">
-                        <img src="https://excentiv.com/images/app-logo.svg" alt="CPX Research Logo">
+                        <img src="https://excentiv.com/images/app-logo.svg" alt="Excentiv Logo">
                         <div class="wm-button primary" id="openOfferWallexcentiv">Open OfferWall</div>
                     </div>
-                    
-                    
-                    
+                    <div class="wm-offer-item">
+                        <img src="https://i.imgur.com/wppiqAy.png" alt="Bux iQ Game">
+                        <div class="wm-button primary" id="playGameButton">Play Game</div>
+                    </div>
                 </div>
                 
                 <div class="wm-button" style="width: 100%; margin-top: 12px;" id="logoutBtn">Logout</div>
@@ -834,6 +1069,71 @@
             
             <div class="wm-button primary" style="width: 100%;" id="contact-support-btn">Contact Support</div>
         </div>
+        
+        <!-- Privacy Policy Section -->
+        <div id="section-privacy" class="wm-section hidden">
+            <h2>Privacy Policy</h2>
+            
+            <div class="wm-faq-item">
+                <h4>Information We Collect</h4>
+                <p>We collect information you provide directly to us, such as when you create an account, complete surveys, or contact us for support.</p>
+            </div>
+            
+            <div class="wm-faq-item">
+                <h4>How We Use Your Information</h4>
+                <p>We use the information we collect to provide, maintain, and improve our services, process your transactions, and communicate with you.</p>
+            </div>
+            
+            <div class="wm-faq-item">
+                <h4>Information Sharing</h4>
+                <p>We do not sell your personal information to third parties. We may share information with trusted partners who assist us in operating our platform.</p>
+            </div>
+            
+            <div class="wm-faq-item">
+                <h4>Data Security</h4>
+                <p>We implement appropriate security measures to protect your personal information from unauthorized access and disclosure.</p>
+            </div>
+            
+            <div class="wm-faq-item">
+                <h4>Your Choices</h4>
+                <p>You can access, update, or delete your personal information by contacting us. You may also opt out of promotional communications.</p>
+            </div>
+        </div>
+        
+        <!-- Terms of Service Section -->
+        <div id="section-tos" class="wm-section hidden">
+            <h2>Terms of Service</h2>
+            
+            <div class="wm-faq-item">
+                <h4>Acceptance of Terms</h4>
+                <p>By accessing or using Bux iQ, you agree to be bound by these Terms of Service and our Privacy Policy.</p>
+            </div>
+            
+            <div class="wm-faq-item">
+                <h4>Eligibility</h4>
+                <p>You must be at least 18 years old to use our services. By using Bux iQ, you represent that you meet this requirement.</p>
+            </div>
+            
+            <div class="wm-faq-item">
+                <h4>User Accounts</h4>
+                <p>You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.</p>
+            </div>
+            
+            <div class="wm-faq-item">
+                <h4>Prohibited Activities</h4>
+                <p>You agree not to engage in any fraudulent activities, use automated systems, or attempt to circumvent our security measures.</p>
+            </div>
+            
+            <div class="wm-faq-item">
+                <h4>Rewards and Payments</h4>
+                <p>Rewards are subject to verification and may be revoked if fraud is detected. We reserve the right to modify or discontinue any reward program.</p>
+            </div>
+            
+            <div class="wm-faq-item">
+                <h4>Termination</h4>
+                <p>We may suspend or terminate your account at any time for violations of these terms or for any other reason at our sole discretion.</p>
+            </div>
+        </div>
     </div>
     
     <!-- Footer Navigation -->
@@ -862,6 +1162,14 @@
             <i class="fas fa-question-circle"></i>
             <span>Help</span>
         </div>
+        <div class="wm-footer-button" data-section="privacy">
+            <i class="fas fa-shield-alt"></i>
+            <span>Privacy</span>
+        </div>
+        <div class="wm-footer-button" data-section="tos">
+            <i class="fas fa-file-contract"></i>
+            <span>TOS</span>
+        </div>
     </div>
     
     <!-- Iframe Container -->
@@ -875,11 +1183,46 @@
         </div>
     </div>
     
+    <!-- Game Modal -->
+    <div class="modal-overlay" id="gameModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Bux iQ Game</h2>
+                <button class="modal-close" id="closeGameModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="game-container">
+                    <h3 class="game-title">Swipe Roller Game</h3>
+                    <p class="game-description">Place your bet and swipe the roller to test your luck!</p>
+                    
+                    <div class="bet-input-container">
+                        <input type="number" class="bet-input" id="betAmount" min="0.25" step="0.25" value="0.25" placeholder="Enter bet amount">
+                        <div class="bet-info">Minimum bet: $0.25</div>
+                    </div>
+                    
+                    <div class="game-roller" id="gameRoller">
+                        <div class="roller-content" id="rollerContent">Swipe to Play</div>
+                    </div>
+                    
+                    <div class="game-result" id="gameResult"></div>
+                    
+                    <div class="cooldown-message" id="cooldownMessage">
+                        <i class="fas fa-clock"></i> You can play again in <span id="cooldownTimer">00:00:00</span>
+                    </div>
+                    
+                    <div class="wm-button primary" id="playGameBtn" style="width: 100%;">Play Game</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script>
 // Global variables
 let captchaCode = '';
 let currentUser = null;
 const adUnit = 'default_ad_unit'; // Added missing adUnit variable
+let gameCooldown = false;
+let cooldownInterval = null;
 
 // Google Apps Script URL for posting data to Google Sheets
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxLwW7NEXLMSDPh1A_PJbTjAucIuji6JtsgVu2xAdaMzXthTKsgk2xyWy83Dx8dO53Rrg/exec';
@@ -906,8 +1249,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load activity logs
     fetchCSV();
     
-    // Load leaderboard
-    loadLeaderboard();
+    // Load leaderboard();
+    
+    // Check game cooldown
+    checkGameCooldown();
 });
 
 // Initialize all event listeners
@@ -964,8 +1309,313 @@ function initializeEventListeners() {
 
     // Initialize offerwall buttons
     initializeOfferwallButtons();
+    
+    // Game related event listeners
+    document.getElementById('playGameButton')?.addEventListener('click', openGameModal);
+    document.getElementById('closeGameModal')?.addEventListener('click', closeGameModal);
+    document.getElementById('playGameBtn')?.addEventListener('click', playGame);
+    
+    // Game roller swipe functionality
+    const gameRoller = document.getElementById('gameRoller');
+    if (gameRoller) {
+        gameRoller.addEventListener('touchstart', handleTouchStart, false);
+        gameRoller.addEventListener('touchmove', handleTouchMove, false);
+        gameRoller.addEventListener('touchend', handleTouchEnd, false);
+        
+        gameRoller.addEventListener('mousedown', handleMouseDown, false);
+        gameRoller.addEventListener('mousemove', handleMouseMove, false);
+        gameRoller.addEventListener('mouseup', handleMouseUp, false);
+        gameRoller.addEventListener('mouseleave', handleMouseUp, false);
+    }
 }
 
+// Touch event variables
+let xDown = null;
+let yDown = null;
+let isSwiping = false;
+
+function handleTouchStart(evt) {
+    if (gameCooldown) return;
+    
+    const firstTouch = evt.touches[0];
+    xDown = firstTouch.clientX;
+    yDown = firstTouch.clientY;
+    isSwiping = true;
+}
+
+function handleTouchMove(evt) {
+    if (!xDown || !yDown || !isSwiping) return;
+    
+    const xUp = evt.touches[0].clientX;
+    const yUp = evt.touches[0].clientY;
+    
+    const xDiff = xDown - xUp;
+    const yDiff = yDown - yUp;
+    
+    // Check if it's a horizontal swipe
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        if (xDiff > 0) {
+            // Left swipe
+            document.getElementById('rollerContent').textContent = "Swiping...";
+        } else {
+            // Right swipe
+            document.getElementById('rollerContent').textContent = "Swiping...";
+        }
+    }
+}
+
+function handleTouchEnd(evt) {
+    if (!isSwiping) return;
+    
+    isSwiping = false;
+    
+    // Check if it's a valid swipe (minimum distance)
+    if (xDown && yDown) {
+        const xUp = evt.changedTouches[0].clientX;
+        const yUp = evt.changedTouches[0].clientY;
+        
+        const xDiff = xDown - xUp;
+        const yDiff = yDown - yUp;
+        
+        // Check if it's a horizontal swipe with minimum distance
+        if (Math.abs(xDiff) > 50 && Math.abs(xDiff) > Math.abs(yDiff)) {
+            playGame();
+        } else {
+            document.getElementById('rollerContent').textContent = "Swipe to Play";
+        }
+    }
+    
+    xDown = null;
+    yDown = null;
+}
+
+// Mouse event handlers for desktop
+function handleMouseDown(evt) {
+    if (gameCooldown) return;
+    
+    xDown = evt.clientX;
+    yDown = evt.clientY;
+    isSwiping = true;
+}
+
+function handleMouseMove(evt) {
+    if (!xDown || !yDown || !isSwiping) return;
+    
+    const xUp = evt.clientX;
+    const yUp = evt.clientY;
+    
+    const xDiff = xDown - xUp;
+    const yDiff = yDown - yUp;
+    
+    // Check if it's a horizontal swipe
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        document.getElementById('rollerContent').textContent = "Swiping...";
+    }
+}
+
+function handleMouseUp(evt) {
+    if (!isSwiping) return;
+    
+    isSwiping = false;
+    
+    // Check if it's a valid swipe (minimum distance)
+    if (xDown && yDown) {
+        const xUp = evt.clientX;
+        const yUp = evt.clientY;
+        
+        const xDiff = xDown - xUp;
+        const yDiff = yDown - yUp;
+        
+        // Check if it's a horizontal swipe with minimum distance
+        if (Math.abs(xDiff) > 50 && Math.abs(xDiff) > Math.abs(yDiff)) {
+            playGame();
+        } else {
+            document.getElementById('rollerContent').textContent = "Swipe to Play";
+        }
+    }
+    
+    xDown = null;
+    yDown = null;
+}
+
+// Game functions
+function openGameModal() {
+    if (!currentUser) {
+        alert('Please login first to play the game.');
+        showSection('profile');
+        return;
+    }
+    
+    document.getElementById('gameModal').style.display = 'flex';
+    checkGameCooldown();
+}
+
+function closeGameModal() {
+    document.getElementById('gameModal').style.display = 'none';
+    document.getElementById('gameResult').style.display = 'none';
+    document.getElementById('rollerContent').textContent = "Swipe to Play";
+}
+
+function playGame() {
+    if (gameCooldown) {
+        alert('Please wait for the cooldown to finish before playing again.');
+        return;
+    }
+    
+    const betAmount = parseFloat(document.getElementById('betAmount').value);
+    const userBalance = parseFloat(currentUser[3] || 0);
+    
+    // Validate bet amount
+    if (isNaN(betAmount) || betAmount < 0.25) {
+        alert('Minimum bet is $0.25');
+        return;
+    }
+    
+    if (betAmount > userBalance) {
+        alert('Insufficient balance');
+        return;
+    }
+    
+    // Disable play button during animation
+    document.getElementById('playGameBtn').disabled = true;
+    
+    // Show rolling animation
+    const rollerContent = document.getElementById('rollerContent');
+    rollerContent.textContent = "Rolling...";
+    
+    // Simulate rolling animation
+    let rollCount = 0;
+    const rollInterval = setInterval(() => {
+        rollCount++;
+        if (rollCount % 2 === 0) {
+            rollerContent.textContent = "Rolling...";
+        } else {
+            rollerContent.textContent = "Rolling..";
+        }
+        
+        if (rollCount >= 10) {
+            clearInterval(rollInterval);
+            determineGameResult(betAmount);
+        }
+    }, 100);
+}
+
+function determineGameResult(betAmount) {
+    // 50% chance to win
+    const win = Math.random() > 0.5;
+    const multiplier = win ? 2 : 0;
+    const payout = win ? betAmount * multiplier : 0;
+    const netChange = payout - betAmount;
+    
+    // Update UI with result
+    const gameResult = document.getElementById('gameResult');
+    gameResult.textContent = win ? 
+        `Congratulations! You won $${payout.toFixed(2)}!` : 
+        `Sorry! You lost $${betAmount.toFixed(2)}.`;
+    
+    gameResult.className = win ? 'game-result win' : 'game-result lose';
+    gameResult.style.display = 'block';
+    
+    // Update roller content
+    document.getElementById('rollerContent').textContent = win ? "WINNER!" : "TRY AGAIN";
+    
+    // Re-enable play button
+    document.getElementById('playGameBtn').disabled = false;
+    
+    // Send postback
+    sendGamePostback(win, betAmount, payout, netChange);
+    
+    // Set cooldown
+    setGameCooldown();
+}
+
+function sendGamePostback(win, betAmount, payout, netChange) {
+    const timestamp = Date.now();
+    const status = win ? 'win' : 'lose';
+    const userId = currentUser[4] || currentUser[0] || 'user';
+    const userIp = '192.168.1.1'; // In a real app, you would get this from the server
+    const countryCode = 'US'; // In a real app, you would get this from the server
+    const secret = 'secure_hash_value'; // In a real app, you would use a proper hash
+    
+    const postbackUrl = `https://script.google.com/macros/s/AKfycbyvw4LiShTvgnTTLRLISnTYJRhqeStmZgL9YD_ZuQEJubcDPH8bSbGpHPCVHDfx0dbW/exec?status=${status}&trans_id=${timestamp}&user_id=${userId}&amount_local=${netChange}&amount_usd=${payout}&offer_id=game&hash=${secret}&ip_click=${userIp}&country=${countryCode}`;
+    
+    fetch(postbackUrl)
+        .then(response => response.json())
+        .then(data => {
+            console.log('Game postback success:', data);
+            // Update balance after successful postback
+            updateBalance();
+            addToLogs(`Game: ${win ? 'Won' : 'Lost'} $${Math.abs(netChange).toFixed(2)}`);
+        })
+        .catch(error => {
+            console.error('Game postback error:', error);
+            alert('Error processing game result. Please try again.');
+        });
+}
+
+function setGameCooldown() {
+    const cooldownTime = 60 * 60 * 1000; // 1 hour in milliseconds
+    const cooldownEnd = Date.now() + cooldownTime;
+    
+    localStorage.setItem('buxiq_game_cooldown', cooldownEnd.toString());
+    gameCooldown = true;
+    
+    // Update UI
+    document.getElementById('cooldownMessage').style.display = 'block';
+    
+    // Start countdown
+    if (cooldownInterval) clearInterval(cooldownInterval);
+    cooldownInterval = setInterval(updateCooldownTimer, 1000);
+    updateCooldownTimer();
+}
+
+function checkGameCooldown() {
+    const cooldownEnd = localStorage.getItem('buxiq_game_cooldown');
+    
+    if (cooldownEnd && Date.now() < parseInt(cooldownEnd)) {
+        gameCooldown = true;
+        document.getElementById('cooldownMessage').style.display = 'block';
+        
+        // Start countdown
+        if (cooldownInterval) clearInterval(cooldownInterval);
+        cooldownInterval = setInterval(updateCooldownTimer, 1000);
+        updateCooldownTimer();
+    } else {
+        gameCooldown = false;
+        document.getElementById('cooldownMessage').style.display = 'none';
+        if (cooldownInterval) clearInterval(cooldownInterval);
+    }
+}
+
+function updateCooldownTimer() {
+    const cooldownEnd = localStorage.getItem('buxiq_game_cooldown');
+    
+    if (!cooldownEnd) {
+        gameCooldown = false;
+        document.getElementById('cooldownMessage').style.display = 'none';
+        if (cooldownInterval) clearInterval(cooldownInterval);
+        return;
+    }
+    
+    const remaining = parseInt(cooldownEnd) - Date.now();
+    
+    if (remaining <= 0) {
+        gameCooldown = false;
+        document.getElementById('cooldownMessage').style.display = 'none';
+        if (cooldownInterval) clearInterval(cooldownInterval);
+        localStorage.removeItem('buxiq_game_cooldown');
+        return;
+    }
+    
+    const hours = Math.floor(remaining / (1000 * 60 * 60));
+    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+    
+    document.getElementById('cooldownTimer').textContent = 
+        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+// Rest of the existing code remains the same...
 // Initialize offerwall buttons with user validation
 function initializeOfferwallButtons() {
     Object.keys(offerwallButtons).forEach(buttonId => {
@@ -1064,9 +1714,8 @@ const offerwallButtons = {
     'openOfferWallmc': (user) => `https://sdk.mychips.io/content?content_id=16cbcd08-387a-498f-b4bd-9f4d2c6883a7&user_id=${user}&ad_unit_id=${adUnit}`,
     'openOfferWallSPARKWALL': (user) => `https://spark-wall.com/offerwall/G2kA8XaPF2jjstApSCZsK6aE6qudMN/${user}&username=${user}&subid_1=&subid_2`,
     'openOfferWallowm': (user) => `https://offerwallmedia.com/offerwall/vfox4w1tpz3gflta3gblkkqp8b2aoj/${user}`,
-    'openOfferWallCPX': (user) => `https://notik.me/coins?api_key=eQpYGMydTs5GP0DfFPQrJotOwKo6V0Hy&pub_id=LJ2g&app_id=GxEBh1Hn3m&user_id=${user}`,
+    'openOfferWallnotik': (user) => `https://notik.me/coins?api_key=eQpYGMydTs5GP0DfFPQrJotOwKo6V0Hy&pub_id=LJ2g&app_id=GxEBh1Hn3m&user_id=${user}`,
     'openOfferWallbuxiq': () => `https://bux-iq.netlify.app/cashout.html`
-    
 };
 
 // Check for existing user session
@@ -1530,7 +2179,7 @@ function generateCaptcha() {
 // Navigation handler
 function showSection(section) {
     try {
-        const sections = ['earn', 'shop', 'leaders', 'profile', 'bonus', 'help'];
+        const sections = ['earn', 'shop', 'leaders', 'profile', 'bonus', 'help', 'privacy', 'tos'];
         sections.forEach(sec => {
             const sectionEl = document.getElementById('section-' + sec);
             if (sectionEl) {
