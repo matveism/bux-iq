@@ -3,672 +3,601 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantum Rewards</title>
+    <title>Quantum Rewards - Professional Cashout</title>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <!-- Windows Mobile 6.5 Style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Windows Mobile 6.5 Style */
+        :root {
+            --primary-dark: #1a1a2e;
+            --primary-main: #16213e;
+            --primary-light: #0f3460;
+            --secondary-dark: #533483;
+            --secondary-main: #e94560;
+            --success-color: #4CAF50;
+            --warning-color: #FF9800;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --background-default: #0a0a12;
+            --background-paper: #121226;
+            --divider: #2a2a4a;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
         }
         
         body {
-            background: #5d7ca6;
-            color: #000;
-            font-size: 14px;
-            line-height: 1.4;
+            background-color: var(--background-default);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
+            line-height: 1.6;
+        }
+        
+        #root {
+            min-height: 100vh;
         }
         
         /* Header */
         .wm-header {
-            background: linear-gradient(to bottom, #2c5aa0 0%, #1e3a6b 100%);
+            background: var(--primary-dark);
             color: white;
-            height: 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 8px;
-            border-bottom: 1px solid #0f1f3a;
-            font-weight: bold;
-            position: fixed;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--divider);
+            position: sticky;
             top: 0;
-            width: 100%;
-            z-index: 1000;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
         
         .wm-header .start {
-            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .wm-header .title {
+            font-weight: 700;
+            font-size: 18px;
             display: flex;
             align-items: center;
         }
         
-        .wm-header .title {
-            font-size: 16px;
-            font-weight: bold;
-            text-align: center;
-            flex-grow: 1;
+        .wm-header .title i {
+            margin-right: 8px;
+            color: var(--secondary-main);
         }
         
         .wm-header .time {
-            font-size: 14px;
+            font-weight: 500;
         }
         
         /* Main Content */
         .wm-content {
-            margin-top: 32px;
-            margin-bottom: 52px;
-            padding: 8px;
-            background: #5d7ca6;
-            min-height: calc(100vh - 84px);
+            padding: 16px;
+            padding-bottom: 80px; /* Space for footer */
         }
         
-        /* Windows Mobile Tabs */
-        .wm-tabs {
+        /* Progress Steps */
+        .progress-container {
+            margin-bottom: 24px;
+        }
+        
+        .progress-steps {
             display: flex;
-            background: #4a6a9c;
-            border-bottom: 1px solid #2c4163;
-            overflow-x: auto;
-        }
-        
-        .wm-tab {
-            padding: 8px 16px;
-            background: #6b8cc0;
-            border: 1px solid #4a6a9c;
-            border-bottom: none;
-            border-radius: 4px 4px 0 0;
-            margin-right: 2px;
-            color: white;
-            font-weight: bold;
-            white-space: nowrap;
-            cursor: pointer;
-        }
-        
-        .wm-tab.active {
-            background: #8faad6;
-            color: #000;
-        }
-        
-        /* Content Sections */
-        .wm-section {
-            background: #d4dff2;
-            border: 1px solid #8faad6;
-            border-radius: 4px;
-            padding: 12px;
-            margin-top: 8px;
-            box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #a3b3ce;
-        }
-        
-        .wm-section h2 {
-            font-size: 16px;
-            font-weight: bold;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 8px;
-            color: #1e3a6b;
-            border-bottom: 1px solid #8faad6;
-            padding-bottom: 4px;
-        }
-        
-        /* Windows Mobile Buttons */
-        .wm-button {
-            background: linear-gradient(to bottom, #f0f0f0 0%, #d4d4d4 100%);
-            border: 1px solid #808080;
-            border-radius: 3px;
-            padding: 6px 12px;
-            font-size: 14px;
-            color: #000;
-            cursor: pointer;
-            box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #a0a0a0;
-            margin: 4px 0;
-            display: inline-block;
-            text-align: center;
-        }
-        
-        .wm-button:active {
-            background: linear-gradient(to bottom, #d4d4d4 0%, #f0f0f0 100%);
-            box-shadow: inset 1px 1px 0 #a0a0a0, inset -1px -1px 0 #fff;
-        }
-        
-        .wm-button.primary {
-            background: linear-gradient(to bottom, #4a6a9c 0%, #2c4163 100%);
-            color: white;
-            border-color: #1e3a6b;
-            box-shadow: inset 1px 1px 0 #6b8cc0, inset -1px -1px 0 #1e3a6b;
-        }
-        
-        .wm-button.primary:active {
-            background: linear-gradient(to bottom, #2c4163 0%, #4a6a9c 100%);
-            box-shadow: inset 1px 1px 0 #1e3a6b, inset -1px -1px 0 #6b8cc0;
-        }
-        
-        /* Input Fields */
-        .wm-input {
-            background: white;
-            border: 1px solid #808080;
-            border-radius: 3px;
-            padding: 6px 8px;
-            font-size: 14px;
-            width: 100%;
-            box-shadow: inset 1px 1px 0 #e0e0e0;
-            margin: 4px 0;
-        }
-        
-        /* List Items */
-        .wm-list {
-            background: white;
-            border: 1px solid #8faad6;
-            border-radius: 3px;
-            overflow: hidden;
-            margin: 8px 0;
-        }
-        
-        .wm-list-item {
-            padding: 8px 12px;
-            border-bottom: 1px solid #d4dff2;
-            display: flex;
-            align-items: center;
-        }
-        
-        .wm-list-item:last-child {
-            border-bottom: none;
-        }
-        
-        .wm-list-item .icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #4a6a9c;
-            color: white;
-            border-radius: 3px;
-            font-size: 12px;
-        }
-        
-        /* Footer Navigation */
-        .wm-footer {
-            background: linear-gradient(to bottom, #2c5aa0 0%, #1e3a6b 100%);
-            height: 52px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 8px;
-            border-top: 1px solid #0f1f3a;
-            z-index: 1000;
-        }
-        
-        .wm-footer-button {
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            width: 64px;
-            height: 42px;
-            text-align: center;
-            cursor: pointer;
-        }
-        
-        .wm-footer-button i {
-            font-size: 16px;
-            margin-bottom: 2px;
-        }
-        
-        .wm-footer-button.active {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-        }
-        
-        /* Status Bar */
-        .wm-status-bar {
-            background: #4a6a9c;
-            color: white;
-            padding: 4px 8px;
-            font-size: 12px;
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid #2c4163;
-            border-bottom: 1px solid #2c4163;
-            margin-top: 8px;
-        }
-        
-        /* Hidden sections */
-        .hidden {
-            display: none !important;
-        }
-        
-        /* Logs Section */
-        .wm-logs {
-            background: white;
-            border: 1px solid #8faad6;
-            border-radius: 3px;
-            height: 120px;
-            overflow-y: auto;
-            padding: 8px;
-            font-family: "Courier New", monospace;
-            font-size: 12px;
-            margin: 8px 0;
-        }
-        
-        /* Login Form */
-        .wm-login-form {
-            background: white;
-            border: 1px solid #8faad6;
-            border-radius: 3px;
-            padding: 12px;
-            margin: 8px 0;
-        }
-        
-        .wm-login-form label {
-            display: block;
-            margin-bottom: 4px;
-            font-weight: bold;
-            color: #1e3a6b;
-        }
-        
-        /* CAPTCHA */
-        .wm-captcha {
-            background: #e8eef7;
-            border: 1px solid #8faad6;
-            border-radius: 3px;
-            padding: 8px;
-            text-align: center;
-            font-family: "Courier New", monospace;
-            font-size: 18px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin: 8px 0;
-        }
-        
-        /* Offer Wall Grid */
-        .wm-offer-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin: 8px 0;
-        }
-        
-        .wm-offer-item {
-            background: white;
-            border: 1px solid #8faad6;
-            border-radius: 3px;
-            padding: 8px;
-            text-align: center;
-        }
-        
-        .wm-offer-item img {
-            max-width: 100%;
-            height: 40px;
-            object-fit: contain;
-            margin-bottom: 8px;
-        }
-        
-        /* Leaderboard */
-        .wm-leaderboard {
-            background: white;
-            border: 1px solid #8faad6;
-            border-radius: 3px;
-            overflow: hidden;
-            margin: 8px 0;
-        }
-        
-        .wm-leaderboard table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .wm-leaderboard th {
-            background: #4a6a9c;
-            color: white;
-            padding: 6px 8px;
-            text-align: left;
-            font-weight: bold;
-            border-right: 1px solid #2c4163;
-        }
-        
-        .wm-leaderboard th:last-child {
-            border-right: none;
-        }
-        
-        .wm-leaderboard td {
-            padding: 6px 8px;
-            border-bottom: 1px solid #d4dff2;
-        }
-        
-        .wm-leaderboard tr:last-child td {
-            border-bottom: none;
-        }
-        
-        /* FAQ Items */
-        .wm-faq-item {
-            background: white;
-            border: 1px solid #8faad6;
-            border-radius: 3px;
-            padding: 8px;
-            margin: 8px 0;
-        }
-        
-        .wm-faq-item h4 {
-            color: #1e3a6b;
-            margin-bottom: 4px;
-            font-weight: bold;
-        }
-        
-        /* Iframe Container */
-        .wm-iframe-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            z-index: 2000;
-            display: none;
-        }
-        
-        .wm-iframe-header {
-            background: linear-gradient(to bottom, #2c5aa0 0%, #1e3a6b 100%);
-            color: white;
-            height: 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 8px;
-            border-bottom: 1px solid #0f1f3a;
-        }
-        
-        .wm-iframe-content {
-            height: calc(100% - 32px);
-        }
-        
-        .wm-iframe-content iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        /* Notification Badge */
-        .wm-notification-badge {
-            background: #ff0000;
-            color: white;
-            border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            font-size: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: -2px;
-            right: -2px;
-        }
-        
-        /* User Info */
-        .wm-user-info {
-            background: white;
-            border: 1px solid #8faad6;
-            border-radius: 3px;
-            padding: 8px;
-            margin: 8px 0;
-            display: flex;
-            align-items: center;
-        }
-        
-        .wm-user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 3px;
-            margin-right: 8px;
-            border: 1px solid #8faad6;
-        }
-        
-        .wm-user-details {
-            flex-grow: 1;
-        }
-        
-        .wm-user-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 8px;
-        }
-        
-        .wm-stat {
-            text-align: center;
-            flex: 1;
-        }
-        
-        .wm-stat-value {
-            font-weight: bold;
-            font-size: 16px;
-            color: #1e3a6b;
-        }
-        
-        .wm-stat-label {
-            font-size: 10px;
-            color: #4a6a9c;
-        }
-        
-        /* Bonus Section Styles */
-        .bonus-code-section {
-            background: #d4dff2;
-            border: 1px solid #8faad6;
-            border-radius: 4px;
-            padding: 12px;
-            margin-top: 8px;
-            box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #a3b3ce;
-        }
-        
-        .info-box {
-            background: #fff9e6;
-            border: 1px solid #e6c200;
-            border-radius: 3px;
-            padding: 8px;
-            margin: 8px 0;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .info-box i {
-            color: #e6c200;
-            margin-right: 8px;
-            margin-top: 2px;
-        }
-        
-        .bonus-form {
-            background: white;
-            border: 1px solid #8faad6;
-            border-radius: 3px;
-            padding: 12px;
-            margin: 8px 0;
-        }
-        
-        .form-group {
-            margin-bottom: 12px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 4px;
-            font-weight: bold;
-            color: #1e3a6b;
-        }
-        
-        .form-row {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .form-row .form-group {
-            flex: 1;
-        }
-        
-        /* Quantum Rewards Specific Styles */
-        .reward-card {
-            background: white;
-            border: 1px solid #8faad6;
-            border-radius: 3px;
-            padding: 12px;
-            margin: 8px 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .reward-card:hover {
-            background: #e8eef7;
-        }
-        
-        .reward-card.selected {
-            background: #d4dff2;
-            border-color: #4a6a9c;
-            box-shadow: 0 0 0 2px #4a6a9c;
-        }
-        
-        .reward-card.locked {
-            background: #f0f0f0;
-            color: #808080;
-            cursor: not-allowed;
             position: relative;
         }
         
+        .progress-step {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--background-paper);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid var(--divider);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        
+        .progress-step.active {
+            background-color: var(--secondary-main);
+            border-color: var(--secondary-main);
+            color: white;
+        }
+        
+        .progress-step.completed {
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+            color: white;
+        }
+        
+        .progress-connector {
+            flex: 1;
+            height: 2px;
+            background-color: var(--divider);
+            position: relative;
+            top: -18px;
+            z-index: 1;
+        }
+        
+        .progress-connector.active {
+            background-color: var(--secondary-main);
+        }
+        
+        .step-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
+        
+        .step-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: center;
+            width: 33.33%;
+        }
+        
+        .step-label.active {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        /* Form Steps */
+        .form-step {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .form-step.hidden {
+            display: none;
+        }
+        
+        /* Sections */
+        .wm-section {
+            background: var(--background-paper);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            margin-bottom: 16px;
+            font-size: 20px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 10px;
+            color: var(--secondary-main);
+        }
+        
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .wm-input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--divider);
+            background: var(--primary-dark);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: border-color 0.3s;
+        }
+        
+        .wm-input:focus {
+            outline: none;
+            border-color: var(--secondary-main);
+        }
+        
+        .input-hint {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        
+        /* Buttons */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 24px;
+            border-top: 1px solid var(--divider);
+            padding-top: 16px;
+        }
+        
+        .wm-button {
+            background: var(--primary-main);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .wm-button.primary {
+            background: var(--secondary-main);
+        }
+        
+        .wm-button.success {
+            background: var(--success-color);
+        }
+        
+        .wm-button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .wm-button:disabled {
+            background: var(--divider);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .wm-button i {
+            margin: 0 4px;
+        }
+        
+        /* Rewards Grid */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .reward-card {
+            background: var(--primary-dark);
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .reward-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .reward-card.selected {
+            border-color: var(--secondary-main);
+            box-shadow: 0 0 0 2px rgba(233, 69, 96, 0.3);
+        }
+        
+        .reward-card.locked {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .reward-card.locked::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        
         .reward-card.locked::after {
-            content: '🔒 Level Required: 0';
+            content: '\f023';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 3px;
-            font-size: 12px;
-            font-weight: bold;
+            font-size: 24px;
+            color: var(--text-secondary);
+            z-index: 2;
         }
         
         .level-badge {
-            background: #4a6a9c;
+            display: inline-block;
+            background: var(--secondary-dark);
             color: white;
+            font-size: 10px;
             padding: 2px 6px;
             border-radius: 10px;
-            font-size: 10px;
-            font-weight: bold;
-            display: inline-block;
-            margin-left: 8px;
+            margin-top: 4px;
         }
         
+        /* Confirmation Section */
+        .confirmation-details {
+            background: var(--primary-dark);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .reward-summary {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .reward-summary img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin-right: 12px;
+            border-radius: 8px;
+        }
+        
+        .user-stats {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .stat-box {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        /* Modals */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1500;
-            display: none;
-            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
             align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
         }
         
         .modal-overlay.active {
-            display: flex;
+            opacity: 1;
+            visibility: visible;
         }
         
         .modal-content {
-            background: #d4dff2;
-            border: 1px solid #8faad6;
-            border-radius: 4px;
+            background: var(--background-paper);
+            border-radius: 12px;
+            padding: 24px;
             width: 90%;
-            max-width: 400px;
-            padding: 16px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(20px);
+            transition: transform 0.3s;
         }
         
-        .progress-step {
-            width: 24px;
-            height: 24px;
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: #6b8cc0;
-            border: 2px solid #4a6a9c;
-            font-size: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .modal-header i {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--secondary-main);
+        }
+        
+        .modal-title {
+            font-size: 20px;
             font-weight: bold;
-            color: white;
         }
         
-        .progress-step.active {
-            background: #4a6a9c;
-            border-color: #2c4163;
+        .code-display {
+            font-family: 'Courier New', monospace;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 12px;
+            background: var(--primary-dark);
+            border-radius: 8px;
+            text-align: center;
+            margin: 16px 0;
+            letter-spacing: 2px;
+            border: 1px dashed var(--divider);
         }
         
-        .progress-step.completed {
-            background: #2c4163;
-            border-color: #1e3a6b;
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
         }
         
-        .progress-connector {
-            height: 2px;
+        .modal-actions .wm-button {
             flex: 1;
-            background: #6b8cc0;
-            margin: 0 4px;
         }
         
-        .progress-connector.active {
-            background: #4a6a9c;
+        /* Footer Navigation */
+        .wm-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--primary-dark);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            border-top: 1px solid var(--divider);
+            z-index: 100;
         }
         
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 8px;
+        .wm-footer-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 12px;
+            cursor: pointer;
+            transition: color 0.3s;
         }
         
+        .wm-footer-button.active {
+            color: var(--secondary-main);
+        }
+        
+        .wm-footer-button i {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        /* Messages */
+        .message {
+            padding: 12px;
+            border-radius: 8px;
+            margin: 16px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .message.error {
+            background: rgba(233, 69, 96, 0.1);
+            color: var(--secondary-main);
+            border: 1px solid rgba(233, 69, 96, 0.3);
+        }
+        
+        .message.success {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--success-color);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+        
+        .message.info {
+            background: rgba(15, 52, 96, 0.1);
+            color: var(--primary-light);
+            border: 1px solid rgba(15, 52, 96, 0.3);
+        }
+        
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
         
-        .animate-fadeIn {
-            animation: fadeIn 0.3s ease-in-out;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Loading States */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Security Badge */
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 16px 0;
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+        
+        .security-badge i {
+            margin-right: 6px;
+            color: var(--success-color);
         }
     </style>
 </head>
 <body>
     <!-- Windows Mobile Header -->
     <div class="wm-header">
-        <div class="start">Start</div>
-        <div class="title">Quantum Rewards</div>
+        <div class="start">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="title">
+            <i class="fas fa-gem"></i> Quantum Rewards
+        </div>
         <div class="time" id="current-time">12:00 PM</div>
     </div>
 
     <!-- Main Content -->
     <div class="wm-content">
         <!-- Progress Steps -->
-        <div class="wm-section">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center flex-1">
-                    <div class="progress-step active">
-                        <span>1</span>
-                    </div>
-                    <div class="progress-connector"></div>
-                    <div class="progress-step">
-                        <span>2</span>
-                    </div>
-                    <div class="progress-connector"></div>
-                    <div class="progress-step">
-                        <span>3</span>
-                    </div>
+        <div class="progress-container">
+            <div class="progress-steps">
+                <div class="progress-step active">
+                    <span>1</span>
                 </div>
-                <span class="text-sm font-medium" style="margin-left: 8px;">Step <span style="color: #1e3a6b; font-weight: bold;">1</span> of 3</span>
+                <div class="progress-connector"></div>
+                <div class="progress-step">
+                    <span>2</span>
+                </div>
+                <div class="progress-connector"></div>
+                <div class="progress-step">
+                    <span>3</span>
+                </div>
+            </div>
+            <div class="step-labels">
+                <div class="step-label active">Verify Account</div>
+                <div class="step-label">Select Reward</div>
+                <div class="step-label">Confirm & Claim</div>
             </div>
         </div>
 
@@ -676,77 +605,82 @@
         <!-- Step 1: Account Verification -->
         <div class="form-step">
             <div class="wm-section">
-                <h2>Account Verification</h2>
+                <h2><i class="fas fa-user-check"></i> Account Verification</h2>
                 <div class="form-group">
                     <label for="account">Account ID</label>
-                    <div class="relative">
-                        <input type="text" id="account" class="wm-input" placeholder="Enter your account ID">
-                    </div>
-                    <p style="margin-top: 4px; font-size: 12px; color: #4a6a9c;">Enter your registered account ID to verify eligibility</p>
+                    <input type="text" id="account" class="wm-input" placeholder="Enter your account ID">
+                    <div class="input-hint">Enter your registered account ID to verify eligibility</div>
                 </div>
-                <div id="message" class="text-center mt-6 font-medium text-sm"></div>
+                
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i> Your information is securely encrypted
+                </div>
+                
+                <div id="message-step1" class="message"></div>
             </div>
         </div>
 
         <!-- Step 2: Reward Selection -->
         <div class="form-step hidden">
             <div class="wm-section">
-                <h2>Select Your Reward</h2>
-                <p style="margin-bottom: 12px; color: #4a6a9c;">Choose from our exclusive rewards catalog. Your current balance will be shown after verification.</p>
+                <h2><i class="fas fa-gift"></i> Select Your Reward</h2>
+                <p style="margin-bottom: 16px; color: var(--text-secondary);">Choose from our exclusive rewards catalog. Your current balance will be shown after verification.</p>
                 
                 <div id="rewards-container" class="grid-container">
                     <!-- Rewards will be loaded here -->
                     <div style="grid-column: 1 / -1; text-align: center; padding: 20px;">
-                        <i class="fas fa-spinner fa-spin" style="font-size: 24px; color: #4a6a9c; margin-bottom: 8px;"></i>
-                        <p style="color: #4a6a9c;">Loading rewards catalog...</p>
+                        <div class="loading"></div>
+                        <p style="color: var(--text-secondary); margin-top: 8px;">Loading rewards catalog...</p>
                     </div>
                 </div>
-                <div id="message" class="text-center mt-6 font-medium text-sm"></div>
+                
+                <div id="message-step2" class="message"></div>
             </div>
         </div>
 
         <!-- Step 3: Confirmation -->
         <div class="form-step hidden">
             <div class="wm-section">
-                <h2>Confirm Your Redemption</h2>
+                <h2><i class="fas fa-clipboard-check"></i> Confirm Your Redemption</h2>
                 
-                <div style="background: white; border: 1px solid #8faad6; border-radius: 3px; padding: 12px; margin-bottom: 12px;">
-                    <div style="display: flex; align-items: center; margin-bottom: 12px;">
-                        <img id="selected-reward-logo" src="https://via.placeholder.com/60" alt="Reward" style="width: 60px; height: 60px; object-fit: contain; margin-right: 12px;">
+                <div class="confirmation-details">
+                    <div class="reward-summary">
+                        <img id="selected-reward-logo" src="https://via.placeholder.com/60" alt="Reward">
                         <div>
-                            <h3 id="selected-reward-name" style="font-weight: bold; font-size: 16px;">Reward Name</h3>
-                            <p id="selected-reward-amount" style="color: #4a6a9c; font-size: 14px;">0 points</p>
-                            <p id="selected-reward-level" style="font-size: 12px; color: #808080; margin-top: 4px;">Level required: 0</p>
+                            <h3 id="selected-reward-name" style="font-weight: bold; font-size: 18px;">Reward Name</h3>
+                            <p id="selected-reward-amount" style="color: var(--text-secondary);">0 points</p>
+                            <p id="selected-reward-level" style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Level required: 0</p>
                         </div>
                     </div>
                     
-                    <div style="margin-bottom: 12px;">
-                        <label for="note" style="display: block; margin-bottom: 4px; font-weight: bold; color: #1e3a6b;">Special Instructions (Optional)</label>
+                    <div class="user-stats">
+                        <div class="stat-box">
+                            <div class="stat-value" id="user-balance">0</div>
+                            <div class="stat-label">Your Balance</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="user-level">0</div>
+                            <div class="stat-label">Your Level</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="note">Special Instructions (Optional)</label>
                         <textarea id="note" rows="3" class="wm-input" placeholder="Any special delivery instructions or notes..."></textarea>
-                    </div>
-                    
-                    <div style="display: flex; align-items: center; justify-content: between; background: #e8eef7; border-radius: 3px; padding: 8px; margin-bottom: 8px;">
-                        <span style="font-size: 12px; color: #4a6a9c;">Your Balance</span>
-                        <span style="font-weight: bold; color: #1e3a6b; font-size: 14px;"><span id="user-balance">0</span> pts</span>
-                    </div>
-                    
-                    <div style="display: flex; align-items: center; justify-content: between; background: #e8eef7; border-radius: 3px; padding: 8px;">
-                        <span style="font-size: 12px; color: #4a6a9c;">Your Level</span>
-                        <span style="font-weight: bold; color: #1e3a6b; font-size: 14px;"><span id="user-level">0</span></span>
                     </div>
                 </div>
                 
-                <div id="message" class="text-center mt-6 font-medium text-sm"></div>
+                <div id="message-step3" class="message"></div>
             </div>
         </div>
 
         <!-- Navigation Buttons -->
-        <div style="margin-top: 16px; display: flex; justify-content: space-between; border-top: 1px solid #8faad6; padding-top: 12px;">
+        <div class="button-container">
             <button id="prev-btn" class="wm-button hidden">
-                <i class="fas fa-arrow-left" style="margin-right: 4px;"></i> Back
+                <i class="fas fa-arrow-left"></i> Back
             </button>
-            <button id="next-btn" class="wm-button primary" style="margin-left: auto;">
-                Next <i class="fas fa-arrow-right" style="margin-left: 4px;"></i>
+            <button id="next-btn" class="wm-button primary">
+                Next <i class="fas fa-arrow-right"></i>
             </button>
         </div>
     </div>
@@ -762,39 +696,44 @@
             <span>Rewards</span>
         </div>
         <div class="wm-footer-button">
-            <i class="fas fa-user"></i>
-            <span>Account</span>
+            <i class="fas fa-history"></i>
+            <span>History</span>
         </div>
         <div class="wm-footer-button">
-            <i class="fas fa-cog"></i>
-            <span>Settings</span>
+            <i class="fas fa-user"></i>
+            <span>Account</span>
         </div>
     </div>
 
     <!-- Claim Modal -->
     <div id="claim-modal" class="modal-overlay">
         <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-check-circle"></i>
+                <div class="modal-title">Redemption Successful!</div>
+            </div>
+            
             <div style="text-align: center;">
-                <div style="display: flex; justify-content: center; margin-bottom: 12px;">
-                    <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(to bottom, #4a6a9c 0%, #2c4163 100%); display: flex; align-items: center; justify-content: center;">
+                <div style="display: flex; justify-content: center; margin-bottom: 16px;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--primary-dark); display: flex; align-items: center; justify-content: center;">
                         <img id="modal-reward-logo" src="https://via.placeholder.com/50" alt="Reward" style="width: 50px; height: 50px; object-fit: contain;">
                     </div>
                 </div>
                 <h3 id="modal-reward-name" style="font-size: 18px; font-weight: bold; margin-bottom: 4px;">Reward Name</h3>
-                <p id="modal-reward-amount" style="color: #4a6a9c; font-size: 14px; margin-bottom: 16px;">0 points</p>
+                <p id="modal-reward-amount" style="color: var(--text-secondary); font-size: 14px; margin-bottom: 16px;">0 points</p>
                 
-                <div style="background: white; border: 1px solid #8faad6; border-radius: 3px; padding: 12px; margin-bottom: 16px;">
-                    <p style="font-size: 12px; color: #4a6a9c; margin-bottom: 8px;">Your redemption code:</p>
-                    <div id="claim-code-display" style="font-family: 'Courier New', monospace; font-size: 18px; font-weight: bold; padding: 8px; background: #e8eef7; border-radius: 3px; border: 1px solid #8faad6; word-break: break-all;">CODE-HERE</div>
-                    <p style="font-size: 10px; color: #808080; margin-top: 8px;">This code will be valid for 30 days</p>
+                <div style="margin-bottom: 16px;">
+                    <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">Your redemption code:</p>
+                    <div id="claim-code-display" class="code-display">CODE-HERE</div>
+                    <p style="font-size: 12px; color: var(--text-secondary); margin-top: 8px;">This code will be valid for 30 days</p>
                 </div>
                 
-                <div style="display: flex; gap: 8px;">
-                    <button id="copy-code" class="wm-button primary" style="flex: 1;">
-                        <i class="fas fa-copy" style="margin-right: 4px;"></i> Copy Code
+                <div class="modal-actions">
+                    <button id="copy-code" class="wm-button success">
+                        <i class="fas fa-copy"></i> Copy Code
                     </button>
-                    <button id="close-modal" class="wm-button" style="flex: 1;">
-                        Close
+                    <button id="close-modal" class="wm-button">
+                        <i class="fas fa-times"></i> Close
                     </button>
                 </div>
             </div>
@@ -836,9 +775,14 @@
             // DOM Elements
             const nextBtn = document.getElementById("next-btn");
             const prevBtn = document.getElementById("prev-btn");
-            const messageBoxes = document.querySelectorAll("#message");
+            const messageBoxes = {
+                step1: document.getElementById("message-step1"),
+                step2: document.getElementById("message-step2"),
+                step3: document.getElementById("message-step3")
+            };
             const progressSteps = document.querySelectorAll(".progress-step");
             const progressConnectors = document.querySelectorAll(".progress-connector");
+            const stepLabels = document.querySelectorAll(".step-label");
             const rewardsContainer = document.getElementById("rewards-container");
             const selectedRewardName = document.getElementById("selected-reward-name");
             const selectedRewardAmount = document.getElementById("selected-reward-amount");
@@ -866,10 +810,8 @@
                 document.querySelectorAll('.form-step').forEach((step, index) => {
                     if (index + 1 === currentStep) {
                         step.classList.remove("hidden");
-                        step.classList.add("animate-fadeIn");
                     } else {
                         step.classList.add("hidden");
-                        step.classList.remove("animate-fadeIn");
                     }
                 });
 
@@ -878,7 +820,7 @@
                     if (index + 1 < currentStep) {
                         step.classList.remove("active");
                         step.classList.add("completed");
-                        step.innerHTML = '<i class="fas fa-check" style="font-size: 10px;"></i>';
+                        step.innerHTML = '<i class="fas fa-check"></i>';
                     } else if (index + 1 === currentStep) {
                         step.classList.add("active");
                         step.classList.remove("completed");
@@ -898,16 +840,28 @@
                     }
                 });
 
+                // Update step labels
+                stepLabels.forEach((label, index) => {
+                    if (index + 1 <= currentStep) {
+                        label.classList.add("active");
+                    } else {
+                        label.classList.remove("active");
+                    }
+                });
+
                 // Update next/prev buttons
                 if (nextBtn) {
                     if (currentStep === totalSteps) {
-                        nextBtn.innerHTML = '<i class="fas fa-gift" style="margin-right: 4px;"></i> Redeem Now';
+                        nextBtn.innerHTML = '<i class="fas fa-gift"></i> Redeem Now';
+                        nextBtn.classList.add("success");
                         if (prevBtn) prevBtn.classList.remove("hidden");
                     } else if (currentStep === 1) {
-                        nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right" style="margin-left: 4px;"></i>';
+                        nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+                        nextBtn.classList.remove("success");
                         if (prevBtn) prevBtn.classList.add("hidden");
                     } else {
-                        nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right" style="margin-left: 4px;"></i>';
+                        nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+                        nextBtn.classList.remove("success");
                         if (prevBtn) prevBtn.classList.remove("hidden");
                     }
                 }
@@ -934,7 +888,7 @@
                     console.error('Error loading rewards:', error);
                     if (rewardsContainer) {
                         rewardsContainer.innerHTML = `
-                            <div style="grid-column: 1 / -1; text-align: center; padding: 20px; color: #ff0000;">
+                            <div style="grid-column: 1 / -1; text-align: center; padding: 20px; color: var(--secondary-main);">
                                 <i class="fas fa-exclamation-triangle" style="font-size: 24px; margin-bottom: 8px;"></i>
                                 <p>Failed to load rewards. Please try again later.</p>
                             </div>
@@ -948,7 +902,7 @@
                 
                 if (rewardsData.length === 0) {
                     rewardsContainer.innerHTML = `
-                        <div style="grid-column: 1 / -1; text-align: center; padding: 20px; color: #808080;">
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 20px; color: var(--text-secondary);">
                             <i class="fas fa-box-open" style="font-size: 24px; margin-bottom: 8px;"></i>
                             <p>No rewards available at this time.</p>
                         </div>
@@ -970,16 +924,16 @@
                         <div style="display: flex; align-items: center; margin-bottom: 8px;">
                             <img src="${reward.rewardlogourl || 'https://via.placeholder.com/40'}" 
                                  alt="${reward.rewardname || 'Reward'}" 
-                                 style="width: 40px; height: 40px; object-fit: contain; margin-right: 8px;">
+                                 style="width: 40px; height: 40px; object-fit: contain; margin-right: 8px; border-radius: 6px;">
                             <div style="flex: 1;">
                                 <h3 style="font-weight: bold; font-size: 14px;">${reward.rewardname || 'Reward'}</h3>
-                                <p style="color: #4a6a9c; font-size: 12px;">${reward.amount || '0'}</p>
+                                <p style="color: var(--text-secondary); font-size: 12px;">${reward.amount || '0'}</p>
                                 ${requiredLevel > 0 ? `<span class="level-badge">Level ${requiredLevel}+</span>` : ''}
                             </div>
                         </div>
-                        <div style="padding-top: 8px; border-top: 1px solid #d4dff2; display: flex; justify-content: space-between; align-items: center;">
-                            <span style="font-size: 10px; ${isLocked ? 'color: #ff0000;' : 'color: #808080;'}">${isLocked ? 'Level locked' : 'Available'}</span>
-                            <span style="font-size: 10px; ${isLocked ? 'color: #808080;' : 'color: #4a6a9c;'}">
+                        <div style="padding-top: 8px; border-top: 1px solid var(--divider); display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-size: 10px; ${isLocked ? 'color: var(--secondary-main);' : 'color: var(--text-secondary);'}">${isLocked ? 'Level locked' : 'Available'}</span>
+                            <span style="font-size: 10px; ${isLocked ? 'color: var(--text-secondary);' : 'color: var(--primary-light);'}">
                                 ${isLocked ? 'Locked' : 'Select'} <i class="fas ${isLocked ? 'fa-lock' : 'fa-chevron-right'}" style="margin-left: 2px;"></i>
                             </span>
                         </div>
@@ -1005,6 +959,8 @@
                             claimCode: this.getAttribute('data-claim-code'),
                             requiredLevel: parseInt(this.getAttribute('data-required-level') || "0")
                         };
+                        
+                        clearMessage('step2');
                     });
                 });
             }
@@ -1028,7 +984,7 @@
                     return users.find(u => u['account#'] && u['account#'].toLowerCase() === accountId.toLowerCase());
                 } catch (error) {
                     console.error('Error fetching user data:', error);
-                    showError("Failed to load user data. Please try again later.");
+                    showError("step1", "Failed to load user data. Please try again later.");
                     return null;
                 }
             }
@@ -1040,25 +996,31 @@
                 if (currentStep === 1) {
                     const account = document.getElementById("account")?.value.trim();
                     if (!account) {
-                        showError("Please enter your Account ID.");
+                        showError("step1", "Please enter your Account ID.");
+                        return;
+                    }
+                    
+                    // Validate account ID format (basic validation)
+                    if (account.length < 3) {
+                        showError("step1", "Please enter a valid Account ID.");
                         return;
                     }
                     
                     // Fetch user data
                     if (nextBtn) {
                         nextBtn.disabled = true;
-                        nextBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 4px;"></i> Verifying...';
+                        nextBtn.innerHTML = '<div class="loading"></div> Verifying...';
                     }
                     
                     const user = await fetchUserData(account);
                     
                     if (nextBtn) {
                         nextBtn.disabled = false;
-                        nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right" style="margin-left: 4px;"></i>';
+                        nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
                     }
                     
                     if (!user) {
-                        showError("Account ID not found. Please check and try again.");
+                        showError("step1", "Account ID not found. Please check and try again.");
                         return;
                     }
                     
@@ -1068,19 +1030,22 @@
                     if (userBalanceDisplay) userBalanceDisplay.textContent = userBalance;
                     if (userLevelDisplay) userLevelDisplay.textContent = userLevel;
                     
+                    // Show success message
+                    showSuccess("step1", `Account verified successfully! Your balance: ${userBalance} points, Level: ${userLevel}`);
+                    
                     // Reload rewards with user's level
                     displayRewards();
                 }
 
                 if (currentStep === 2) {
                     if (!selectedReward) {
-                        showError("Please select a reward to continue.");
+                        showError("step2", "Please select a reward to continue.");
                         return;
                     }
                     
                     // Check if user has the required level
                     if (userLevel < selectedReward.requiredLevel) {
-                        showError(`You need to be at least level ${selectedReward.requiredLevel} to redeem this reward. Your current level is ${userLevel}.`);
+                        showError("step2", `You need to be at least level ${selectedReward.requiredLevel} to redeem this reward. Your current level is ${userLevel}.`);
                         return;
                     }
                     
@@ -1094,6 +1059,9 @@
                     if (selectedRewardLevel) {
                         selectedRewardLevel.textContent = `Level required: ${selectedReward.requiredLevel}`;
                     }
+                    
+                    // Show success message
+                    showSuccess("step2", `${selectedReward.name} selected. Click Next to continue.`);
                 }
 
                 if (currentStep < totalSteps) {
@@ -1108,13 +1076,13 @@
                     const rewardCost = parseInt(selectedReward.amount.replace(/[^0-9]/g, '')) || 0;
                     
                     if (userBalance < rewardCost) {
-                        showError("Insufficient balance for this reward.");
+                        showError("step3", "Insufficient balance for this reward.");
                         return;
                     }
                     
                     // Check level requirement again (just in case)
                     if (userLevel < selectedReward.requiredLevel) {
-                        showError(`You need to be at least level ${selectedReward.requiredLevel} to redeem this reward. Your current level is ${userLevel}.`);
+                        showError("step3", `You need to be at least level ${selectedReward.requiredLevel} to redeem this reward. Your current level is ${userLevel}.`);
                         return;
                     }
                     
@@ -1213,9 +1181,9 @@
                 const code = claimCodeDisplay.textContent;
                 navigator.clipboard.writeText(code).then(() => {
                     if (copyCodeBtn) {
-                        copyCodeBtn.innerHTML = '<i class="fas fa-check" style="margin-right: 4px;"></i> Copied!';
+                        copyCodeBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
                         setTimeout(() => {
-                            copyCodeBtn.innerHTML = '<i class="fas fa-copy" style="margin-right: 4px;"></i> Copy Code';
+                            copyCodeBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Code';
                         }, 2000);
                     }
                 });
@@ -1238,31 +1206,35 @@
                 return hash.toString(16);
             }
 
-            function showError(msg) {
-                messageBoxes.forEach(box => {
-                    if (box) {
-                        box.textContent = msg;
-                        box.style.color = "#ff0000";
-                        box.classList.add("animate-fadeIn");
-                    }
-                });
+            function showError(step, msg) {
+                const box = messageBoxes[step];
+                if (box) {
+                    box.textContent = msg;
+                    box.className = "message error";
+                }
             }
 
-            function showSuccess(msg) {
-                messageBoxes.forEach(box => {
-                    if (box) {
-                        box.textContent = msg;
-                        box.style.color = "#008000";
-                        box.classList.add("animate-fadeIn");
-                    }
-                });
+            function showSuccess(step, msg) {
+                const box = messageBoxes[step];
+                if (box) {
+                    box.textContent = msg;
+                    box.className = "message success";
+                }
+            }
+
+            function clearMessage(step) {
+                const box = messageBoxes[step];
+                if (box) {
+                    box.textContent = "";
+                    box.className = "message";
+                }
             }
 
             function clearMessages() {
-                messageBoxes.forEach(box => {
+                Object.values(messageBoxes).forEach(box => {
                     if (box) {
                         box.textContent = "";
-                        box.className = "text-center mt-6 font-medium text-sm";
+                        box.className = "message";
                     }
                 });
             }
